@@ -37,7 +37,7 @@ function Game() {
     return <HomePage settings={g.settings} onChange={g.updateSettings} onStart={actions.start} />
   }
   if (state.phase === 'result') {
-    return <ResultPage state={state} onPlayAgain={actions.playAgain} onHome={actions.goHome} />
+    return <ResultPage state={state} themeId={g.settings.themeId} onPlayAgain={actions.playAgain} onHome={actions.goHome} />
   }
   return (
     <GamePage

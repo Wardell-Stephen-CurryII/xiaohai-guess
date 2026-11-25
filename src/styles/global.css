@@ -1,27 +1,32 @@
-/* 站酷快乐体子集，只含标题字和数字（SIL OFL 1.1，见 public/fonts/OFL-ZCOOLKuaiLe.txt） */
+/* 站酷庆科黄油体子集，只含标题字和数字（SIL OFL 1.1，见 public/fonts/OFL-ZCOOLQingKeHuangYou.txt） */
 @font-face {
-  font-family: 'Kuaile';
-  src: url('/fonts/kuaile-subset.woff') format('woff');
+  font-family: 'HuangYou';
+  src: url('/fonts/huangyou-subset.woff') format('woff');
   font-display: block;
 }
 
 :root {
-  --ink: #1c1f5a;
-  --ink-raised: #2a2e78;
-  --ink-line: #3b4096;
-  --hi: #ffd23f;
-  --ok: #17b26a;
-  --skip: #f2545b;
-  --paper: #ffffff;
-  --mute: #a9adde;
+  --bg: #f5f3f8;
+  --surface: #ffffff;
+  --ink: #1f1c2c;
+  --ink-soft: #6f6b80;
+  --line: #e4e0ec;
+  --brand: #1e2b45;
+  --ok: #1fb57a;
+  --skip: #ff6458;
+
+  --radius-lg: 1.25rem;
+  --radius-md: 0.9rem;
+  --shadow: 0 1px 2px rgb(31 28 44 / 0.06), 0 6px 20px rgb(31 28 44 / 0.06);
 
   --font-body: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
-  --font-display: 'Kuaile', var(--font-body);
+  --font-display: 'HuangYou', var(--font-body);
+  --font-emoji: 'Apple Color Emoji', 'Noto Color Emoji', 'Segoe UI Emoji', sans-serif;
 
-  color-scheme: dark;
+  color-scheme: light;
   font-family: var(--font-body);
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--bg);
+  color: var(--ink);
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -41,7 +46,7 @@ button {
 }
 
 :focus-visible {
-  outline: 3px solid var(--hi);
+  outline: 3px solid var(--brand);
   outline-offset: 3px;
 }
 
@@ -54,24 +59,24 @@ button {
   }
 }
 
-/* 通用按钮：主要操作为黄色实心，次要操作为描边 */
+/* 主要操作：深色实心；次要操作：白底描边 */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-height: 3.25rem;
-  padding: 0 1.5rem;
+  padding: 0 1.6rem;
   border-radius: 999px;
-  border: 2px solid var(--ink-line);
-  background: transparent;
+  border: 1.5px solid var(--line);
+  background: var(--surface);
   font-size: 1.05rem;
   font-weight: 600;
 }
 
 .btn-primary {
-  background: var(--hi);
-  border-color: var(--hi);
-  color: var(--ink);
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
 }
 
 .btn:active {
@@ -81,9 +86,22 @@ button {
 .text-link {
   background: none;
   border: none;
-  color: var(--mute);
+  color: var(--ink-soft);
   font-size: 0.9rem;
   padding: 0.5rem;
   text-decoration: underline;
   text-underline-offset: 3px;
+}
+
+/* 主题配图：三个 emoji 叠放，大小错落 */
+.theme-art {
+  position: absolute;
+  font-family: var(--font-emoji);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.theme-art span {
+  position: absolute;
 }

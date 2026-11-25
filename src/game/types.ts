@@ -25,7 +25,7 @@ export interface RoundRecord {
 
 export type Sensitivity = 'low' | 'medium' | 'high'
 
-export const DURATIONS_SEC = [30, 60, 90, 120] as const
+export const DURATIONS_SEC = [60, 120, 180, 240, 300] as const
 export type DurationSec = (typeof DURATIONS_SEC)[number]
 
 export interface Settings {

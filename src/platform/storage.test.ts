@@ -24,7 +24,7 @@ describe('storage', () => {
   it('写入后可以读回', () => {
     const store = memoryStore()
     const data = {
-      settings: { themeId: 'songs', durationSec: 90 as const, soundOn: false, sensitivity: 'high' as const },
+      settings: { themeId: 'songs', durationSec: 180 as const, soundOn: false, sensitivity: 'high' as const },
       seen: { songs: ['青花瓷'] },
     }
     expect(saveData(store, data)).toBe(true)

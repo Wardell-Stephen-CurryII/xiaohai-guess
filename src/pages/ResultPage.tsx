@@ -1,3 +1,6 @@
+import type { CSSProperties } from 'react'
+import { ThemeArt } from '../components/ThemeArt'
+import { themeStyle } from '../data/themeStyle'
 import { summarize, type GameState } from '../game/gameReducer'
 import type { Card } from '../game/types'
 import './result.css'
@@ -21,10 +24,12 @@ function WordList({ title, cards, tone }: { title: string; cards: Card[]; tone: 
 
 export function ResultPage({
   state,
+  themeId,
   onPlayAgain,
   onHome,
 }: {
   state: GameState
+  themeId: string
   onPlayAgain: () => void
   onHome: () => void
 }) {
@@ -33,21 +38,24 @@ export function ResultPage({
 
   return (
     <main className="result">
-      <p className={`result-over${state.endedEarly ? ' early' : ''}`}>{state.endedEarly ? '这局结束' : '时间到'}</p>
-      <div className="result-score">
-        <span className="result-score-num">{s.correct.length}</span>
-        <span className="result-score-label">答对</span>
-      </div>
-      <dl className="result-stats">
-        <div>
-          <dt>跳过</dt>
-          <dd>{s.skipped.length}</dd>
+      <section className="result-hero" style={{ '--theme': themeStyle(themeId).color } as CSSProperties}>
+        <ThemeArt themeId={themeId} className="art-result" />
+        <p className="result-over">{state.endedEarly ? '这局结束' : '时间到'}</p>
+        <div className="result-score">
+          <span className="result-score-num">{s.correct.length}</span>
+          <span className="result-score-label">答对</span>
         </div>
-        <div>
-          <dt>正确率</dt>
-          <dd>{accuracy}</dd>
-        </div>
-      </dl>
+        <dl className="result-stats">
+          <div>
+            <dt>跳过</dt>
+            <dd>{s.skipped.length}</dd>
+          </div>
+          <div>
+            <dt>正确率</dt>
+            <dd>{accuracy}</dd>
+          </div>
+        </dl>
+      </section>
 
       {s.correct.length + s.skipped.length === 0 && <p className="result-empty">这局一个词也没翻，再来一局试试。</p>}
       <WordList title="答对的词" cards={s.correct} tone="ok" />

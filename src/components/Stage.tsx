@@ -6,14 +6,16 @@ import './stage.css'
 export function Stage({
   rotation,
   className = '',
+  style,
   children,
 }: {
   rotation: StageRotation
   className?: string
+  style?: CSSProperties
   children: ReactNode
 }) {
   return (
-    <div className={`stage stage-r${rotation === 0 ? '0' : rotation > 0 ? 'cw' : 'ccw'} ${className}`}>
+    <div className={`stage stage-r${rotation === 0 ? '0' : rotation > 0 ? 'cw' : 'ccw'} ${className}`} style={style}>
       {children}
     </div>
   )

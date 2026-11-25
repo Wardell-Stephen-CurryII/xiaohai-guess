@@ -1,4 +1,7 @@
+import type { CSSProperties } from 'react'
+import { ThemeArt } from '../components/ThemeArt'
 import { THEMES } from '../data/themes'
+import { themeStyle } from '../data/themeStyle'
 import { DURATIONS_SEC, MIXED_THEME_ID, type Sensitivity, type Settings } from '../game/types'
 import { wordCount } from '../game/wordDeck'
 import './home.css'
@@ -45,24 +48,18 @@ export function HomePage({
   onStart: () => void
 }) {
   const themeOptions = [{ id: MIXED_THEME_ID, name: '混合' }, ...THEMES]
-  const selectedValid = themeOptions.some((t) => t.id === settings.themeId)
-  const themeId = selectedValid ? settings.themeId : MIXED_THEME_ID
-  const count = wordCount(THEMES, themeId)
-  const canStart = count >= 2
+  const themeId = themeOptions.some((t) => t.id === settings.themeId) ? settings.themeId : MIXED_THEME_ID
+  const canStart = wordCount(THEMES, themeId) >= 2
 
   return (
     <main className="home">
-      <h1 className="home-title" aria-label="小嗨猜猜猜">
-        <span className="home-title-small" aria-hidden>
-          小嗨
-        </span>
-        <span className="home-title-cai" aria-hidden>
-          <span className="cai cai-down">猜</span>
-          <span className="cai cai-mid">猜</span>
-          <span className="cai cai-up">猜</span>
-        </span>
-      </h1>
-      <p className="home-lede">手机横着举起来给朋友看，朋友提示，你来猜。猜中就把屏幕朝下翻，想跳过就朝上翻。</p>
+      <header className="home-brand">
+        <h1 className="home-title">
+          <span className="home-title-main">小嗨</span>
+          <span className="home-title-sub">猜猜猜</span>
+        </h1>
+        <p className="home-lede">手机横着举起来给朋友看，朋友比划，你来猜。猜中把屏幕朝下翻，想跳过就朝上翻。</p>
+      </header>
 
       <section className="home-block" aria-labelledby="theme-heading">
         <h2 id="theme-heading">选个主题</h2>
@@ -73,8 +70,10 @@ export function HomePage({
               role="radio"
               aria-checked={t.id === themeId}
               className={`home-theme${t.id === MIXED_THEME_ID ? ' home-theme-mixed' : ''}`}
+              style={{ '--theme': themeStyle(t.id).color } as CSSProperties}
               onClick={() => onChange({ themeId: t.id })}
             >
+              <ThemeArt themeId={t.id} className="art-card" />
               <span className="home-theme-name">{t.name}</span>
               <span className="home-theme-count">
                 {t.id === MIXED_THEME_ID ? '所有主题一起出' : `${wordCount(THEMES, t.id)} 个词`}
@@ -88,15 +87,10 @@ export function HomePage({
         <Choice
           label="每局时长"
           value={settings.durationSec}
-          options={DURATIONS_SEC.map((d) => [d, `${d} 秒`] as const)}
+          options={DURATIONS_SEC.map((d) => [d, `${d / 60} 分`] as const)}
           onChange={(d) => onChange({ durationSec: d })}
         />
-        <Choice
-          label="翻转灵敏度"
-          value={settings.sensitivity}
-          options={SENSITIVITY}
-          onChange={(s) => onChange({ sensitivity: s })}
-        />
+        <Choice label="翻转灵敏度" value={settings.sensitivity} options={SENSITIVITY} onChange={(s) => onChange({ sensitivity: s })} />
         <Choice
           label="音效"
           value={settings.soundOn ? 'on' : 'off'}

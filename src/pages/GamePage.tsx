@@ -1,4 +1,7 @@
+import type { CSSProperties } from 'react'
 import { Stage, StageWord } from '../components/Stage'
+import { ThemeArt } from '../components/ThemeArt'
+import { themeStyle } from '../data/themeStyle'
 import { stageRotation } from '../components/stageRotation'
 import { countdownNumber, currentCard, remainingMs, type GameState } from '../game/gameReducer'
 import type { SensorProblem } from '../game/useGameController'
@@ -123,10 +126,14 @@ export function GamePage(p: GamePageProps) {
 
   // ---- 举起手机时的画面：横屏舞台 ----
   const rotation = stageRotation(portrait, p.landscape)
+  const card = currentCard(state)
+  const themeId = card?.themeId ?? ''
+  const themeVars = { '--theme': themeStyle(themeId).color } as CSSProperties
 
   if (state.phase === 'countdown') {
     return (
-      <Stage rotation={rotation} className="game-stage game-countdown">
+      <Stage rotation={rotation} className="game-stage game-countdown" style={themeVars}>
+        <ThemeArt themeId={themeId} className="art-stage" />
         <div className="game-countdown-num" key={countdownNumber(state, p.now)}>
           {countdownNumber(state, p.now)}
         </div>
@@ -139,10 +146,10 @@ export function GamePage(p: GamePageProps) {
   const score = state.records.filter((r) => r.outcome === 'correct').length
   const feedback = state.turn === 'feedback' ? state.lastOutcome : null
   const buttonsProminent = state.inputMode === 'buttons' || p.sensorStale
-  const card = currentCard(state)
 
   return (
-    <Stage rotation={rotation} className={`game-stage${feedback ? ` game-fb-${feedback}` : ''}`}>
+    <Stage rotation={rotation} className={`game-stage${feedback ? ` game-fb-${feedback}` : ''}`} style={themeVars}>
+      {!feedback && <ThemeArt themeId={themeId} className="art-stage" />}
       <div className={`game-timer${left <= 5000 ? ' hurry' : ''}`}>{formatTime(left)}</div>
       <div className="game-score" aria-label={`答对 ${score} 个`}>
         {score}
