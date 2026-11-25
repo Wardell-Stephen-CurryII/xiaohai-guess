@@ -4,8 +4,8 @@ import { describe, expect, it } from 'vitest'
 import { MIXED_THEME_ID } from '../game/types'
 import { THEMES } from './themes'
 
-/** 阶段 4 编写完整词库后提高到 80 */
-const MIN_WORDS_PER_THEME = 15
+const MIN_WORDS_PER_THEME = 500
+const MAX_WORDS_PER_THEME = 2000
 const MIN_CHARS = 2
 const MAX_CHARS = 8
 
@@ -25,6 +25,19 @@ describe('词库体检', () => {
     }
   })
 
+  it('同一个词只出现在一个主题里（避免「混合」模式中重复出题）', () => {
+    const owner = new Map<string, string>()
+    const dup: string[] = []
+    for (const t of THEMES) {
+      for (const w of t.words) {
+        const prev = owner.get(w)
+        if (prev && prev !== t.id) dup.push(`${w}（${prev} / ${t.id}）`)
+        else owner.set(w, t.id)
+      }
+    }
+    expect(dup).toEqual([])
+  })
+
   it('显示顺序唯一', () => {
     const orders = THEMES.map((t) => t.order)
     expect(new Set(orders).size).toBe(orders.length)
@@ -32,8 +45,9 @@ describe('词库体检', () => {
 
   for (const theme of THEMES) {
     describe(`${theme.name}（${theme.id}）`, () => {
-      it(`至少 ${MIN_WORDS_PER_THEME} 个词`, () => {
+      it(`${MIN_WORDS_PER_THEME}~${MAX_WORDS_PER_THEME} 个词`, () => {
         expect(theme.words.length).toBeGreaterThanOrEqual(MIN_WORDS_PER_THEME)
+        expect(theme.words.length).toBeLessThanOrEqual(MAX_WORDS_PER_THEME)
       })
 
       it('没有重复的词', () => {
