@@ -1,0 +1,52 @@
+:root {
+  color-scheme: dark;
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
+  background: #111827;
+  color: #f9fafb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+}
+
+.env {
+  max-width: 32rem;
+  margin: 0 auto;
+  padding: calc(env(safe-area-inset-top) + 1.5rem) 1.25rem 1.5rem;
+}
+
+.env h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.env-sub,
+.env-foot {
+  color: #9ca3af;
+}
+
+.env-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.env-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.5rem;
+  background: #1f2937;
+  border-left: 4px solid #22c55e;
+}
+
+.env-list li.bad {
+  border-left-color: #ef4444;
+}

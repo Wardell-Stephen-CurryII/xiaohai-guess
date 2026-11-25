@@ -2,18 +2,41 @@
 
 聚会猜词游戏，iPhone 主屏幕 Web App（PWA）。手机横屏举起、屏幕朝向朋友，屏幕翻向地面算答对，翻向天空算跳过。
 
-当前状态：设计阶段，尚未开始编码。
+当前状态：阶段 0（工程脚手架与实机调试通道）。进度见 `docs/项目规划.md`。
+
+## 开发
+
+需要 Node.js 20 以上，以及 [cloudflared](https://github.com/cloudflare/cloudflared/releases)（只用于开发时让 iPhone 通过 HTTPS 访问，不需要 Cloudflare 账号）。
+
+```bash
+npm install
+npm run dev      # 开发服务器，固定端口 5188
+npm run tunnel   # 另开一个终端：生成临时 HTTPS 地址（*.trycloudflare.com），用 iPhone 打开
+npm test         # 单元测试
+npm run lint     # 代码检查
+npm run build    # 生产构建，输出到 dist/，部署路径为 /xiaohai-guess/
+```
+
+隧道地址每次启动都会变化。iPhone 的传感器只能在 HTTPS 下使用，所以实机测试要用隧道地址，不能用局域网 IP。
 
 ## 目录
 
 ```text
 guess/
-├── README.md              本文件
-└── docs/
-    ├── 设计文档.md        当前生效的设计（v1.1）
-    ├── 项目规划.md        阶段、任务、待决事项
-    └── archive/
-        └── 设计文档_v1.0.md   原始设计稿，仅供对照
+├── README.md
+├── docs/
+│   ├── 设计文档.md        当前生效的设计（v1.1）
+│   ├── 项目规划.md        阶段、任务、待决事项
+│   └── archive/           历史版本
+├── public/                原样发布的静态文件（图标等）
+├── src/
+│   ├── main.tsx           入口
+│   ├── App.tsx            根组件
+│   ├── platform/          对浏览器能力的薄封装
+│   └── styles/
+├── index.html
+├── vite.config.ts         构建、开发服务器和测试配置
+└── package.json
 ```
 
-工程代码的目录结构（`src/`、`public/` 等）见 `docs/设计文档.md` 第 7 节，在阶段 0 创建。
+完整的目标目录结构见 `docs/设计文档.md` 第 7 节，各目录随阶段推进逐步创建。
