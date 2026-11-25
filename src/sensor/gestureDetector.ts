@@ -2,8 +2,10 @@
 // 输入：带时间戳的 tilt 序列；输出：correct / skip / ready 事件。
 
 export interface DetectorParams {
-  /** 触发角度：tilt ≤ -触发角度 为答对，≥ +触发角度 为跳过 */
-  triggerDeg: number
+  /** 答对的触发角度：tilt ≤ -该值（屏幕朝下） */
+  correctDeg: number
+  /** 跳过的触发角度：tilt ≥ +该值（屏幕朝上）。实测朝上翻不如朝下顺手，所以比答对小 */
+  skipDeg: number
   /** 超过触发角度需要持续的时间 */
   holdMs: number
   /** 回正角度：|tilt| 小于该值视为回到竖直姿态 */
@@ -15,14 +17,20 @@ export interface DetectorParams {
 }
 
 export const DEFAULT_PARAMS: DetectorParams = {
-  triggerDeg: 55,
+  correctDeg: 55,
+  skipDeg: 40,
   holdMs: 150,
   returnDeg: 25,
   returnHoldMs: 200,
   smoothingMs: 80,
 }
 
-export const SENSITIVITY_TRIGGER_DEG = { low: 65, medium: 55, high: 45 } as const
+/** 灵敏度对应的触发角度。跳过比答对小 15°（用户实测反馈跳过太迟钝，2026-11-25） */
+export const SENSITIVITY_ANGLES = {
+  low: { correctDeg: 65, skipDeg: 50 },
+  medium: { correctDeg: 55, skipDeg: 40 },
+  high: { correctDeg: 45, skipDeg: 30 },
+} as const
 
 export type GestureEvent = 'correct' | 'skip' | 'ready'
 export type DetectorState = 'neutral' | 'wait_return'
@@ -74,8 +82,8 @@ export class GestureDetector {
 
     let candidate: GestureEvent | null = null
     if (this._state === 'neutral') {
-      if (s <= -p.triggerDeg) candidate = 'correct'
-      else if (s >= p.triggerDeg) candidate = 'skip'
+      if (s <= -p.correctDeg) candidate = 'correct'
+      else if (s >= p.skipDeg) candidate = 'skip'
     } else if (Math.abs(s) < p.returnDeg) {
       candidate = 'ready'
     }

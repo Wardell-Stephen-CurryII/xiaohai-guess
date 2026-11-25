@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { DEFAULT_PARAMS, GestureDetector, type GestureEvent } from './gestureDetector'
+import { DEFAULT_PARAMS, GestureDetector, SENSITIVITY_ANGLES, type GestureEvent } from './gestureDetector'
 
 const FRAME = 1000 / 60
 
@@ -56,6 +56,20 @@ describe('GestureDetector', () => {
     const d = ready()
     expect(run(d, [[200, 0, 80], [400, 80, 80]]).events).toEqual(['skip'])
     expect(d.state).toBe('wait_return')
+  })
+
+  it('跳过的角度比答对小：朝上 45° 算跳过，朝下 45° 不算答对（中档）', () => {
+    const up = ready()
+    expect(run(up, [[200, 0, 45], [400, 45, 45]]).events).toEqual(['skip'])
+    const down = ready()
+    expect(run(down, [[200, 0, -45], [400, -45, -45]]).events).toEqual([])
+  })
+
+  it('各档灵敏度：跳过比答对小 15°，且都大于回正角度', () => {
+    for (const { correctDeg, skipDeg } of Object.values(SENSITIVITY_ANGLES)) {
+      expect(correctDeg - skipDeg).toBe(15)
+      expect(skipDeg).toBeGreaterThan(DEFAULT_PARAMS.returnDeg)
+    }
   })
 
   it('等待回正期间反向翻转不触发', () => {

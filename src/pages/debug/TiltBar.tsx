@@ -1,10 +1,10 @@
 /** tilt 的可视化：-90（朝地）到 +90（朝天），标出触发区和回正区 */
-export function TiltBar({ tilt, trigger, ret }: { tilt: number | null; trigger: number; ret: number }) {
+export function TiltBar({ tilt, correct, skip, ret }: { tilt: number | null; correct: number; skip: number; ret: number }) {
   const pos = (deg: number) => `${((deg + 90) / 180) * 100}%`
   return (
     <div className="tiltbar">
-      <div className="tiltbar-zone correct" style={{ left: 0, width: pos(-trigger) }} />
-      <div className="tiltbar-zone skip" style={{ left: pos(trigger), right: 0 }} />
+      <div className="tiltbar-zone correct" style={{ left: 0, width: pos(-correct) }} />
+      <div className="tiltbar-zone skip" style={{ left: pos(skip), right: 0 }} />
       <div
         className="tiltbar-zone neutral"
         style={{ left: pos(-ret), width: `${((2 * ret) / 180) * 100}%` }}

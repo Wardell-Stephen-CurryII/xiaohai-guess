@@ -104,7 +104,7 @@ export default function DebugPage() {
       </Section>
 
       <Section title="2. 实时姿态">
-        <TiltBar tilt={snap.smoothedTilt} trigger={params.triggerDeg} ret={params.returnDeg} />
+        <TiltBar tilt={snap.smoothedTilt} correct={params.correctDeg} skip={params.skipDeg} ret={params.returnDeg} />
         <div className="dbg-big">
           tilt {f(snap.gravity?.tilt)}°
           <small> 平滑后 {f(snap.smoothedTilt)}°</small>
@@ -172,7 +172,8 @@ export default function DebugPage() {
         />
         {(
           [
-            ['triggerDeg', '触发角度', 30, 80, 1, '°'],
+            ['correctDeg', '答对角度（朝下）', 20, 80, 1, '°'],
+            ['skipDeg', '跳过角度（朝上）', 20, 80, 1, '°'],
             ['holdMs', '保持时间', 0, 500, 10, 'ms'],
             ['returnDeg', '回正角度', 5, 45, 1, '°'],
             ['returnHoldMs', '回正保持', 0, 800, 10, 'ms'],

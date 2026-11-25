@@ -38,7 +38,11 @@ const PARAMS_KEY = 'xh.debug.params'
 function loadParams(): DetectorParams {
   try {
     const raw = localStorage.getItem(PARAMS_KEY)
-    if (raw) return { ...DEFAULT_PARAMS, ...(JSON.parse(raw) as Partial<DetectorParams>) }
+    if (raw) {
+      const { triggerDeg: _old, ...saved } = JSON.parse(raw) as Partial<DetectorParams> & { triggerDeg?: number }
+      void _old
+      return { ...DEFAULT_PARAMS, ...saved }
+    }
   } catch {
     // 数据损坏时使用默认值
   }

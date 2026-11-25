@@ -1,7 +1,7 @@
 // 游戏用的传感器输入：订阅方向事件，按当前模式驱动就绪检测或翻转识别。
 // 60Hz 的样本在 React 之外处理，只把离散事件交给界面（设计文档 4.5 性能约束）。
 
-import { DEFAULT_PARAMS, GestureDetector, SENSITIVITY_TRIGGER_DEG, type GestureEvent } from './gestureDetector'
+import { DEFAULT_PARAMS, GestureDetector, SENSITIVITY_ANGLES, type GestureEvent } from './gestureDetector'
 import { subscribeOrientation } from './orientationSource'
 import { ReadinessDetector } from './readiness'
 import { gravityFromOrientation, type Gravity } from './tilt'
@@ -68,7 +68,7 @@ export class MotionInput {
   }
 
   setSensitivity(s: Sensitivity): void {
-    this.gesture.setParams({ ...DEFAULT_PARAMS, triggerDeg: SENSITIVITY_TRIGGER_DEG[s] })
+    this.gesture.setParams({ ...DEFAULT_PARAMS, ...SENSITIVITY_ANGLES[s] })
   }
 
   setMode(mode: MotionMode): void {
