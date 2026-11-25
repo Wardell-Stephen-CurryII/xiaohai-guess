@@ -1,0 +1,45 @@
+.stage {
+  position: fixed;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #111827;
+  color: #f9fafb;
+  container-type: size;
+  overflow: hidden;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* 视口已是横屏：直接铺满 */
+.stage-r0 {
+  inset: 0;
+}
+
+/* 视口是竖屏：舞台尺寸取视口的高 × 宽，再旋转 90° */
+.stage-rcw,
+.stage-rccw {
+  top: 50%;
+  left: 50%;
+  width: 100dvh;
+  height: 100dvw;
+}
+
+.stage-rcw {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.stage-rccw {
+  transform: translate(-50%, -50%) rotate(-90deg);
+}
+
+.stage-word {
+  font-weight: 800;
+  line-height: 1.1;
+  white-space: nowrap;
+  /* 宽度上留 10% 边距；高度上不超过舞台的 45% */
+  font-size: min(calc(90cqw / var(--chars)), 45cqh);
+}
