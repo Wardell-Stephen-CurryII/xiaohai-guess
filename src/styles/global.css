@@ -1,8 +1,28 @@
+/* 站酷快乐体子集，只含标题字和数字（SIL OFL 1.1，见 public/fonts/OFL-ZCOOLKuaiLe.txt） */
+@font-face {
+  font-family: 'Kuaile';
+  src: url('/fonts/kuaile-subset.woff') format('woff');
+  font-display: block;
+}
+
 :root {
+  --ink: #1c1f5a;
+  --ink-raised: #2a2e78;
+  --ink-line: #3b4096;
+  --hi: #ffd23f;
+  --ok: #17b26a;
+  --skip: #f2545b;
+  --paper: #ffffff;
+  --mute: #a9adde;
+
+  --font-body: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
+  --font-display: 'Kuaile', var(--font-body);
+
   color-scheme: dark;
-  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
-  background: #111827;
-  color: #f9fafb;
+  font-family: var(--font-body);
+  background: var(--ink);
+  color: var(--paper);
+  -webkit-tap-highlight-color: transparent;
 }
 
 * {
@@ -12,4 +32,58 @@
 body {
   margin: 0;
   min-height: 100dvh;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 3px solid var(--hi);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* 通用按钮：主要操作为黄色实心，次要操作为描边 */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.25rem;
+  padding: 0 1.5rem;
+  border-radius: 999px;
+  border: 2px solid var(--ink-line);
+  background: transparent;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.btn-primary {
+  background: var(--hi);
+  border-color: var(--hi);
+  color: var(--ink);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.text-link {
+  background: none;
+  border: none;
+  color: var(--mute);
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }

@@ -1,0 +1,191 @@
+// 把纯逻辑（gameReducer）和浏览器能力（传感器、音效、屏幕常亮、计时）接在一起。
+
+import { useCallback, useEffect, useLayoutEffect, useReducer, useRef, useState } from 'react'
+import { THEMES } from '../data/themes'
+import { setAudioSessionType, SoundPlayer } from '../platform/audio'
+import { loadData, saveData, type StoredData } from '../platform/storage'
+import { ScreenWakeLock } from '../platform/wakeLock'
+import { MotionInput } from '../sensor/motionInput'
+import { requestMotionPermission } from '../sensor/orientationSource'
+import { landscapeSign } from '../sensor/tilt'
+import { countdownNumber, gameReducer, initialGameState, remainingMs, shownCards } from './gameReducer'
+import type { Outcome, Settings } from './types'
+import { createDeck, markSeen } from './wordDeck'
+
+const sound = new SoundPlayer()
+const motion = new MotionInput()
+const wakeLock = new ScreenWakeLock()
+
+/** 设计文档 4.3：授权后 1 秒内收不到数据，视为传感器不可用 */
+const SENSOR_DATA_TIMEOUT_MS = 1000
+
+export type SensorProblem = null | 'denied' | 'unsupported' | 'no-data'
+
+export function useGameController() {
+  const [stored, setStored] = useState<StoredData>(() => loadData(localStorage))
+  const [state, dispatch] = useReducer(gameReducer, initialGameState)
+  const [now, setNow] = useState(() => performance.now())
+  const [sensorProblem, setSensorProblem] = useState<SensorProblem>(null)
+  /** 开局时锁定的横屏方向，决定舞台旋转方向（设计文档 5.4） */
+  const [landscape, setLandscape] = useState<1 | -1>(1)
+  const [inPose, setInPose] = useState(false)
+  // 传感器回调在 React 之外触发，通过 ref 读取最新状态
+  const stateRef = useRef(state)
+  useLayoutEffect(() => {
+    stateRef.current = state
+  }, [state])
+
+  const persist = useCallback((next: StoredData) => {
+    setStored(next)
+    saveData(localStorage, next)
+  }, [])
+
+  const updateSettings = useCallback(
+    (patch: Partial<Settings>) => persist({ ...stored, settings: { ...stored.settings, ...patch } }),
+    [stored, persist],
+  )
+
+  const newDeck = useCallback(
+    () => createDeck(THEMES, stored.settings.themeId, stored.seen, Math.random),
+    [stored],
+  )
+
+  // ---- 开始：必须在点击处理函数中同步调用权限申请和音频解锁 ----
+  const start = useCallback(() => {
+    const permission = requestMotionPermission()
+    setAudioSessionType('playback')
+    sound.unlock()
+    sound.enabled = stored.settings.soundOn
+    motion.setSensitivity(stored.settings.sensitivity)
+    motion.start()
+    setSensorProblem(null)
+    dispatch({ type: 'start', deck: newDeck(), durationMs: stored.settings.durationSec * 1000 })
+
+    void permission.then(async (result) => {
+      if (result === 'denied' || result === 'error') return setSensorProblem('denied')
+      if (result === 'unsupported') return setSensorProblem('unsupported')
+      const ok = await motion.waitForData(SENSOR_DATA_TIMEOUT_MS)
+      if (ok) dispatch({ type: 'setInputMode', mode: 'sensor' })
+      else setSensorProblem('no-data')
+    })
+  }, [stored, newDeck])
+
+  const chooseButtons = useCallback(() => {
+    setSensorProblem(null)
+    dispatch({ type: 'setInputMode', mode: 'buttons' })
+  }, [])
+
+  const answer = useCallback((outcome: Outcome) => {
+    dispatch({ type: 'answer', outcome, now: performance.now() })
+  }, [])
+
+  const startButtonsRound = useCallback(() => dispatch({ type: 'poseReady', now: performance.now() }), [])
+  const pause = useCallback(() => dispatch({ type: 'pause', now: performance.now() }), [])
+  const resume = useCallback(() => dispatch({ type: 'resume' }), [])
+  const goHome = useCallback(() => dispatch({ type: 'goHome' }), [])
+  const playAgain = useCallback(() => {
+    sound.unlock()
+    dispatch({ type: 'playAgain', deck: newDeck() })
+  }, [newDeck])
+  const endRound = useCallback(() => dispatch({ type: 'end' }), [])
+
+  // ---- 传感器事件 → 动作 ----
+  useEffect(
+    () =>
+      motion.on((e, g) => {
+        const s = stateRef.current
+        if (e === 'poseReady') {
+          if (s.phase !== 'ready' || s.inputMode !== 'sensor') return
+          setLandscape(landscapeSign(g.upX) === -1 ? -1 : 1)
+          dispatch({ type: 'poseReady', now: performance.now() })
+        } else if (e === 'ready') {
+          dispatch({ type: 'neutral' })
+        } else if (s.inputMode === 'sensor') {
+          dispatch({ type: 'answer', outcome: e, now: performance.now() })
+        }
+      }),
+    [],
+  )
+
+  // ---- 各阶段的传感器模式和屏幕常亮 ----
+  useEffect(() => {
+    const sensorMode = state.inputMode === 'sensor'
+    if (state.phase === 'ready' && sensorMode) motion.setMode('readiness')
+    else if (state.phase === 'playing' && sensorMode) motion.setMode('gesture')
+    else motion.setMode('idle')
+
+    const active = ['ready', 'countdown', 'playing', 'paused'].includes(state.phase)
+    if (active) void wakeLock.acquire()
+    else wakeLock.release()
+    if (state.phase === 'home') motion.stop()
+  }, [state.phase, state.inputMode])
+
+  // ---- 计时：倒计时和游戏中每 100ms 推进一次 ----
+  useEffect(() => {
+    if (state.phase !== 'countdown' && state.phase !== 'playing' && state.phase !== 'ready') return
+    const id = setInterval(() => {
+      const t = performance.now()
+      setNow(t)
+      dispatch({ type: 'tick', now: t })
+      if (stateRef.current.phase === 'ready') setInPose(motion.inReadyPose())
+    }, 100)
+    return () => clearInterval(id)
+  }, [state.phase])
+
+  // ---- 音效 ----
+  const lastCount = useRef<number | null>(null)
+  const lastSecond = useRef<number | null>(null)
+  useEffect(() => {
+    const n = countdownNumber(state, now)
+    if (n !== null && n !== lastCount.current) sound.play('count')
+    lastCount.current = n
+    if (state.phase === 'playing') {
+      const sec = Math.ceil(remainingMs(state, now) / 1000)
+      if (sec !== lastSecond.current && sec <= 5 && sec >= 1) sound.play('tick')
+      lastSecond.current = sec
+    } else {
+      lastSecond.current = null
+    }
+  }, [state, now])
+
+  const prevPhase = useRef(state.phase)
+  const prevRecords = useRef(0)
+  useEffect(() => {
+    const from = prevPhase.current
+    prevPhase.current = state.phase
+    if (from === 'countdown' && state.phase === 'playing') sound.play('go')
+    if (from !== 'result' && state.phase === 'result') sound.play('finish')
+    if (state.records.length > prevRecords.current) sound.play(state.records[state.records.length - 1].outcome)
+    prevRecords.current = state.records.length
+
+    // 一局结束：记录出过的词（跨局去重）
+    if (from !== 'result' && state.phase === 'result') {
+      persist({ ...stored, seen: markSeen(THEMES, stored.seen, shownCards(state)) })
+    }
+  }, [state, stored, persist])
+
+  // ---- 切到后台自动暂停 ----
+  useEffect(() => {
+    const onHide = () => {
+      if (document.visibilityState === 'hidden') dispatch({ type: 'pause', now: performance.now() })
+    }
+    document.addEventListener('visibilitychange', onHide)
+    return () => document.removeEventListener('visibilitychange', onHide)
+  }, [])
+
+  useEffect(() => {
+    sound.enabled = stored.settings.soundOn
+  }, [stored.settings.soundOn])
+
+  return {
+    state,
+    now,
+    settings: stored.settings,
+    updateSettings,
+    sensorProblem,
+    landscape,
+    inPose,
+    sensorStale: state.phase === 'playing' && state.inputMode === 'sensor' && motion.isStale(now),
+    actions: { start, chooseButtons, answer, startButtonsRound, pause, resume, goHome, playAgain, endRound },
+  }
+}

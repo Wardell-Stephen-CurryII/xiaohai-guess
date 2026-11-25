@@ -1,0 +1,168 @@
+/* ---- 普通页面：权限、就绪、暂停 ---- */
+.game-page {
+  min-height: 100dvh;
+  max-width: 34rem;
+  margin: 0 auto;
+  padding: calc(env(safe-area-inset-top) + 3rem) calc(env(safe-area-inset-right) + 1.5rem)
+    calc(env(safe-area-inset-bottom) + 2rem) calc(env(safe-area-inset-left) + 1.5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.game-page h1 {
+  margin: 0 0 1rem;
+  font-size: 2rem;
+  line-height: 1.3;
+}
+
+.game-page p {
+  margin: 0 0 1rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--mute);
+}
+
+.game-page-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.game-ready-flip {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0.5rem 0 1.5rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.flip-down {
+  color: var(--ok);
+}
+
+.flip-up {
+  color: var(--skip);
+}
+
+.game-ready-status {
+  font-size: 1.2rem !important;
+  color: var(--paper) !important;
+}
+
+.game-ready.in-pose .game-ready-status {
+  color: var(--hi) !important;
+}
+
+/* ---- 舞台：倒数和出题 ---- */
+.game-stage {
+  background: var(--hi);
+  color: var(--ink);
+  transition: background-color 0.12s;
+}
+
+.game-countdown-num {
+  font-family: var(--font-display);
+  font-size: 70cqh;
+  line-height: 1;
+  animation: count-pop 0.35s ease-out;
+}
+
+@keyframes count-pop {
+  from {
+    transform: scale(1.35);
+    opacity: 0.3;
+  }
+}
+
+.game-timer,
+.game-score {
+  position: absolute;
+  top: 4cqh;
+  font-family: var(--font-display);
+  font-size: 11cqh;
+  line-height: 1;
+}
+
+.game-timer {
+  left: 4cqw;
+}
+
+.game-timer.hurry {
+  color: var(--skip);
+}
+
+.game-score {
+  right: 4cqw;
+}
+
+.game-fb-correct {
+  background: var(--ok);
+  color: var(--paper);
+}
+
+.game-fb-skip {
+  background: var(--skip);
+  color: var(--paper);
+}
+
+.game-feedback {
+  font-family: var(--font-display);
+  font-size: 40cqh;
+  line-height: 1;
+  animation: count-pop 0.25s ease-out;
+}
+
+.game-stale {
+  position: absolute;
+  bottom: 22cqh;
+  font-size: 5cqh;
+  font-weight: 600;
+}
+
+/* 底部三个按钮：传感器模式下淡化，按钮模式或传感器无响应时突出 */
+.game-controls {
+  position: absolute;
+  left: 3cqw;
+  right: 3cqw;
+  bottom: 4cqh;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  opacity: 0.45;
+}
+
+.game-controls.prominent {
+  opacity: 1;
+}
+
+.game-btn {
+  border: none;
+  border-radius: 999px;
+  font-size: 4.5cqh;
+  font-weight: 600;
+  padding: 0.5em 1.1em;
+  background: rgb(28 31 90 / 0.14);
+  color: inherit;
+}
+
+.game-controls.prominent .game-btn-skip,
+.game-controls.prominent .game-btn-ok {
+  font-size: 6.5cqh;
+  padding: 0.6em 1.6em;
+  color: var(--paper);
+}
+
+.game-controls.prominent .game-btn-skip {
+  background: var(--skip);
+}
+
+.game-controls.prominent .game-btn-ok {
+  background: var(--ok);
+}
+
+.game-btn:disabled {
+  visibility: hidden;
+}

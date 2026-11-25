@@ -20,6 +20,8 @@ export interface GameState {
   lastOutcome: Outcome | null
   records: RoundRecord[]
   /** 时间到时仍在屏幕上的词，不计入答对或跳过 */
+  /** 是否在暂停菜单中提前结束（结算页据此显示「时间到」或「这局结束」） */
+  endedEarly: boolean
   unfinished: Card | null
   durationMs: number
   /** 尚未开始或暂停时的剩余时长 */
@@ -39,6 +41,8 @@ export type GameAction =
   | { type: 'neutral' }
   | { type: 'pause'; now: number }
   | { type: 'resume' }
+  /** 提前结束本局（暂停菜单中的「结束本局」），直接进入结算 */
+  | { type: 'end' }
   | { type: 'playAgain'; deck: Card[] }
   | { type: 'goHome' }
 
@@ -51,6 +55,7 @@ export const initialGameState: GameState = {
   lastOutcome: null,
   records: [],
   unfinished: null,
+  endedEarly: false,
   durationMs: 60_000,
   remainingMs: 60_000,
   deadline: null,
@@ -66,6 +71,7 @@ function newRound(state: GameState, deck: Card[], durationMs: number): GameState
     lastOutcome: null,
     records: [],
     unfinished: null,
+    endedEarly: false,
     durationMs,
     remainingMs: durationMs,
     deadline: null,
@@ -142,6 +148,10 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
       const s = state.turn === 'feedback' ? advance(state) : state
       return { ...s, phase: 'ready' }
     }
+
+    case 'end':
+      if (state.phase !== 'playing' && state.phase !== 'paused' && state.phase !== 'countdown') return state
+      return { ...finish(state), endedEarly: true }
 
     case 'playAgain':
       if (state.phase !== 'result' || action.deck.length === 0) return state

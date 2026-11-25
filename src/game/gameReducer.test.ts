@@ -167,6 +167,21 @@ describe('暂停', () => {
   })
 })
 
+describe('提前结束', () => {
+  it('暂停中结束本局：进入结算，屏幕上的词记为未完成', () => {
+    let s = playing()
+    s = apply(s, { type: 'answer', outcome: 'correct', now: 5000 }, { type: 'neutral' }, { type: 'pause', now: 6000 }, { type: 'end' })
+    expect(s.phase).toBe('result')
+    expect(s.records).toHaveLength(1)
+    expect(s.unfinished).toEqual(deck[1])
+    expect(s.endedEarly).toBe(true)
+  })
+
+  it('首页时 end 无效', () => {
+    expect(gameReducer(initialGameState, { type: 'end' })).toBe(initialGameState)
+  })
+})
+
 describe('结算之后', () => {
   it('再玩一局：新牌堆、清空记录、沿用输入方式，直接进入就绪', () => {
     let s = gameReducer(playing('buttons'), { type: 'tick', now: 3000 + MIN })

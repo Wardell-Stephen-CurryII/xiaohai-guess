@@ -89,6 +89,7 @@ export default function DebugPage() {
   return (
     <main className="dbg">
       <h1>小嗨猜猜猜 · 调试</h1>
+      <a className="dbg-back" href="#">返回游戏</a>
 
       <Section title="1. 环境与授权">
         {env.map((c) => (
