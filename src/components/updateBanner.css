@@ -1,0 +1,23 @@
+.update-banner {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: calc(env(safe-area-inset-top) + 0.6rem) calc(env(safe-area-inset-right) + 1.25rem) 0.6rem
+    calc(env(safe-area-inset-left) + 1.25rem);
+  background: var(--ink);
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+.update-banner-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 0.4rem 1rem;
+  background: #fff;
+  color: var(--ink);
+  font-weight: 600;
+}

@@ -3,6 +3,8 @@ import { useGameController } from './game/useGameController'
 import { GamePage } from './pages/GamePage'
 import { HomePage } from './pages/HomePage'
 import { ResultPage } from './pages/ResultPage'
+import { UpdateBanner } from './components/UpdateBanner'
+import { usePwa } from './platform/usePwa'
 
 // 调试页按需加载，不影响游戏本身
 const DebugPage = lazy(() => import('./pages/DebugPage'))
@@ -31,13 +33,26 @@ export default function App() {
 
 function Game() {
   const g = useGameController()
+  const pwa = usePwa()
   const { state, actions } = g
+  // 只在首页和结算页提示更新，游戏中不打断
+  const banner = pwa.needRefresh ? <UpdateBanner onUpdate={pwa.update} /> : null
 
   if (state.phase === 'home') {
-    return <HomePage settings={g.settings} onChange={g.updateSettings} onStart={actions.start} />
+    return (
+      <>
+        {banner}
+        <HomePage settings={g.settings} onChange={g.updateSettings} onStart={actions.start} offlineReady={pwa.offlineReady} />
+      </>
+    )
   }
   if (state.phase === 'result') {
-    return <ResultPage state={state} themeId={g.settings.themeId} onPlayAgain={actions.playAgain} onHome={actions.goHome} />
+    return (
+      <>
+        {banner}
+        <ResultPage state={state} themeId={g.settings.themeId} onPlayAgain={actions.playAgain} onHome={actions.goHome} />
+      </>
+    )
   }
   return (
     <GamePage

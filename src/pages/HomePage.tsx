@@ -42,10 +42,12 @@ export function HomePage({
   settings,
   onChange,
   onStart,
+  offlineReady,
 }: {
   settings: Settings
   onChange: (patch: Partial<Settings>) => void
   onStart: () => void
+  offlineReady: boolean
 }) {
   const themeOptions = [{ id: MIXED_THEME_ID, name: '混合' }, ...THEMES]
   const themeId = themeOptions.some((t) => t.id === settings.themeId) ? settings.themeId : MIXED_THEME_ID
@@ -112,9 +114,12 @@ export function HomePage({
         <button className="btn btn-primary home-start" onClick={onStart} disabled={!canStart}>
           开始
         </button>
-        <a className="text-link" href="#debug">
-          传感器调试
-        </a>
+        <div className="home-meta">
+          {offlineReady && <span className="home-offline">已可离线使用</span>}
+          <a className="text-link" href="#debug">
+            传感器调试
+          </a>
+        </div>
       </footer>
     </main>
   )

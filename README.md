@@ -2,7 +2,9 @@
 
 聚会猜词游戏，iPhone 主屏幕 Web App（PWA）。手机横屏举起、屏幕朝向朋友，屏幕翻向地面算答对，翻向天空算跳过。
 
-当前状态：阶段 4（词库已扩充，待审核）。进度见 `docs/项目规划.md`。
+当前状态：阶段 5（已部署，待实机安装验证）。
+
+**正式地址：** https://wardell-stephen-curryii.github.io/xiaohai-guess/ （用 iPhone 的 Safari 打开，分享 → 添加到主屏幕）进度见 `docs/项目规划.md`。
 
 ## 开发
 
@@ -15,7 +17,12 @@ npm run tunnel   # 另开一个终端：生成临时 HTTPS 地址（*.trycloudfl
 npm test         # 单元测试
 npm run lint     # 代码检查
 npm run build    # 生产构建，输出到 dist/，部署路径为 /xiaohai-guess/
+npx vite preview # 本地预览生产构建（含离线缓存），地址 http://localhost:4173/xiaohai-guess/
 ```
+
+## 部署
+
+推送到 `main` 分支后，GitHub Actions（`.github/workflows/deploy.yml`）自动运行测试、代码检查和构建，全部通过后发布到 GitHub Pages。测试不通过则不发布。
 
 隧道地址每次启动都会变化。iPhone 的传感器只能在 HTTPS 下使用，所以实机测试要用隧道地址，不能用局域网 IP。
 
