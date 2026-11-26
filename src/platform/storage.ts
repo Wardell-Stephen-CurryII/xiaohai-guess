@@ -1,14 +1,19 @@
 // 本地数据，见设计文档 6.1：所有数据放在同一个键下，带版本号；
 // 读取失败、版本不匹配或字段不合法时回退到默认值，不能让一条坏数据导致应用打不开。
+// 版本升级时迁移旧数据，绝不清空（应用内更新不能丢数据）。
 
 import { DEFAULT_SETTINGS, DURATIONS_SEC, type SeenMap, type Settings } from '../game/types'
+import { newProfile, parseProfile, parseVip } from '../profile/profileData'
+import type { Profile, VipState } from '../profile/types'
 
 export const STORAGE_KEY = 'xiaohai-guess'
-const VERSION = 1
+const VERSION = 2
 
 export interface StoredData {
   settings: Settings
   seen: SeenMap
+  profile: Profile
+  vip: VipState | null
 }
 
 /** localStorage 的最小接口，便于测试 */
@@ -40,15 +45,29 @@ function parseSeen(v: unknown): SeenMap {
   return out
 }
 
-export function loadData(store: KeyValueStore): StoredData {
+export function defaultData(rng: () => number = Math.random): StoredData {
+  return { settings: { ...DEFAULT_SETTINGS }, seen: {}, profile: newProfile(rng), vip: null }
+}
+
+export function loadData(store: KeyValueStore, rng: () => number = Math.random): StoredData {
   try {
     const raw = store.getItem(STORAGE_KEY)
-    if (!raw) return { settings: { ...DEFAULT_SETTINGS }, seen: {} }
+    if (!raw) return defaultData(rng)
     const data: unknown = JSON.parse(raw)
-    if (!isRecord(data) || data.version !== VERSION) return { settings: { ...DEFAULT_SETTINGS }, seen: {} }
-    return { settings: parseSettings(data.settings), seen: parseSeen(data.seen) }
+    if (!isRecord(data)) return defaultData(rng)
+    // 版本 1：只有设置和已出词，迁移时保留并新建资料
+    if (data.version === 1) {
+      return { settings: parseSettings(data.settings), seen: parseSeen(data.seen), profile: newProfile(rng), vip: null }
+    }
+    if (data.version !== VERSION) return defaultData(rng)
+    return {
+      settings: parseSettings(data.settings),
+      seen: parseSeen(data.seen),
+      profile: parseProfile(data.profile, rng),
+      vip: parseVip(data.vip),
+    }
   } catch {
-    return { settings: { ...DEFAULT_SETTINGS }, seen: {} }
+    return defaultData(rng)
   }
 }
 
@@ -59,5 +78,14 @@ export function saveData(store: KeyValueStore, data: StoredData): boolean {
     return true
   } catch {
     return false
+  }
+}
+
+/** 申请持久存储，降低系统空间不足时清理数据的可能（浏览器不支持时忽略） */
+export function requestPersistentStorage(): void {
+  try {
+    void navigator.storage?.persist?.()
+  } catch {
+    // 忽略
   }
 }

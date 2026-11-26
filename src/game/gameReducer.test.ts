@@ -101,6 +101,7 @@ describe('时间到', () => {
     s = gameReducer(s, { type: 'tick', now: 3000 + MIN })
     expect(s.phase).toBe('result')
     expect(s.unfinished).toEqual(deck[1])
+    expect(s.playedMs).toBe(MIN)
     expect(summarize(s)).toEqual({ correct: [deck[0]], skipped: [], unfinished: deck[1], accuracy: 1 })
     expect(shownCards(s)).toEqual([deck[0], deck[1]])
   })
@@ -175,6 +176,8 @@ describe('提前结束', () => {
     expect(s.records).toHaveLength(1)
     expect(s.unfinished).toEqual(deck[1])
     expect(s.endedEarly).toBe(true)
+    // 3 秒时开始计时、6 秒时暂停：实际玩了 3 秒
+    expect(s.playedMs).toBe(3000)
   })
 
   it('首页时 end 无效', () => {

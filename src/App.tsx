@@ -1,10 +1,13 @@
 import { lazy, Suspense, useEffect, useState } from 'react'
+import { ToastHost } from './components/Toast'
+import { UpdateBanner } from './components/UpdateBanner'
 import { useGameController } from './game/useGameController'
 import { GamePage } from './pages/GamePage'
 import { HomePage } from './pages/HomePage'
+import { ProfilePage } from './pages/ProfilePage'
 import { ResultPage } from './pages/ResultPage'
-import { UpdateBanner } from './components/UpdateBanner'
 import { usePwa } from './platform/usePwa'
+import { applyPalette } from './profile/applyPalette'
 
 // 调试页按需加载，不影响游戏本身
 const DebugPage = lazy(() => import('./pages/DebugPage'))
@@ -19,6 +22,13 @@ function useHash(): string {
   return hash
 }
 
+const go = (hash: string) => {
+  if (hash) window.location.hash = hash
+  // 清掉 # 回到首页，不留下空的 #
+  else history.pushState(null, '', window.location.pathname + window.location.search)
+  window.dispatchEvent(new HashChangeEvent('hashchange'))
+}
+
 export default function App() {
   const hash = useHash()
   if (hash === '#debug') {
@@ -28,21 +38,53 @@ export default function App() {
       </Suspense>
     )
   }
-  return <Game />
+  return (
+    <>
+      <Game hash={hash} />
+      <ToastHost />
+    </>
+  )
 }
 
-function Game() {
+function Game({ hash }: { hash: string }) {
   const g = useGameController()
   const pwa = usePwa()
-  const { state, actions } = g
+  const { state, actions, view } = g
   // 只在首页和结算页提示更新，游戏中不打断
   const banner = pwa.needRefresh ? <UpdateBanner onUpdate={pwa.update} /> : null
+
+  useEffect(() => applyPalette(view.look.palette), [view.look.palette])
+
+  if (state.phase === 'home' && hash === '#me') {
+    return (
+      <ProfilePage
+        profile={g.profile}
+        vip={g.vip}
+        view={view}
+        now={g.nowMs}
+        onBack={() => go('')}
+        {...g.profileActions}
+        version={pwa.version}
+        checkForUpdate={pwa.checkForUpdate}
+      />
+    )
+  }
 
   if (state.phase === 'home') {
     return (
       <>
         {banner}
-        <HomePage settings={g.settings} onChange={g.updateSettings} onStart={actions.start} offlineReady={pwa.offlineReady} />
+        {g.notice && <UpdateBanner text={g.notice} actionText="知道了" onUpdate={g.profileActions.dismissNotice} />}
+        <HomePage
+          settings={g.settings}
+          onChange={g.updateSettings}
+          onStart={actions.start}
+          offlineReady={pwa.offlineReady}
+          view={view}
+          onOpenProfile={() => go('#me')}
+          version={pwa.version}
+          checkForUpdate={pwa.checkForUpdate}
+        />
       </>
     )
   }
@@ -50,7 +92,14 @@ function Game() {
     return (
       <>
         {banner}
-        <ResultPage state={state} themeId={g.settings.themeId} onPlayAgain={actions.playAgain} onHome={actions.goHome} />
+        <ResultPage
+          state={state}
+          themeId={g.settings.themeId}
+          view={view}
+          reward={g.reward}
+          onPlayAgain={actions.playAgain}
+          onHome={actions.goHome}
+        />
       </>
     )
   }

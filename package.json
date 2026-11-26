@@ -9,7 +9,8 @@
     "lint": "oxlint",
     "preview": "vite preview",
     "test": "vitest run",
-    "tunnel": "cloudflared tunnel --url http://localhost:5188"
+    "tunnel": "cloudflared tunnel --url http://localhost:5188",
+    "vip": "node scripts/vip.mjs"
   },
   "dependencies": {
     "react": "^19.3.1",

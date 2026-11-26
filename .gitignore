@@ -25,3 +25,6 @@ dist-ssr
 
 # 本项目
 dev-dist
+
+# 会员激活码台账（含激活码明文，不能公开）
+private/

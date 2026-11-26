@@ -14,6 +14,11 @@
   --brand: #1e2b45;
   --ok: #1fb57a;
   --skip: #ff6458;
+  /* 主要按钮（随配色变化） */
+  --primary-bg: #1f1c2c;
+  --primary-fg: #ffffff;
+  /* 浅色主题卡片、出题画面上的文字：不随配色变化，保证在浅色底上可读 */
+  --on-pastel: #1f1c2c;
 
   --radius-lg: 1.25rem;
   --radius-md: 0.9rem;
@@ -69,15 +74,17 @@ button {
   border-radius: 999px;
   border: 1.5px solid var(--line);
   background: var(--surface);
+  color: var(--ink);
   font-size: 1.05rem;
   font-weight: 600;
 }
 
 .btn-primary {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: #fff;
+  background: var(--primary-bg);
+  border-color: var(--primary-bg);
+  color: var(--primary-fg);
 }
+
 
 .btn:active {
   transform: scale(0.97);

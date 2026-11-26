@@ -1,8 +1,19 @@
 .home {
+  position: relative;
   max-width: 34rem;
   margin: 0 auto;
   padding: calc(env(safe-area-inset-top) + 2.25rem) calc(env(safe-area-inset-right) + 1.25rem) 0
     calc(env(safe-area-inset-left) + 1.25rem);
+}
+
+/* 装饰层在最底下，页面内容浮在上面 */
+.home > :not(.deco-layer) {
+  position: relative;
+  z-index: 1;
+}
+
+.home > .profile-strip {
+  margin-bottom: 1.5rem;
 }
 
 /* ---- 品牌：「小嗨」是主角，「猜猜猜」作为副标 ---- */
@@ -67,6 +78,7 @@
   border: none;
   border-radius: var(--radius-lg);
   background: var(--theme);
+  color: var(--on-pastel);
   text-align: left;
   box-shadow: inset 0 0 0 0 var(--ink);
   transition: box-shadow 0.15s, transform 0.15s;
@@ -76,6 +88,7 @@
   grid-column: 1 / -1;
   min-height: 5.5rem;
   background: var(--surface);
+  color: var(--ink);
   box-shadow: inset 0 0 0 1.5px var(--line);
 }
 
@@ -96,7 +109,8 @@
 .home-theme-count {
   position: relative;
   font-size: 0.8rem;
-  color: rgb(31 28 44 / 0.6);
+  color: inherit;
+  opacity: 0.6;
 }
 
 .home-theme[aria-checked='true']::after {
@@ -109,8 +123,8 @@
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: var(--ink);
-  color: #fff;
+  background: var(--primary-bg);
+  color: var(--primary-fg);
   font-size: 0.85rem;
   font-weight: 700;
 }
@@ -208,7 +222,7 @@
     calc(-1 * (env(safe-area-inset-left) + 1.25rem));
   padding: 1.25rem calc(env(safe-area-inset-right) + 1.25rem) calc(env(safe-area-inset-bottom) + 0.5rem)
     calc(env(safe-area-inset-left) + 1.25rem);
-  background: linear-gradient(to bottom, rgb(245 243 248 / 0), var(--bg) 1.25rem);
+  background: linear-gradient(to bottom, transparent, var(--bg) 1.25rem);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -245,4 +259,11 @@
 
 .home-offline::before {
   content: '✓ ';
+}
+
+.home-version {
+  margin: 0.1rem 0 0;
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  opacity: 0.8;
 }

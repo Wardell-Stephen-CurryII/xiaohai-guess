@@ -3,12 +3,18 @@
 import { useCallback, useEffect, useLayoutEffect, useReducer, useRef, useState } from 'react'
 import { THEMES } from '../data/themes'
 import { setAudioSessionType, SoundPlayer } from '../platform/audio'
-import { loadData, saveData, type StoredData } from '../platform/storage'
+import { loadData, requestPersistentStorage, saveData, type StoredData } from '../platform/storage'
+import { decodeBackup, encodeBackup } from '../profile/backup'
+import { validateName } from '../profile/names'
+import { applyRound, type RoundReward } from '../profile/progress'
+import type { Look } from '../profile/types'
+import { profileView } from '../profile/view'
+import { ACTIVATE_ERROR_TEXT, activate, makeFetchCodeList, verify } from '../profile/vip'
 import { ScreenWakeLock } from '../platform/wakeLock'
 import { MotionInput } from '../sensor/motionInput'
 import { requestMotionPermission } from '../sensor/orientationSource'
 import { landscapeSign } from '../sensor/tilt'
-import { countdownNumber, gameReducer, initialGameState, remainingMs, shownCards } from './gameReducer'
+import { countdownNumber, gameReducer, initialGameState, remainingMs, shownCards, summarize } from './gameReducer'
 import type { Outcome, Settings } from './types'
 import { createDeck, markSeen } from './wordDeck'
 
@@ -20,6 +26,13 @@ const wakeLock = new ScreenWakeLock()
 const SENSOR_DATA_TIMEOUT_MS = 1000
 
 export type SensorProblem = null | 'denied' | 'unsupported' | 'no-data'
+
+const fetchCodeList = makeFetchCodeList(`${import.meta.env.BASE_URL}vip/codes.json`)
+
+export interface ActionResult {
+  ok: boolean
+  message: string
+}
 
 export function useGameController() {
   const [stored, setStored] = useState<StoredData>(() => loadData(localStorage))
@@ -35,15 +48,93 @@ export function useGameController() {
     stateRef.current = state
   }, [state])
 
-  const persist = useCallback((next: StoredData) => {
+  // 异步回调（联网核对等）里也要拿到最新数据，所以用 ref 保存一份
+  const storedRef = useRef(stored)
+  const update = useCallback((fn: (d: StoredData) => StoredData) => {
+    const next = fn(storedRef.current)
+    storedRef.current = next
     setStored(next)
     saveData(localStorage, next)
   }, [])
 
   const updateSettings = useCallback(
-    (patch: Partial<Settings>) => persist({ ...stored, settings: { ...stored.settings, ...patch } }),
-    [stored, persist],
+    (patch: Partial<Settings>) => update((d) => ({ ...d, settings: { ...d.settings, ...patch } })),
+    [update],
   )
+
+  // ---- 个人资料与会员 ----
+  const [nowMs, setNowMs] = useState(() => Date.now())
+  const [reward, setReward] = useState<RoundReward | null>(null)
+  /** 会员被作废等需要告知用户的消息 */
+  const [notice, setNotice] = useState<string | null>(null)
+  const view = profileView(stored.profile, stored.vip, nowMs)
+
+  const updateLook = useCallback(
+    (patch: Partial<Look>) => update((d) => ({ ...d, profile: { ...d.profile, look: { ...d.profile.look, ...patch } } })),
+    [update],
+  )
+
+  const rename = useCallback(
+    (input: string): ActionResult => {
+      if (view.tier === 'free') return { ok: false, message: '开通 VIP 后可以改名字' }
+      const r = validateName(input)
+      if (!r.ok) return { ok: false, message: r.reason }
+      update((d) => ({ ...d, profile: { ...d.profile, name: r.name } }))
+      return { ok: true, message: '名字已修改' }
+    },
+    [update, view.tier],
+  )
+
+  const activateVip = useCallback(
+    async (input: string): Promise<ActionResult> => {
+      const now = Date.now()
+      const r = await activate(input, storedRef.current.vip, fetchCodeList, now)
+      if (!r.ok) return { ok: false, message: ACTIVATE_ERROR_TEXT[r.reason] }
+      update((d) => ({ ...d, vip: r.vip }))
+      setNowMs(now)
+      const name = r.vip.tier === 'svip' ? 'SVIP' : 'VIP'
+      return { ok: true, message: r.upgraded ? `已升级为 ${name}，谢谢支持！` : `${name} 已开通，谢谢支持！` }
+    },
+    [update],
+  )
+
+  const exportBackup = useCallback(() => encodeBackup(storedRef.current.profile), [])
+
+  const restoreBackup = useCallback(
+    (input: string): ActionResult => {
+      const r = decodeBackup(input)
+      if (!r.ok) return { ok: false, message: r.reason }
+      update((d) => ({ ...d, profile: r.profile }))
+      return { ok: true, message: '存档已恢复' }
+    },
+    [update],
+  )
+
+  // 启动时：申请持久存储；联网时后台核对会员（作废则取消，联网失败保持原样）
+  useEffect(() => {
+    requestPersistentStorage()
+    const vip = storedRef.current.vip
+    if (!vip) return
+    let cancelled = false
+    void verify(vip, fetchCodeList, Date.now()).then((r) => {
+      if (cancelled) return
+      if (r.status === 'ok') update((d) => ({ ...d, vip: r.vip }))
+      else if (r.status === 'revoked') {
+        update((d) => ({ ...d, vip: null }))
+        setNotice('你的激活码已失效，会员已取消。如有疑问请联系作者。')
+      }
+      setNowMs(Date.now())
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [update])
+
+  // 会员状态（30 天规则）按分钟刷新
+  useEffect(() => {
+    const id = setInterval(() => setNowMs(Date.now()), 60_000)
+    return () => clearInterval(id)
+  }, [])
 
   const newDeck = useCallback(
     () => createDeck(THEMES, stored.settings.themeId, stored.seen, Math.random),
@@ -158,11 +249,22 @@ export function useGameController() {
     if (state.records.length > prevRecords.current) sound.play(state.records[state.records.length - 1].outcome)
     prevRecords.current = state.records.length
 
-    // 一局结束：记录出过的词（跨局去重）
+    // 一局结束：记录出过的词（跨局去重），计入经验、统计和成就
     if (from !== 'result' && state.phase === 'result') {
-      persist({ ...stored, seen: markSeen(THEMES, stored.seen, shownCards(state)) })
+      const s = summarize(state)
+      const r = applyRound(storedRef.current.profile, {
+        correct: s.correct,
+        skipped: s.skipped,
+        durationSec: state.durationMs / 1000,
+        endedEarly: state.endedEarly,
+        playedMs: state.playedMs,
+        hour: new Date().getHours(),
+        allThemeIds: THEMES.map((t) => t.id),
+      })
+      setReward(r)
+      update((d) => ({ ...d, seen: markSeen(THEMES, d.seen, shownCards(state)), profile: r.profile }))
     }
-  }, [state, stored, persist])
+  }, [state, update])
 
   // ---- 切到后台自动暂停 ----
   useEffect(() => {
@@ -187,5 +289,19 @@ export function useGameController() {
     inPose,
     sensorStale: state.phase === 'playing' && state.inputMode === 'sensor' && motion.isStale(now),
     actions: { start, chooseButtons, answer, startButtonsRound, pause, resume, goHome, playAgain, endRound },
+    profile: stored.profile,
+    vip: stored.vip,
+    view,
+    nowMs,
+    reward,
+    notice,
+    profileActions: {
+      updateLook,
+      rename,
+      activateVip,
+      exportBackup,
+      restoreBackup,
+      dismissNotice: () => setNotice(null),
+    },
   }
 }

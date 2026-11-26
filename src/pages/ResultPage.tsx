@@ -1,6 +1,10 @@
 import type { CSSProperties } from 'react'
 import { ThemeArt } from '../components/ThemeArt'
+import { BadgeMedal, ProfileStrip } from '../components/profile/ProfileBits'
 import { TipLink } from '../components/Tip'
+import { badgeById } from '../profile/catalog'
+import type { RoundReward } from '../profile/progress'
+import type { ProfileView } from '../profile/view'
 import { themeStyle } from '../data/themeStyle'
 import { summarize, type GameState } from '../game/gameReducer'
 import type { Card } from '../game/types'
@@ -26,11 +30,15 @@ function WordList({ title, cards, tone }: { title: string; cards: Card[]; tone: 
 export function ResultPage({
   state,
   themeId,
+  view,
+  reward,
   onPlayAgain,
   onHome,
 }: {
   state: GameState
   themeId: string
+  view: ProfileView
+  reward: RoundReward | null
   onPlayAgain: () => void
   onHome: () => void
 }) {
@@ -57,6 +65,25 @@ export function ResultPage({
           </div>
         </dl>
       </section>
+
+      <div className="result-player">
+        <ProfileStrip view={view} size={40} />
+        {reward && (reward.xpGained > 0 || reward.levelUp || reward.newBadges.length > 0) && (
+          <ul className="result-rewards">
+            {reward.xpGained > 0 && <li>经验 +{reward.xpGained}</li>}
+            {reward.levelUp && (
+              <li className="result-levelup">
+                升级到 Lv{reward.levelUp.to}「{reward.levelUp.title}」
+              </li>
+            )}
+            {reward.newBadges.map((id) => (
+              <li key={id} className="result-newbadge">
+                <BadgeMedal id={id} size={22} /> 获得新徽章：{badgeById(id)?.name}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
 
       {s.correct.length + s.skipped.length === 0 && <p className="result-empty">这局一个词也没翻，再来一局试试。</p>}
       <WordList title="答对的词" cards={s.correct} tone="ok" />

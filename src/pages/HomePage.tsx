@@ -1,10 +1,15 @@
-import type { CSSProperties } from 'react'
+import { useState, type CSSProperties } from 'react'
+import { DecorationLayer } from '../components/profile/DecorationLayer'
+import { ProfileStrip } from '../components/profile/ProfileBits'
+import { toast } from '../components/toastBus'
 import { ThemeArt } from '../components/ThemeArt'
 import { TipCard } from '../components/Tip'
 import { THEMES } from '../data/themes'
 import { themeStyle } from '../data/themeStyle'
 import { DURATIONS_SEC, MIXED_THEME_ID, type Sensitivity, type Settings } from '../game/types'
 import { wordCount } from '../game/wordDeck'
+import type { UpdateCheck } from '../platform/usePwa'
+import type { ProfileView } from '../profile/view'
 import './home.css'
 
 const SENSITIVITY: [Sensitivity, string][] = [
@@ -44,18 +49,35 @@ export function HomePage({
   onChange,
   onStart,
   offlineReady,
+  view,
+  onOpenProfile,
+  version,
+  checkForUpdate,
 }: {
   settings: Settings
   onChange: (patch: Partial<Settings>) => void
   onStart: () => void
   offlineReady: boolean
+  view: ProfileView
+  onOpenProfile: () => void
+  version: string
+  checkForUpdate: () => Promise<UpdateCheck>
 }) {
+  const [checking, setChecking] = useState(false)
+  const doCheck = async () => {
+    setChecking(true)
+    const r = await checkForUpdate()
+    setChecking(false)
+    toast({ updating: '发现新版本，正在更新…', latest: '已是最新版本', offline: '需要联网才能检查更新', failed: '检查失败，请稍后再试' }[r])
+  }
   const themeOptions = [{ id: MIXED_THEME_ID, name: '混合' }, ...THEMES]
   const themeId = themeOptions.some((t) => t.id === settings.themeId) ? settings.themeId : MIXED_THEME_ID
   const canStart = wordCount(THEMES, themeId) >= 2
 
   return (
     <main className="home">
+      <DecorationLayer id={view.look.decoration} />
+      <ProfileStrip view={view} onClick={onOpenProfile} />
       <header className="home-brand">
         <h1 className="home-title">
           <span className="home-title-main">小嗨</span>
@@ -119,6 +141,9 @@ export function HomePage({
         </button>
         <div className="home-meta">
           {offlineReady && <span className="home-offline">已可离线使用</span>}
+          <button className="text-link" onClick={() => void doCheck()} disabled={checking}>
+            {checking ? '检查中…' : '检查更新'}
+          </button>
           {/* 正式版不显示调试入口；需要排查问题时可以直接访问 #debug */}
           {import.meta.env.DEV && (
             <a className="text-link" href="#debug">
@@ -126,6 +151,7 @@ export function HomePage({
             </a>
           )}
         </div>
+        <p className="home-version">版本 {version}</p>
       </footer>
     </main>
   )

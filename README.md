@@ -26,6 +26,18 @@ npx vite preview # 本地预览生产构建（含离线缓存），地址 http:/
 
 隧道地址每次启动都会变化。iPhone 的传感器只能在 HTTPS 下使用，所以实机测试要用隧道地址，不能用局域网 IP。
 
+## 会员激活码（作者用）
+
+朋友打赏后，用下面的命令发码。激活码明文只记在本机台账 `private/vip-ledger.csv`（已加入 `.gitignore`，**请自行备份**），网站上只公开哈希。命令会自动提交并推送，约 1~2 分钟后生效。
+
+```bash
+npm run vip -- new --tier vip --to 张三 --note "打赏 10 元"   # 发 VIP 码（SVIP 用 --tier svip）
+npm run vip -- revoke 张三                                   # 作废（也可以写激活码）
+npm run vip -- list                                          # 查看台账
+```
+
+加 `--dry-run` 只生成不推送。名字和备注只在本机台账里，提交信息里不会出现。
+
 ## 目录
 
 ```text

@@ -19,9 +19,11 @@ export interface GameState {
   turn: Turn
   lastOutcome: Outcome | null
   records: RoundRecord[]
-  /** 时间到时仍在屏幕上的词，不计入答对或跳过 */
   /** 是否在暂停菜单中提前结束（结算页据此显示「时间到」或「这局结束」） */
   endedEarly: boolean
+  /** 本局实际进行的时长（结算时写入，用于统计） */
+  playedMs: number
+  /** 时间到时仍在屏幕上的词，不计入答对或跳过 */
   unfinished: Card | null
   durationMs: number
   /** 尚未开始或暂停时的剩余时长 */
@@ -56,6 +58,7 @@ export const initialGameState: GameState = {
   records: [],
   unfinished: null,
   endedEarly: false,
+  playedMs: 0,
   durationMs: 60_000,
   remainingMs: 60_000,
   deadline: null,
@@ -72,6 +75,7 @@ function newRound(state: GameState, deck: Card[], durationMs: number): GameState
     records: [],
     unfinished: null,
     endedEarly: false,
+    playedMs: 0,
     durationMs,
     remainingMs: durationMs,
     deadline: null,
@@ -79,10 +83,11 @@ function newRound(state: GameState, deck: Card[], durationMs: number): GameState
   }
 }
 
-function finish(state: GameState): GameState {
+function finish(state: GameState, playedMs: number): GameState {
   return {
     ...state,
     phase: 'result',
+    playedMs: Math.max(0, Math.min(state.durationMs, playedMs)),
     unfinished: state.turn === 'showing' ? (state.deck[state.index] ?? null) : null,
     remainingMs: 0,
     deadline: null,
@@ -117,13 +122,13 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
         }
       }
       if (state.phase === 'playing' && state.deadline !== null && action.now >= state.deadline) {
-        return finish(state)
+        return finish(state, state.durationMs)
       }
       return state
 
     case 'answer': {
       if (state.phase !== 'playing' || state.turn !== 'showing') return state
-      if (state.deadline !== null && action.now >= state.deadline) return finish(state)
+      if (state.deadline !== null && action.now >= state.deadline) return finish(state, state.durationMs)
       const card = state.deck[state.index]
       const next = { ...state, records: [...state.records, { card, outcome: action.outcome }] }
       // 按钮模式不需要等待回正，直接下一题（设计文档 4.9）
@@ -151,7 +156,8 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
 
     case 'end':
       if (state.phase !== 'playing' && state.phase !== 'paused' && state.phase !== 'countdown') return state
-      return { ...finish(state), endedEarly: true }
+      // 暂停或倒数时 remainingMs 是准确的剩余时长
+      return { ...finish(state, state.durationMs - state.remainingMs), endedEarly: true }
 
     case 'playAgain':
       if (state.phase !== 'result' || action.deck.length === 0) return state

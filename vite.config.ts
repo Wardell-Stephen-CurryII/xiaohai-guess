@@ -1,12 +1,25 @@
 /// <reference types="vitest/config" />
 import react from '@vitejs/plugin-react'
+import { execSync } from 'node:child_process'
 import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
+
+// 版本号：构建日期 + git 短提交号，显示在首页和「我的」页面
+function appVersion(): string {
+  const d = new Date()
+  const date = `${d.getFullYear()}.${d.getMonth() + 1}.${d.getDate()}`
+  try {
+    return `${date} · ${execSync('git rev-parse --short HEAD').toString().trim()}`
+  } catch {
+    return date
+  }
+}
 
 // 正式部署在 GitHub Pages 的子路径下：https://wardell-stephen-curryii.github.io/xiaohai-guess/
 // 开发时使用根路径，方便通过隧道地址直接访问；本地预览生产构建（vite preview）时与正式环境一致。
 export default defineConfig(({ command, isPreview }) => ({
   base: command === 'build' || isPreview ? '/xiaohai-guess/' : '/',
+  define: { __APP_VERSION__: JSON.stringify(appVersion()) },
   plugins: [
     react(),
     VitePWA({
@@ -33,6 +46,8 @@ export default defineConfig(({ command, isPreview }) => ({
       workbox: {
         // 预缓存全部静态资源，首次加载后断网可玩
         globPatterns: ['**/*.{js,css,html,png,jpg,svg,woff,woff2,json,txt}'],
+        // 激活码哈希列表必须每次联网读取最新版本，不能缓存
+        globIgnores: ['vip/**'],
         cleanupOutdatedCaches: true,
       },
     }),
