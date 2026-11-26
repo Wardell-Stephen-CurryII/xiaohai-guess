@@ -6,6 +6,7 @@ import { DEFAULT_SETTINGS, DURATIONS_SEC, type SeenMap, type Settings } from '..
 import { newProfile, parseProfile, parseVip } from '../profile/profileData'
 import type { Profile, VipState } from '../profile/types'
 import type { SeenPrompts } from '../minigames/promptDeck'
+import { MATCH3_LEVEL_SET } from '../minigames/match3/levels'
 
 export const STORAGE_KEY = 'xiaohai-guess'
 const VERSION = 4
@@ -13,7 +14,8 @@ const VERSION = 4
 /** 小游戏进度：连连看记录已通过的关卡；消消乐记录每关最高星数 */
 export interface MiniGameProgress {
   link: { cleared: number[] }
-  match3: { stars: Record<string, number> }
+  /** set：关卡集版本，与 MATCH3_LEVEL_SET 不一致时星数清零 */
+  match3: { set: number; stars: Record<string, number> }
 }
 
 /** 真心话 / 大冒险：公开的劲爆开关，以及抽过的题（跨次不重复） */
@@ -77,7 +79,7 @@ function parseTod(v: unknown): TodData {
 }
 
 export function defaultMiniGames(): MiniGameProgress {
-  return { link: { cleared: [] }, match3: { stars: {} } }
+  return { link: { cleared: [] }, match3: { set: MATCH3_LEVEL_SET, stars: {} } }
 }
 
 function parseMiniGames(v: unknown): MiniGameProgress {
@@ -88,10 +90,11 @@ function parseMiniGames(v: unknown): MiniGameProgress {
     ? [...new Set(link.cleared.filter((n): n is number => Number.isInteger(n) && n > 0))].sort((a, b) => a - b)
     : []
   const stars: Record<string, number> = {}
-  if (isRecord(match3.stars)) {
+  // 关卡整体更换后，旧的星数对应的是不同的关卡，清零（经验已经发过，不受影响）
+  if (match3.set === MATCH3_LEVEL_SET && isRecord(match3.stars)) {
     for (const [k, n] of Object.entries(match3.stars)) if (Number.isInteger(n) && (n as number) >= 1 && (n as number) <= 3) stars[k] = n as number
   }
-  return { link: { cleared }, match3: { stars } }
+  return { link: { cleared }, match3: { set: MATCH3_LEVEL_SET, stars } }
 }
 
 export function defaultData(rng: () => number = Math.random): StoredData {

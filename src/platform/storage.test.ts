@@ -34,7 +34,7 @@ describe('storage', () => {
       profile: { ...newProfile(rng), name: '小嗨', xp: 320 },
       vip: { code: 'ABCD1234EFGH', tier: 'svip' as const, activatedAt: 1, lastVerifiedAt: 2 },
       tod: { spicy: true, seen: { truth: { normal: ['你最近一次撒的谎是什么？'], spicy: [] }, dare: { normal: [], spicy: ['x'] } } },
-      minigames: { link: { cleared: [1, 2, 3] }, match3: { stars: { '1': 3, '2': 1 } } },
+      minigames: { link: { cleared: [1, 2, 3] }, match3: { set: 2, stars: { '1': 3, '2': 1 } } },
     }
     expect(saveData(store, data)).toBe(true)
     expect(loadData(store, rng)).toEqual(data)
@@ -78,9 +78,16 @@ describe('storage', () => {
   })
 
   it('小游戏进度中的坏数据被过滤', () => {
-    const raw = JSON.stringify({ version: 4, minigames: { link: { cleared: [3, 1, 'x', 1, -2, 1.5] }, match3: { stars: { '1': 2, '2': 9, '3': 'a' } } } })
+    const raw = JSON.stringify({ version: 4, minigames: { link: { cleared: [3, 1, 'x', 1, -2, 1.5] }, match3: { set: 2, stars: { '1': 2, '2': 9, '3': 'a' } } } })
     const d = loadData(memoryStore(raw), rng)
-    expect(d.minigames).toEqual({ link: { cleared: [1, 3] }, match3: { stars: { '1': 2 } } })
+    expect(d.minigames).toEqual({ link: { cleared: [1, 3] }, match3: { set: 2, stars: { '1': 2 } } })
+  })
+
+  it('消消乐关卡集更换后，旧的星数清零', () => {
+    const raw = JSON.stringify({ version: 4, minigames: { link: { cleared: [1] }, match3: { stars: { '1': 3, '2': 2 } } } })
+    const d = loadData(memoryStore(raw), rng)
+    expect(d.minigames.match3).toEqual({ set: 2, stars: {} })
+    expect(d.minigames.link.cleared).toEqual([1])
   })
 
   it('JSON 损坏时回退默认值', () => {

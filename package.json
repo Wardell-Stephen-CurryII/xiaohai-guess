@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "tunnel": "cloudflared tunnel --url http://localhost:5188",
-    "vip": "node scripts/vip.mjs"
+    "vip": "node scripts/vip.mjs",
+    "gen:match3": "vite-node scripts/gen-match3-levels.ts"
   },
   "dependencies": {
     "react": "^19.3.1",
@@ -24,6 +25,7 @@
     "oxlint": "^1.90.0",
     "typescript": "~7.0.2",
     "vite": "^8.3.6",
+    "vite-node": "^6.0.0",
     "vite-plugin-pwa": "^2.0.0",
     "vitest": "^4.1.12",
     "workbox-window": "^7.4.1"

@@ -1,0 +1,5508 @@
+[
+ {
+  "level": 1,
+  "difficulty": "easy",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 5,
+  "pieces": [
+   "candy-yellow",
+   "candy-orange",
+   "candy-blue",
+   "candy-purple",
+   "candy-red"
+  ],
+  "goals": [
+   {
+    "type": "score",
+    "target": 3000
+   }
+  ],
+  "moves": 15
+ },
+ {
+  "level": 2,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-green",
+   "candy-orange",
+   "candy-purple",
+   "candy-red",
+   "candy-blue",
+   "candy-yellow"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 1,
+    "count": 32
+   },
+   {
+    "type": "collect",
+    "kind": 0,
+    "count": 28
+   },
+   {
+    "type": "collect",
+    "kind": 4,
+    "count": 30
+   }
+  ],
+  "moves": 29
+ },
+ {
+  "level": 3,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-green",
+   "candy-orange",
+   "candy-blue",
+   "candy-purple",
+   "candy-yellow",
+   "candy-red"
+  ],
+  "goals": [
+   {
+    "type": "ice"
+   }
+  ],
+  "holes": [
+   {
+    "r": 0,
+    "c": 0
+   },
+   {
+    "r": 0,
+    "c": 1
+   },
+   {
+    "r": 1,
+    "c": 0
+   },
+   {
+    "r": 0,
+    "c": 6
+   },
+   {
+    "r": 0,
+    "c": 7
+   },
+   {
+    "r": 1,
+    "c": 7
+   }
+  ],
+  "ice": [
+   {
+    "r": 3,
+    "c": 1
+   },
+   {
+    "r": 1,
+    "c": 1
+   },
+   {
+    "r": 6,
+    "c": 2
+   },
+   {
+    "r": 5,
+    "c": 3
+   },
+   {
+    "r": 3,
+    "c": 3
+   },
+   {
+    "r": 2,
+    "c": 6
+   },
+   {
+    "r": 5,
+    "c": 5
+   },
+   {
+    "r": 6,
+    "c": 4
+   },
+   {
+    "r": 2,
+    "c": 4
+   },
+   {
+    "r": 5,
+    "c": 1
+   },
+   {
+    "r": 6,
+    "c": 6
+   },
+   {
+    "r": 4,
+    "c": 4
+   },
+   {
+    "r": 1,
+    "c": 5
+   },
+   {
+    "r": 4,
+    "c": 6
+   },
+   {
+    "r": 1,
+    "c": 3
+   },
+   {
+    "r": 4,
+    "c": 2
+   }
+  ],
+  "moves": 19
+ },
+ {
+  "level": 4,
+  "difficulty": "hard",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "face-1",
+   "candy-blue",
+   "candy-yellow",
+   "candy-orange",
+   "candy-green",
+   "candy-red"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 0,
+    "count": 29
+   },
+   {
+    "type": "collect",
+    "kind": 3,
+    "count": 28
+   }
+  ],
+  "holes": [
+   {
+    "r": 2,
+    "c": 2
+   },
+   {
+    "r": 2,
+    "c": 5
+   },
+   {
+    "r": 5,
+    "c": 2
+   },
+   {
+    "r": 5,
+    "c": 5
+   }
+  ],
+  "moves": 33
+ },
+ {
+  "level": 5,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-red",
+   "candy-green",
+   "candy-yellow",
+   "candy-purple",
+   "candy-orange",
+   "candy-blue"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 0,
+    "count": 22
+   },
+   {
+    "type": "collect",
+    "kind": 3,
+    "count": 25
+   },
+   {
+    "type": "collect",
+    "kind": 4,
+    "count": 20
+   }
+  ],
+  "holes": [
+   {
+    "r": 3,
+    "c": 0
+   },
+   {
+    "r": 4,
+    "c": 0
+   },
+   {
+    "r": 3,
+    "c": 7
+   },
+   {
+    "r": 4,
+    "c": 7
+   }
+  ],
+  "moves": 25
+ },
+ {
+  "level": 6,
+  "difficulty": "easy",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-green",
+   "candy-blue",
+   "candy-yellow",
+   "candy-orange",
+   "candy-red",
+   "candy-purple"
+  ],
+  "goals": [
+   {
+    "type": "score",
+    "target": 3500
+   }
+  ],
+  "moves": 36
+ },
+ {
+  "level": 7,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-red",
+   "candy-yellow",
+   "candy-green",
+   "candy-purple",
+   "candy-orange",
+   "candy-blue"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 3,
+    "count": 34
+   },
+   {
+    "type": "collect",
+    "kind": 1,
+    "count": 33
+   },
+   {
+    "type": "collect",
+    "kind": 2,
+    "count": 31
+   }
+  ],
+  "moves": 31
+ },
+ {
+  "level": 8,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-green",
+   "candy-red",
+   "candy-purple",
+   "candy-orange",
+   "candy-yellow",
+   "candy-blue"
+  ],
+  "goals": [
+   {
+    "type": "ice"
+   }
+  ],
+  "ice": [
+   {
+    "r": 0,
+    "c": 4
+   },
+   {
+    "r": 1,
+    "c": 7
+   },
+   {
+    "r": 0,
+    "c": 6
+   },
+   {
+    "r": 1,
+    "c": 0
+   },
+   {
+    "r": 0,
+    "c": 1
+   },
+   {
+    "r": 1,
+    "c": 4
+   },
+   {
+    "r": 0,
+    "c": 7
+   },
+   {
+    "r": 0,
+    "c": 2
+   },
+   {
+    "r": 1,
+    "c": 6
+   },
+   {
+    "r": 1,
+    "c": 3
+   },
+   {
+    "r": 1,
+    "c": 2
+   },
+   {
+    "r": 0,
+    "c": 5
+   },
+   {
+    "r": 1,
+    "c": 1
+   }
+  ],
+  "moves": 23
+ },
+ {
+  "level": 9,
+  "difficulty": "hard",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-orange",
+   "candy-red",
+   "candy-green",
+   "candy-yellow",
+   "face-2",
+   "candy-purple"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 4,
+    "count": 36
+   },
+   {
+    "type": "collect",
+    "kind": 2,
+    "count": 34
+   }
+  ],
+  "holes": [
+   {
+    "r": 0,
+    "c": 3
+   },
+   {
+    "r": 0,
+    "c": 4
+   },
+   {
+    "r": 7,
+    "c": 3
+   },
+   {
+    "r": 7,
+    "c": 4
+   }
+  ],
+  "moves": 31
+ },
+ {
+  "level": 10,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-blue",
+   "candy-orange",
+   "candy-yellow",
+   "candy-green",
+   "candy-red",
+   "candy-purple"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 5,
+    "count": 28
+   },
+   {
+    "type": "collect",
+    "kind": 2,
+    "count": 27
+   },
+   {
+    "type": "collect",
+    "kind": 0,
+    "count": 31
+   }
+  ],
+  "moves": 29
+ },
+ {
+  "level": 11,
+  "difficulty": "easy",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-green",
+   "candy-purple",
+   "candy-orange",
+   "candy-blue",
+   "candy-red",
+   "candy-yellow"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 3,
+    "count": 27
+   },
+   {
+    "type": "collect",
+    "kind": 2,
+    "count": 24
+   }
+  ],
+  "moves": 31
+ },
+ {
+  "level": 12,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-purple",
+   "candy-orange",
+   "candy-yellow",
+   "candy-red",
+   "candy-blue",
+   "candy-green"
+  ],
+  "goals": [
+   {
+    "type": "ice"
+   }
+  ],
+  "holes": [
+   {
+    "r": 0,
+    "c": 0
+   },
+   {
+    "r": 0,
+    "c": 7
+   },
+   {
+    "r": 7,
+    "c": 0
+   },
+   {
+    "r": 7,
+    "c": 7
+   }
+  ],
+  "ice": [
+   {
+    "r": 6,
+    "c": 4
+   },
+   {
+    "r": 6,
+    "c": 1
+   },
+   {
+    "r": 1,
+    "c": 4
+   },
+   {
+    "r": 1,
+    "c": 0
+   },
+   {
+    "r": 6,
+    "c": 0
+   },
+   {
+    "r": 1,
+    "c": 7
+   },
+   {
+    "r": 1,
+    "c": 2
+   },
+   {
+    "r": 1,
+    "c": 5
+   },
+   {
+    "r": 6,
+    "c": 5
+   },
+   {
+    "r": 6,
+    "c": 6
+   }
+  ],
+  "moves": 33
+ },
+ {
+  "level": 13,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-yellow",
+   "candy-red",
+   "candy-orange",
+   "candy-green",
+   "candy-blue",
+   "candy-purple"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 2,
+    "count": 32
+   },
+   {
+    "type": "collect",
+    "kind": 3,
+    "count": 31
+   },
+   {
+    "type": "collect",
+    "kind": 5,
+    "count": 29
+   }
+  ],
+  "holes": [
+   {
+    "r": 0,
+    "c": 0
+   },
+   {
+    "r": 0,
+    "c": 1
+   },
+   {
+    "r": 1,
+    "c": 0
+   },
+   {
+    "r": 0,
+    "c": 6
+   },
+   {
+    "r": 0,
+    "c": 7
+   },
+   {
+    "r": 1,
+    "c": 7
+   }
+  ],
+  "moves": 34
+ },
+ {
+  "level": 14,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-red",
+   "candy-green",
+   "face-3",
+   "candy-yellow",
+   "candy-purple",
+   "candy-orange"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 2,
+    "count": 33
+   },
+   {
+    "type": "collect",
+    "kind": 5,
+    "count": 28
+   }
+  ],
+  "moves": 29
+ },
+ {
+  "level": 15,
+  "difficulty": "hard",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-red",
+   "candy-blue",
+   "candy-purple",
+   "candy-green",
+   "candy-yellow",
+   "candy-orange"
+  ],
+  "goals": [
+   {
+    "type": "ice"
+   },
+   {
+    "type": "collect",
+    "kind": 5,
+    "count": 32
+   }
+  ],
+  "holes": [
+   {
+    "r": 3,
+    "c": 0
+   },
+   {
+    "r": 4,
+    "c": 0
+   },
+   {
+    "r": 3,
+    "c": 7
+   },
+   {
+    "r": 4,
+    "c": 7
+   }
+  ],
+  "ice": [
+   {
+    "r": 3,
+    "c": 5
+   },
+   {
+    "r": 5,
+    "c": 5
+   },
+   {
+    "r": 6,
+    "c": 6
+   },
+   {
+    "r": 2,
+    "c": 2
+   },
+   {
+    "r": 1,
+    "c": 1
+   },
+   {
+    "r": 4,
+    "c": 6
+   },
+   {
+    "r": 6,
+    "c": 4
+   },
+   {
+    "r": 2,
+    "c": 6
+   },
+   {
+    "r": 5,
+    "c": 1
+   },
+   {
+    "r": 5,
+    "c": 3
+   },
+   {
+    "r": 3,
+    "c": 1
+   },
+   {
+    "r": 6,
+    "c": 2
+   },
+   {
+    "r": 3,
+    "c": 3
+   },
+   {
+    "r": 1,
+    "c": 3
+   },
+   {
+    "r": 1,
+    "c": 5
+   },
+   {
+    "r": 4,
+    "c": 2
+   },
+   {
+    "r": 4,
+    "c": 4
+   },
+   {
+    "r": 2,
+    "c": 4
+   }
+  ],
+  "moves": 27
+ },
+ {
+  "level": 16,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-orange",
+   "candy-green",
+   "candy-purple",
+   "candy-red",
+   "candy-blue",
+   "candy-yellow"
+  ],
+  "goals": [
+   {
+    "type": "ice"
+   }
+  ],
+  "ice": [
+   {
+    "r": 7,
+    "c": 2
+   },
+   {
+    "r": 6,
+    "c": 1
+   },
+   {
+    "r": 5,
+    "c": 7
+   },
+   {
+    "r": 6,
+    "c": 5
+   },
+   {
+    "r": 5,
+    "c": 5
+   },
+   {
+    "r": 6,
+    "c": 0
+   },
+   {
+    "r": 7,
+    "c": 7
+   },
+   {
+    "r": 7,
+    "c": 5
+   },
+   {
+    "r": 6,
+    "c": 2
+   },
+   {
+    "r": 5,
+    "c": 1
+   },
+   {
+    "r": 5,
+    "c": 6
+   },
+   {
+    "r": 7,
+    "c": 6
+   },
+   {
+    "r": 5,
+    "c": 0
+   },
+   {
+    "r": 6,
+    "c": 7
+   },
+   {
+    "r": 5,
+    "c": 2
+   },
+   {
+    "r": 5,
+    "c": 4
+   }
+  ],
+  "moves": 30
+ },
+ {
+  "level": 17,
+  "difficulty": "easy",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 5,
+  "pieces": [
+   "candy-yellow",
+   "candy-orange",
+   "candy-purple",
+   "candy-blue",
+   "candy-green"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 2,
+    "count": 41
+   }
+  ],
+  "moves": 22
+ },
+ {
+  "level": 18,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-green",
+   "candy-blue",
+   "candy-red",
+   "candy-purple",
+   "candy-orange",
+   "candy-yellow"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 1,
+    "count": 33
+   },
+   {
+    "type": "collect",
+    "kind": 5,
+    "count": 27
+   },
+   {
+    "type": "collect",
+    "kind": 0,
+    "count": 31
+   }
+  ],
+  "moves": 26
+ },
+ {
+  "level": 19,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-blue",
+   "candy-orange",
+   "candy-red",
+   "candy-yellow",
+   "candy-purple",
+   "face-1"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 5,
+    "count": 34
+   },
+   {
+    "type": "collect",
+    "kind": 3,
+    "count": 27
+   }
+  ],
+  "moves": 26
+ },
+ {
+  "level": 20,
+  "difficulty": "hard",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-green",
+   "candy-blue",
+   "candy-red",
+   "candy-yellow",
+   "candy-purple",
+   "candy-orange"
+  ],
+  "goals": [
+   {
+    "type": "ice"
+   },
+   {
+    "type": "collect",
+    "kind": 4,
+    "count": 43
+   }
+  ],
+  "holes": [
+   {
+    "r": 0,
+    "c": 0
+   },
+   {
+    "r": 0,
+    "c": 7
+   },
+   {
+    "r": 7,
+    "c": 0
+   },
+   {
+    "r": 7,
+    "c": 7
+   }
+  ],
+  "ice": [
+   {
+    "r": 7,
+    "c": 2
+   },
+   {
+    "r": 7,
+    "c": 6
+   },
+   {
+    "r": 6,
+    "c": 7
+   },
+   {
+    "r": 7,
+    "c": 4
+   },
+   {
+    "r": 5,
+    "c": 3
+   },
+   {
+    "r": 5,
+    "c": 2
+   },
+   {
+    "r": 5,
+    "c": 4
+   },
+   {
+    "r": 6,
+    "c": 6
+   },
+   {
+    "r": 6,
+    "c": 1
+   },
+   {
+    "r": 5,
+    "c": 7
+   },
+   {
+    "r": 7,
+    "c": 5
+   },
+   {
+    "r": 5,
+    "c": 6
+   },
+   {
+    "r": 6,
+    "c": 0
+   },
+   {
+    "r": 6,
+    "c": 5
+   },
+   {
+    "r": 5,
+    "c": 5
+   },
+   {
+    "r": 6,
+    "c": 4
+   },
+   {
+    "r": 6,
+    "c": 3
+   },
+   {
+    "r": 6,
+    "c": 2
+   },
+   {
+    "r": 7,
+    "c": 3
+   },
+   {
+    "r": 5,
+    "c": 1
+   },
+   {
+    "r": 7,
+    "c": 1
+   },
+   {
+    "r": 5,
+    "c": 0
+   }
+  ],
+  "moves": 34
+ },
+ {
+  "level": 21,
+  "difficulty": "easy",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-green",
+   "candy-yellow",
+   "candy-blue",
+   "candy-purple",
+   "candy-red",
+   "candy-orange"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 2,
+    "count": 23
+   },
+   {
+    "type": "collect",
+    "kind": 4,
+    "count": 25
+   }
+  ],
+  "moves": 25
+ },
+ {
+  "level": 22,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-red",
+   "candy-purple",
+   "candy-green",
+   "candy-orange",
+   "candy-yellow",
+   "candy-blue"
+  ],
+  "goals": [
+   {
+    "type": "score",
+    "target": 4100
+   }
+  ],
+  "holes": [
+   {
+    "r": 0,
+    "c": 3
+   },
+   {
+    "r": 0,
+    "c": 4
+   },
+   {
+    "r": 7,
+    "c": 3
+   },
+   {
+    "r": 7,
+    "c": 4
+   }
+  ],
+  "moves": 38
+ },
+ {
+  "level": 23,
+  "difficulty": "hard",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-red",
+   "candy-orange",
+   "candy-purple",
+   "candy-yellow",
+   "candy-green",
+   "candy-blue"
+  ],
+  "goals": [
+   {
+    "type": "ice"
+   },
+   {
+    "type": "collect",
+    "kind": 0,
+    "count": 34
+   }
+  ],
+  "holes": [
+   {
+    "r": 3,
+    "c": 0
+   },
+   {
+    "r": 4,
+    "c": 0
+   },
+   {
+    "r": 3,
+    "c": 7
+   },
+   {
+    "r": 4,
+    "c": 7
+   }
+  ],
+  "ice": [
+   {
+    "r": 6,
+    "c": 6
+   },
+   {
+    "r": 2,
+    "c": 2
+   },
+   {
+    "r": 5,
+    "c": 5
+   },
+   {
+    "r": 4,
+    "c": 6
+   },
+   {
+    "r": 5,
+    "c": 3
+   },
+   {
+    "r": 6,
+    "c": 2
+   },
+   {
+    "r": 5,
+    "c": 1
+   },
+   {
+    "r": 2,
+    "c": 4
+   },
+   {
+    "r": 4,
+    "c": 2
+   },
+   {
+    "r": 4,
+    "c": 4
+   },
+   {
+    "r": 3,
+    "c": 3
+   },
+   {
+    "r": 3,
+    "c": 5
+   },
+   {
+    "r": 6,
+    "c": 4
+   },
+   {
+    "r": 1,
+    "c": 5
+   },
+   {
+    "r": 2,
+    "c": 6
+   },
+   {
+    "r": 1,
+    "c": 1
+   },
+   {
+    "r": 1,
+    "c": 3
+   },
+   {
+    "r": 3,
+    "c": 1
+   }
+  ],
+  "moves": 31
+ },
+ {
+  "level": 24,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-orange",
+   "candy-blue",
+   "candy-green",
+   "face-2",
+   "candy-red",
+   "candy-purple"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 3,
+    "count": 26
+   },
+   {
+    "type": "collect",
+    "kind": 1,
+    "count": 34
+   }
+  ],
+  "moves": 32
+ },
+ {
+  "level": 25,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-blue",
+   "candy-red",
+   "candy-yellow",
+   "candy-green",
+   "candy-orange",
+   "candy-purple"
+  ],
+  "goals": [
+   {
+    "type": "score",
+    "target": 4300
+   }
+  ],
+  "moves": 38
+ },
+ {
+  "level": 26,
+  "difficulty": "easy",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 5,
+  "pieces": [
+   "candy-purple",
+   "candy-orange",
+   "candy-yellow",
+   "candy-blue",
+   "candy-red"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 1,
+    "count": 25
+   }
+  ],
+  "moves": 14
+ },
+ {
+  "level": 27,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-yellow",
+   "candy-green",
+   "candy-purple",
+   "candy-orange",
+   "candy-blue",
+   "candy-red"
+  ],
+  "goals": [
+   {
+    "type": "ice"
+   },
+   {
+    "type": "collect",
+    "kind": 0,
+    "count": 32
+   }
+  ],
+  "ice": [
+   {
+    "r": 6,
+    "c": 0
+   },
+   {
+    "r": 1,
+    "c": 1
+   },
+   {
+    "r": 6,
+    "c": 7
+   },
+   {
+    "r": 6,
+    "c": 1
+   },
+   {
+    "r": 1,
+    "c": 4
+   },
+   {
+    "r": 1,
+    "c": 5
+   },
+   {
+    "r": 6,
+    "c": 4
+   },
+   {
+    "r": 6,
+    "c": 3
+   },
+   {
+    "r": 1,
+    "c": 0
+   },
+   {
+    "r": 1,
+    "c": 7
+   }
+  ],
+  "moves": 30
+ },
+ {
+  "level": 28,
+  "difficulty": "hard",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-green",
+   "candy-red",
+   "candy-blue",
+   "candy-yellow",
+   "candy-purple",
+   "candy-orange"
+  ],
+  "goals": [
+   {
+    "type": "ice"
+   },
+   {
+    "type": "collect",
+    "kind": 0,
+    "count": 38
+   }
+  ],
+  "holes": [
+   {
+    "r": 0,
+    "c": 0
+   },
+   {
+    "r": 0,
+    "c": 7
+   },
+   {
+    "r": 7,
+    "c": 0
+   },
+   {
+    "r": 7,
+    "c": 7
+   }
+  ],
+  "ice": [
+   {
+    "r": 3,
+    "c": 2
+   },
+   {
+    "r": 4,
+    "c": 2
+   },
+   {
+    "r": 3,
+    "c": 6
+   },
+   {
+    "r": 4,
+    "c": 5
+   },
+   {
+    "r": 3,
+    "c": 4
+   },
+   {
+    "r": 4,
+    "c": 1
+   },
+   {
+    "r": 4,
+    "c": 4
+   },
+   {
+    "r": 3,
+    "c": 1
+   },
+   {
+    "r": 3,
+    "c": 5
+   },
+   {
+    "r": 3,
+    "c": 3
+   },
+   {
+    "r": 4,
+    "c": 3
+   },
+   {
+    "r": 4,
+    "c": 6
+   }
+  ],
+  "moves": 26
+ },
+ {
+  "level": 29,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-blue",
+   "face-3",
+   "candy-purple",
+   "candy-green",
+   "candy-yellow",
+   "candy-orange"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 1,
+    "count": 26
+   },
+   {
+    "type": "collect",
+    "kind": 0,
+    "count": 32
+   }
+  ],
+  "moves": 28
+ },
+ {
+  "level": 30,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-red",
+   "candy-yellow",
+   "candy-purple",
+   "candy-blue",
+   "candy-green",
+   "candy-orange"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 5,
+    "count": 31
+   },
+   {
+    "type": "collect",
+    "kind": 0,
+    "count": 32
+   },
+   {
+    "type": "collect",
+    "kind": 4,
+    "count": 30
+   }
+  ],
+  "holes": [
+   {
+    "r": 0,
+    "c": 3
+   },
+   {
+    "r": 0,
+    "c": 4
+   },
+   {
+    "r": 7,
+    "c": 3
+   },
+   {
+    "r": 7,
+    "c": 4
+   }
+  ],
+  "moves": 35
+ },
+ {
+  "level": 31,
+  "difficulty": "easy",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-green",
+   "candy-red",
+   "candy-purple",
+   "candy-orange",
+   "candy-blue",
+   "candy-yellow"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 1,
+    "count": 34
+   },
+   {
+    "type": "collect",
+    "kind": 3,
+    "count": 31
+   }
+  ],
+  "moves": 35
+ },
+ {
+  "level": 32,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-green",
+   "candy-red",
+   "candy-purple",
+   "candy-blue",
+   "candy-orange",
+   "candy-yellow"
+  ],
+  "goals": [
+   {
+    "type": "ice"
+   }
+  ],
+  "ice": [
+   {
+    "r": 6,
+    "c": 4
+   },
+   {
+    "r": 5,
+    "c": 1
+   },
+   {
+    "r": 4,
+    "c": 6
+   },
+   {
+    "r": 2,
+    "c": 4
+   },
+   {
+    "r": 3,
+    "c": 1
+   },
+   {
+    "r": 2,
+    "c": 6
+   },
+   {
+    "r": 2,
+    "c": 2
+   },
+   {
+    "r": 3,
+    "c": 3
+   },
+   {
+    "r": 5,
+    "c": 5
+   },
+   {
+    "r": 5,
+    "c": 3
+   },
+   {
+    "r": 1,
+    "c": 5
+   },
+   {
+    "r": 6,
+    "c": 2
+   },
+   {
+    "r": 4,
+    "c": 4
+   }
+  ],
+  "moves": 15
+ },
+ {
+  "level": 33,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-orange",
+   "candy-blue",
+   "candy-red",
+   "candy-yellow",
+   "candy-purple",
+   "candy-green"
+  ],
+  "goals": [
+   {
+    "type": "score",
+    "target": 4400
+   }
+  ],
+  "moves": 34
+ },
+ {
+  "level": 34,
+  "difficulty": "hard",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-yellow",
+   "candy-orange",
+   "candy-red",
+   "candy-purple",
+   "face-1",
+   "candy-green"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 4,
+    "count": 31
+   },
+   {
+    "type": "collect",
+    "kind": 5,
+    "count": 35
+   }
+  ],
+  "holes": [
+   {
+    "r": 3,
+    "c": 0
+   },
+   {
+    "r": 4,
+    "c": 0
+   },
+   {
+    "r": 3,
+    "c": 7
+   },
+   {
+    "r": 4,
+    "c": 7
+   }
+  ],
+  "moves": 29
+ },
+ {
+  "level": 35,
+  "difficulty": "easy",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-red",
+   "candy-yellow",
+   "candy-green",
+   "candy-purple",
+   "candy-blue",
+   "candy-orange"
+  ],
+  "goals": [
+   {
+    "type": "score",
+    "target": 3450
+   }
+  ],
+  "moves": 32
+ },
+ {
+  "level": 36,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-purple",
+   "candy-green",
+   "candy-orange",
+   "candy-red",
+   "candy-yellow",
+   "candy-blue"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 4,
+    "count": 28
+   },
+   {
+    "type": "collect",
+    "kind": 5,
+    "count": 33
+   }
+  ],
+  "holes": [
+   {
+    "r": 0,
+    "c": 0
+   },
+   {
+    "r": 0,
+    "c": 7
+   },
+   {
+    "r": 7,
+    "c": 0
+   },
+   {
+    "r": 7,
+    "c": 7
+   }
+  ],
+  "moves": 28
+ },
+ {
+  "level": 37,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-red",
+   "candy-yellow",
+   "candy-purple",
+   "candy-orange",
+   "candy-green",
+   "candy-blue"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 1,
+    "count": 29
+   },
+   {
+    "type": "collect",
+    "kind": 5,
+    "count": 33
+   },
+   {
+    "type": "collect",
+    "kind": 2,
+    "count": 29
+   }
+  ],
+  "holes": [
+   {
+    "r": 3,
+    "c": 0
+   },
+   {
+    "r": 4,
+    "c": 0
+   },
+   {
+    "r": 3,
+    "c": 7
+   },
+   {
+    "r": 4,
+    "c": 7
+   }
+  ],
+  "moves": 32
+ },
+ {
+  "level": 38,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-blue",
+   "candy-orange",
+   "candy-green",
+   "candy-yellow",
+   "candy-red",
+   "candy-purple"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 5,
+    "count": 30
+   },
+   {
+    "type": "collect",
+    "kind": 2,
+    "count": 33
+   }
+  ],
+  "holes": [
+   {
+    "r": 2,
+    "c": 2
+   },
+   {
+    "r": 2,
+    "c": 5
+   },
+   {
+    "r": 5,
+    "c": 2
+   },
+   {
+    "r": 5,
+    "c": 5
+   }
+  ],
+  "moves": 40
+ },
+ {
+  "level": 39,
+  "difficulty": "hard",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-blue",
+   "candy-red",
+   "face-2",
+   "candy-green",
+   "candy-orange",
+   "candy-purple"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 2,
+    "count": 32
+   },
+   {
+    "type": "collect",
+    "kind": 4,
+    "count": 33
+   }
+  ],
+  "holes": [
+   {
+    "r": 3,
+    "c": 3
+   },
+   {
+    "r": 3,
+    "c": 4
+   },
+   {
+    "r": 4,
+    "c": 3
+   },
+   {
+    "r": 4,
+    "c": 4
+   }
+  ],
+  "moves": 34
+ },
+ {
+  "level": 40,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-orange",
+   "candy-blue",
+   "candy-yellow",
+   "candy-red",
+   "candy-green",
+   "candy-purple"
+  ],
+  "goals": [
+   {
+    "type": "ice"
+   }
+  ],
+  "ice": [
+   {
+    "r": 4,
+    "c": 4
+   },
+   {
+    "r": 3,
+    "c": 4
+   },
+   {
+    "r": 3,
+    "c": 3
+   },
+   {
+    "r": 3,
+    "c": 1
+   },
+   {
+    "r": 3,
+    "c": 5
+   },
+   {
+    "r": 4,
+    "c": 1
+   },
+   {
+    "r": 4,
+    "c": 2
+   },
+   {
+    "r": 3,
+    "c": 6
+   },
+   {
+    "r": 3,
+    "c": 2
+   },
+   {
+    "r": 4,
+    "c": 3
+   },
+   {
+    "r": 4,
+    "c": 5
+   },
+   {
+    "r": 4,
+    "c": 6
+   }
+  ],
+  "moves": 16
+ },
+ {
+  "level": 41,
+  "difficulty": "easy",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 5,
+  "pieces": [
+   "candy-green",
+   "candy-blue",
+   "candy-yellow",
+   "candy-red",
+   "candy-orange"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 0,
+    "count": 28
+   }
+  ],
+  "moves": 17
+ },
+ {
+  "level": 42,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-orange",
+   "candy-green",
+   "candy-purple",
+   "candy-red",
+   "candy-yellow",
+   "candy-blue"
+  ],
+  "goals": [
+   {
+    "type": "ice"
+   }
+  ],
+  "ice": [
+   {
+    "r": 6,
+    "c": 1
+   },
+   {
+    "r": 6,
+    "c": 5
+   },
+   {
+    "r": 1,
+    "c": 0
+   },
+   {
+    "r": 1,
+    "c": 3
+   },
+   {
+    "r": 1,
+    "c": 7
+   },
+   {
+    "r": 6,
+    "c": 2
+   },
+   {
+    "r": 1,
+    "c": 2
+   },
+   {
+    "r": 1,
+    "c": 6
+   },
+   {
+    "r": 1,
+    "c": 1
+   },
+   {
+    "r": 6,
+    "c": 3
+   },
+   {
+    "r": 6,
+    "c": 6
+   },
+   {
+    "r": 6,
+    "c": 4
+   },
+   {
+    "r": 6,
+    "c": 7
+   },
+   {
+    "r": 6,
+    "c": 0
+   },
+   {
+    "r": 1,
+    "c": 4
+   },
+   {
+    "r": 1,
+    "c": 5
+   }
+  ],
+  "moves": 23
+ },
+ {
+  "level": 43,
+  "difficulty": "hard",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-green",
+   "candy-red",
+   "candy-purple",
+   "candy-blue",
+   "candy-yellow",
+   "candy-orange"
+  ],
+  "goals": [
+   {
+    "type": "ice"
+   }
+  ],
+  "holes": [
+   {
+    "r": 2,
+    "c": 2
+   },
+   {
+    "r": 2,
+    "c": 5
+   },
+   {
+    "r": 5,
+    "c": 2
+   },
+   {
+    "r": 5,
+    "c": 5
+   }
+  ],
+  "ice": [
+   {
+    "r": 1,
+    "c": 3
+   },
+   {
+    "r": 1,
+    "c": 4
+   },
+   {
+    "r": 1,
+    "c": 0
+   },
+   {
+    "r": 1,
+    "c": 6
+   },
+   {
+    "r": 6,
+    "c": 6
+   },
+   {
+    "r": 6,
+    "c": 0
+   },
+   {
+    "r": 6,
+    "c": 1
+   },
+   {
+    "r": 1,
+    "c": 2
+   },
+   {
+    "r": 1,
+    "c": 7
+   },
+   {
+    "r": 6,
+    "c": 5
+   },
+   {
+    "r": 6,
+    "c": 7
+   },
+   {
+    "r": 1,
+    "c": 5
+   },
+   {
+    "r": 6,
+    "c": 4
+   },
+   {
+    "r": 1,
+    "c": 1
+   },
+   {
+    "r": 6,
+    "c": 3
+   },
+   {
+    "r": 6,
+    "c": 2
+   }
+  ],
+  "moves": 25
+ },
+ {
+  "level": 44,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "face-3",
+   "candy-red",
+   "candy-purple",
+   "candy-blue",
+   "candy-green",
+   "candy-orange"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 0,
+    "count": 27
+   },
+   {
+    "type": "collect",
+    "kind": 2,
+    "count": 29
+   }
+  ],
+  "holes": [
+   {
+    "r": 3,
+    "c": 3
+   },
+   {
+    "r": 3,
+    "c": 4
+   },
+   {
+    "r": 4,
+    "c": 3
+   },
+   {
+    "r": 4,
+    "c": 4
+   }
+  ],
+  "moves": 35
+ },
+ {
+  "level": 45,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-green",
+   "candy-purple",
+   "candy-orange",
+   "candy-blue",
+   "candy-red",
+   "candy-yellow"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 2,
+    "count": 29
+   },
+   {
+    "type": "collect",
+    "kind": 4,
+    "count": 33
+   },
+   {
+    "type": "collect",
+    "kind": 0,
+    "count": 34
+   }
+  ],
+  "holes": [
+   {
+    "r": 0,
+    "c": 0
+   },
+   {
+    "r": 0,
+    "c": 1
+   },
+   {
+    "r": 1,
+    "c": 0
+   },
+   {
+    "r": 0,
+    "c": 6
+   },
+   {
+    "r": 0,
+    "c": 7
+   },
+   {
+    "r": 1,
+    "c": 7
+   }
+  ],
+  "moves": 31
+ },
+ {
+  "level": 46,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-yellow",
+   "candy-blue",
+   "candy-orange",
+   "candy-red",
+   "candy-green",
+   "candy-purple"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 3,
+    "count": 29
+   },
+   {
+    "type": "collect",
+    "kind": 5,
+    "count": 26
+   }
+  ],
+  "holes": [
+   {
+    "r": 0,
+    "c": 0
+   },
+   {
+    "r": 0,
+    "c": 7
+   },
+   {
+    "r": 7,
+    "c": 0
+   },
+   {
+    "r": 7,
+    "c": 7
+   }
+  ],
+  "moves": 27
+ },
+ {
+  "level": 47,
+  "difficulty": "easy",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 5,
+  "pieces": [
+   "candy-blue",
+   "candy-red",
+   "candy-green",
+   "candy-yellow",
+   "candy-orange"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 3,
+    "count": 32
+   }
+  ],
+  "moves": 20
+ },
+ {
+  "level": 48,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-orange",
+   "candy-purple",
+   "candy-red",
+   "candy-yellow",
+   "candy-blue",
+   "candy-green"
+  ],
+  "goals": [
+   {
+    "type": "ice"
+   },
+   {
+    "type": "collect",
+    "kind": 2,
+    "count": 29
+   }
+  ],
+  "ice": [
+   {
+    "r": 3,
+    "c": 5
+   },
+   {
+    "r": 5,
+    "c": 5
+   },
+   {
+    "r": 5,
+    "c": 2
+   },
+   {
+    "r": 4,
+    "c": 2
+   },
+   {
+    "r": 3,
+    "c": 2
+   },
+   {
+    "r": 5,
+    "c": 4
+   },
+   {
+    "r": 4,
+    "c": 5
+   },
+   {
+    "r": 2,
+    "c": 3
+   },
+   {
+    "r": 2,
+    "c": 4
+   },
+   {
+    "r": 2,
+    "c": 2
+   },
+   {
+    "r": 2,
+    "c": 5
+   },
+   {
+    "r": 5,
+    "c": 3
+   }
+  ],
+  "moves": 26
+ },
+ {
+  "level": 49,
+  "difficulty": "hard",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-yellow",
+   "candy-orange",
+   "candy-blue",
+   "face-1",
+   "candy-red",
+   "candy-green"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 3,
+    "count": 33
+   },
+   {
+    "type": "collect",
+    "kind": 2,
+    "count": 30
+   }
+  ],
+  "holes": [
+   {
+    "r": 0,
+    "c": 0
+   },
+   {
+    "r": 0,
+    "c": 7
+   },
+   {
+    "r": 7,
+    "c": 0
+   },
+   {
+    "r": 7,
+    "c": 7
+   }
+  ],
+  "moves": 28
+ },
+ {
+  "level": 50,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-red",
+   "candy-purple",
+   "candy-green",
+   "candy-blue",
+   "candy-orange",
+   "candy-yellow"
+  ],
+  "goals": [
+   {
+    "type": "ice"
+   },
+   {
+    "type": "collect",
+    "kind": 2,
+    "count": 42
+   }
+  ],
+  "ice": [
+   {
+    "r": 2,
+    "c": 6
+   },
+   {
+    "r": 2,
+    "c": 4
+   },
+   {
+    "r": 4,
+    "c": 4
+   },
+   {
+    "r": 3,
+    "c": 3
+   },
+   {
+    "r": 5,
+    "c": 1
+   },
+   {
+    "r": 3,
+    "c": 5
+   },
+   {
+    "r": 4,
+    "c": 2
+   },
+   {
+    "r": 6,
+    "c": 6
+   },
+   {
+    "r": 1,
+    "c": 1
+   },
+   {
+    "r": 3,
+    "c": 1
+   },
+   {
+    "r": 1,
+    "c": 3
+   },
+   {
+    "r": 5,
+    "c": 5
+   },
+   {
+    "r": 6,
+    "c": 4
+   },
+   {
+    "r": 4,
+    "c": 6
+   },
+   {
+    "r": 5,
+    "c": 3
+   },
+   {
+    "r": 2,
+    "c": 2
+   },
+   {
+    "r": 1,
+    "c": 5
+   }
+  ],
+  "moves": 35
+ },
+ {
+  "level": 51,
+  "difficulty": "easy",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-purple",
+   "candy-orange",
+   "candy-red",
+   "candy-green",
+   "candy-blue",
+   "candy-yellow"
+  ],
+  "goals": [
+   {
+    "type": "ice"
+   }
+  ],
+  "ice": [
+   {
+    "r": 5,
+    "c": 2
+   },
+   {
+    "r": 5,
+    "c": 5
+   },
+   {
+    "r": 4,
+    "c": 5
+   },
+   {
+    "r": 2,
+    "c": 2
+   },
+   {
+    "r": 4,
+    "c": 2
+   },
+   {
+    "r": 2,
+    "c": 3
+   },
+   {
+    "r": 5,
+    "c": 4
+   },
+   {
+    "r": 2,
+    "c": 4
+   },
+   {
+    "r": 3,
+    "c": 2
+   },
+   {
+    "r": 5,
+    "c": 3
+   },
+   {
+    "r": 3,
+    "c": 5
+   },
+   {
+    "r": 2,
+    "c": 5
+   }
+  ],
+  "moves": 20
+ },
+ {
+  "level": 52,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-yellow",
+   "candy-purple",
+   "candy-green",
+   "candy-orange",
+   "candy-red",
+   "candy-blue"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 5,
+    "count": 34
+   },
+   {
+    "type": "collect",
+    "kind": 3,
+    "count": 27
+   }
+  ],
+  "moves": 25
+ },
+ {
+  "level": 53,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-yellow",
+   "candy-green",
+   "candy-purple",
+   "candy-orange",
+   "candy-blue",
+   "candy-red"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 3,
+    "count": 31
+   },
+   {
+    "type": "collect",
+    "kind": 4,
+    "count": 33
+   }
+  ],
+  "holes": [
+   {
+    "r": 0,
+    "c": 3
+   },
+   {
+    "r": 0,
+    "c": 4
+   },
+   {
+    "r": 7,
+    "c": 3
+   },
+   {
+    "r": 7,
+    "c": 4
+   }
+  ],
+  "moves": 32
+ },
+ {
+  "level": 54,
+  "difficulty": "hard",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-purple",
+   "face-2",
+   "candy-orange",
+   "candy-yellow",
+   "candy-blue",
+   "candy-green"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 1,
+    "count": 27
+   },
+   {
+    "type": "collect",
+    "kind": 0,
+    "count": 30
+   }
+  ],
+  "holes": [
+   {
+    "r": 0,
+    "c": 0
+   },
+   {
+    "r": 0,
+    "c": 7
+   },
+   {
+    "r": 7,
+    "c": 0
+   },
+   {
+    "r": 7,
+    "c": 7
+   }
+  ],
+  "moves": 21
+ },
+ {
+  "level": 55,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-orange",
+   "candy-green",
+   "candy-yellow",
+   "candy-purple",
+   "candy-blue",
+   "candy-red"
+  ],
+  "goals": [
+   {
+    "type": "ice"
+   }
+  ],
+  "ice": [
+   {
+    "r": 7,
+    "c": 3
+   },
+   {
+    "r": 6,
+    "c": 6
+   },
+   {
+    "r": 6,
+    "c": 0
+   },
+   {
+    "r": 5,
+    "c": 1
+   },
+   {
+    "r": 7,
+    "c": 6
+   },
+   {
+    "r": 5,
+    "c": 2
+   },
+   {
+    "r": 5,
+    "c": 6
+   },
+   {
+    "r": 7,
+    "c": 4
+   },
+   {
+    "r": 6,
+    "c": 4
+   },
+   {
+    "r": 7,
+    "c": 2
+   },
+   {
+    "r": 6,
+    "c": 7
+   },
+   {
+    "r": 6,
+    "c": 1
+   },
+   {
+    "r": 5,
+    "c": 0
+   }
+  ],
+  "moves": 39
+ },
+ {
+  "level": 56,
+  "difficulty": "easy",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 5,
+  "pieces": [
+   "candy-blue",
+   "candy-yellow",
+   "candy-green",
+   "candy-purple",
+   "candy-orange"
+  ],
+  "goals": [
+   {
+    "type": "ice"
+   }
+  ],
+  "ice": [
+   {
+    "r": 6,
+    "c": 2
+   },
+   {
+    "r": 1,
+    "c": 2
+   },
+   {
+    "r": 1,
+    "c": 1
+   },
+   {
+    "r": 1,
+    "c": 4
+   },
+   {
+    "r": 6,
+    "c": 5
+   },
+   {
+    "r": 1,
+    "c": 6
+   },
+   {
+    "r": 6,
+    "c": 4
+   },
+   {
+    "r": 6,
+    "c": 7
+   },
+   {
+    "r": 1,
+    "c": 0
+   },
+   {
+    "r": 6,
+    "c": 1
+   },
+   {
+    "r": 1,
+    "c": 7
+   }
+  ],
+  "moves": 18
+ },
+ {
+  "level": 57,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-blue",
+   "candy-green",
+   "candy-red",
+   "candy-purple",
+   "candy-yellow",
+   "candy-orange"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 1,
+    "count": 27
+   },
+   {
+    "type": "collect",
+    "kind": 2,
+    "count": 33
+   },
+   {
+    "type": "collect",
+    "kind": 0,
+    "count": 34
+   }
+  ],
+  "moves": 31
+ },
+ {
+  "level": 58,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-red",
+   "candy-blue",
+   "candy-purple",
+   "candy-yellow",
+   "candy-green",
+   "candy-orange"
+  ],
+  "goals": [
+   {
+    "type": "ice"
+   }
+  ],
+  "ice": [
+   {
+    "r": 1,
+    "c": 5
+   },
+   {
+    "r": 1,
+    "c": 2
+   },
+   {
+    "r": 1,
+    "c": 1
+   },
+   {
+    "r": 1,
+    "c": 3
+   },
+   {
+    "r": 1,
+    "c": 0
+   },
+   {
+    "r": 6,
+    "c": 3
+   },
+   {
+    "r": 6,
+    "c": 6
+   },
+   {
+    "r": 6,
+    "c": 0
+   },
+   {
+    "r": 1,
+    "c": 6
+   },
+   {
+    "r": 6,
+    "c": 2
+   },
+   {
+    "r": 6,
+    "c": 1
+   },
+   {
+    "r": 1,
+    "c": 7
+   }
+  ],
+  "moves": 23
+ },
+ {
+  "level": 59,
+  "difficulty": "hard",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-yellow",
+   "candy-red",
+   "candy-purple",
+   "candy-green",
+   "candy-blue",
+   "face-3"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 5,
+    "count": 34
+   },
+   {
+    "type": "collect",
+    "kind": 1,
+    "count": 36
+   }
+  ],
+  "holes": [
+   {
+    "r": 2,
+    "c": 2
+   },
+   {
+    "r": 2,
+    "c": 5
+   },
+   {
+    "r": 5,
+    "c": 2
+   },
+   {
+    "r": 5,
+    "c": 5
+   }
+  ],
+  "moves": 40
+ },
+ {
+  "level": 60,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-purple",
+   "candy-green",
+   "candy-blue",
+   "candy-red",
+   "candy-orange",
+   "candy-yellow"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 5,
+    "count": 30
+   },
+   {
+    "type": "collect",
+    "kind": 4,
+    "count": 27
+   },
+   {
+    "type": "collect",
+    "kind": 1,
+    "count": 34
+   }
+  ],
+  "moves": 30
+ },
+ {
+  "level": 61,
+  "difficulty": "easy",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 5,
+  "pieces": [
+   "candy-blue",
+   "candy-red",
+   "candy-yellow",
+   "candy-purple",
+   "candy-orange"
+  ],
+  "goals": [
+   {
+    "type": "score",
+    "target": 3750
+   }
+  ],
+  "moves": 20
+ },
+ {
+  "level": 62,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-red",
+   "candy-orange",
+   "candy-purple",
+   "candy-yellow",
+   "candy-blue",
+   "candy-green"
+  ],
+  "goals": [
+   {
+    "type": "ice"
+   }
+  ],
+  "holes": [
+   {
+    "r": 0,
+    "c": 0
+   },
+   {
+    "r": 0,
+    "c": 7
+   },
+   {
+    "r": 7,
+    "c": 0
+   },
+   {
+    "r": 7,
+    "c": 7
+   }
+  ],
+  "ice": [
+   {
+    "r": 4,
+    "c": 5
+   },
+   {
+    "r": 5,
+    "c": 5
+   },
+   {
+    "r": 4,
+    "c": 2
+   },
+   {
+    "r": 5,
+    "c": 4
+   },
+   {
+    "r": 3,
+    "c": 5
+   },
+   {
+    "r": 4,
+    "c": 3
+   },
+   {
+    "r": 2,
+    "c": 5
+   },
+   {
+    "r": 5,
+    "c": 2
+   },
+   {
+    "r": 2,
+    "c": 4
+   },
+   {
+    "r": 4,
+    "c": 4
+   },
+   {
+    "r": 2,
+    "c": 2
+   },
+   {
+    "r": 3,
+    "c": 2
+   },
+   {
+    "r": 3,
+    "c": 3
+   },
+   {
+    "r": 5,
+    "c": 3
+   },
+   {
+    "r": 3,
+    "c": 4
+   }
+  ],
+  "moves": 14
+ },
+ {
+  "level": 63,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-red",
+   "candy-purple",
+   "candy-green",
+   "candy-blue",
+   "candy-yellow",
+   "candy-orange"
+  ],
+  "goals": [
+   {
+    "type": "ice"
+   }
+  ],
+  "holes": [
+   {
+    "r": 0,
+    "c": 0
+   },
+   {
+    "r": 0,
+    "c": 1
+   },
+   {
+    "r": 1,
+    "c": 0
+   },
+   {
+    "r": 0,
+    "c": 6
+   },
+   {
+    "r": 0,
+    "c": 7
+   },
+   {
+    "r": 1,
+    "c": 7
+   }
+  ],
+  "ice": [
+   {
+    "r": 2,
+    "c": 2
+   },
+   {
+    "r": 1,
+    "c": 1
+   },
+   {
+    "r": 6,
+    "c": 4
+   },
+   {
+    "r": 5,
+    "c": 3
+   },
+   {
+    "r": 4,
+    "c": 4
+   },
+   {
+    "r": 1,
+    "c": 3
+   },
+   {
+    "r": 6,
+    "c": 2
+   },
+   {
+    "r": 3,
+    "c": 5
+   },
+   {
+    "r": 2,
+    "c": 4
+   },
+   {
+    "r": 2,
+    "c": 6
+   },
+   {
+    "r": 5,
+    "c": 5
+   },
+   {
+    "r": 3,
+    "c": 1
+   },
+   {
+    "r": 4,
+    "c": 2
+   },
+   {
+    "r": 5,
+    "c": 1
+   },
+   {
+    "r": 4,
+    "c": 6
+   },
+   {
+    "r": 6,
+    "c": 6
+   }
+  ],
+  "moves": 21
+ },
+ {
+  "level": 64,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-blue",
+   "candy-yellow",
+   "face-1",
+   "candy-purple",
+   "candy-orange",
+   "candy-green"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 2,
+    "count": 31
+   },
+   {
+    "type": "collect",
+    "kind": 5,
+    "count": 30
+   }
+  ],
+  "moves": 29
+ },
+ {
+  "level": 65,
+  "difficulty": "hard",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-yellow",
+   "candy-orange",
+   "candy-purple",
+   "candy-red",
+   "candy-green",
+   "candy-blue"
+  ],
+  "goals": [
+   {
+    "type": "ice"
+   },
+   {
+    "type": "collect",
+    "kind": 2,
+    "count": 35
+   }
+  ],
+  "holes": [
+   {
+    "r": 0,
+    "c": 0
+   },
+   {
+    "r": 0,
+    "c": 1
+   },
+   {
+    "r": 1,
+    "c": 0
+   },
+   {
+    "r": 0,
+    "c": 6
+   },
+   {
+    "r": 0,
+    "c": 7
+   },
+   {
+    "r": 1,
+    "c": 7
+   }
+  ],
+  "ice": [
+   {
+    "r": 1,
+    "c": 1
+   },
+   {
+    "r": 1,
+    "c": 2
+   },
+   {
+    "r": 0,
+    "c": 2
+   },
+   {
+    "r": 1,
+    "c": 4
+   },
+   {
+    "r": 1,
+    "c": 3
+   },
+   {
+    "r": 0,
+    "c": 3
+   },
+   {
+    "r": 0,
+    "c": 5
+   },
+   {
+    "r": 1,
+    "c": 5
+   },
+   {
+    "r": 0,
+    "c": 4
+   },
+   {
+    "r": 1,
+    "c": 6
+   }
+  ],
+  "moves": 31
+ },
+ {
+  "level": 66,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-orange",
+   "candy-red",
+   "candy-blue",
+   "candy-green",
+   "candy-yellow",
+   "candy-purple"
+  ],
+  "goals": [
+   {
+    "type": "ice"
+   },
+   {
+    "type": "collect",
+    "kind": 4,
+    "count": 39
+   }
+  ],
+  "ice": [
+   {
+    "r": 4,
+    "c": 6
+   },
+   {
+    "r": 5,
+    "c": 1
+   },
+   {
+    "r": 1,
+    "c": 1
+   },
+   {
+    "r": 1,
+    "c": 5
+   },
+   {
+    "r": 3,
+    "c": 3
+   },
+   {
+    "r": 1,
+    "c": 3
+   },
+   {
+    "r": 4,
+    "c": 4
+   },
+   {
+    "r": 2,
+    "c": 2
+   },
+   {
+    "r": 2,
+    "c": 4
+   },
+   {
+    "r": 5,
+    "c": 5
+   },
+   {
+    "r": 3,
+    "c": 5
+   },
+   {
+    "r": 6,
+    "c": 6
+   },
+   {
+    "r": 4,
+    "c": 2
+   },
+   {
+    "r": 6,
+    "c": 4
+   }
+  ],
+  "moves": 33
+ },
+ {
+  "level": 67,
+  "difficulty": "easy",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-red",
+   "candy-green",
+   "candy-purple",
+   "candy-blue",
+   "candy-yellow",
+   "candy-orange"
+  ],
+  "goals": [
+   {
+    "type": "ice"
+   }
+  ],
+  "ice": [
+   {
+    "r": 4,
+    "c": 6
+   },
+   {
+    "r": 3,
+    "c": 2
+   },
+   {
+    "r": 3,
+    "c": 4
+   },
+   {
+    "r": 4,
+    "c": 3
+   },
+   {
+    "r": 4,
+    "c": 4
+   },
+   {
+    "r": 3,
+    "c": 1
+   },
+   {
+    "r": 4,
+    "c": 1
+   },
+   {
+    "r": 4,
+    "c": 5
+   },
+   {
+    "r": 4,
+    "c": 2
+   },
+   {
+    "r": 3,
+    "c": 6
+   },
+   {
+    "r": 3,
+    "c": 5
+   }
+  ],
+  "moves": 17
+ },
+ {
+  "level": 68,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-orange",
+   "candy-red",
+   "candy-green",
+   "candy-blue",
+   "candy-yellow",
+   "candy-purple"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 4,
+    "count": 26
+   },
+   {
+    "type": "collect",
+    "kind": 2,
+    "count": 26
+   },
+   {
+    "type": "collect",
+    "kind": 5,
+    "count": 26
+   }
+  ],
+  "moves": 28
+ },
+ {
+  "level": 69,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "face-2",
+   "candy-orange",
+   "candy-yellow",
+   "candy-green",
+   "candy-blue",
+   "candy-purple"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 0,
+    "count": 32
+   },
+   {
+    "type": "collect",
+    "kind": 4,
+    "count": 29
+   }
+  ],
+  "moves": 29
+ },
+ {
+  "level": 70,
+  "difficulty": "hard",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-green",
+   "candy-orange",
+   "candy-yellow",
+   "candy-blue",
+   "candy-purple",
+   "candy-red"
+  ],
+  "goals": [
+   {
+    "type": "ice"
+   },
+   {
+    "type": "collect",
+    "kind": 4,
+    "count": 37
+   }
+  ],
+  "holes": [
+   {
+    "r": 3,
+    "c": 3
+   },
+   {
+    "r": 3,
+    "c": 4
+   },
+   {
+    "r": 4,
+    "c": 3
+   },
+   {
+    "r": 4,
+    "c": 4
+   }
+  ],
+  "ice": [
+   {
+    "r": 0,
+    "c": 6
+   },
+   {
+    "r": 1,
+    "c": 4
+   },
+   {
+    "r": 1,
+    "c": 3
+   },
+   {
+    "r": 1,
+    "c": 5
+   },
+   {
+    "r": 0,
+    "c": 4
+   },
+   {
+    "r": 1,
+    "c": 7
+   },
+   {
+    "r": 0,
+    "c": 2
+   },
+   {
+    "r": 0,
+    "c": 5
+   },
+   {
+    "r": 1,
+    "c": 6
+   },
+   {
+    "r": 0,
+    "c": 3
+   },
+   {
+    "r": 1,
+    "c": 2
+   },
+   {
+    "r": 0,
+    "c": 1
+   },
+   {
+    "r": 1,
+    "c": 0
+   },
+   {
+    "r": 0,
+    "c": 7
+   },
+   {
+    "r": 0,
+    "c": 0
+   },
+   {
+    "r": 1,
+    "c": 1
+   }
+  ],
+  "moves": 39
+ },
+ {
+  "level": 71,
+  "difficulty": "easy",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 5,
+  "pieces": [
+   "candy-purple",
+   "candy-green",
+   "candy-blue",
+   "candy-red",
+   "candy-orange"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 4,
+    "count": 28
+   },
+   {
+    "type": "collect",
+    "kind": 2,
+    "count": 24
+   }
+  ],
+  "moves": 15
+ },
+ {
+  "level": 72,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-purple",
+   "candy-blue",
+   "candy-red",
+   "candy-yellow",
+   "candy-green",
+   "candy-orange"
+  ],
+  "goals": [
+   {
+    "type": "score",
+    "target": 4500
+   }
+  ],
+  "moves": 34
+ },
+ {
+  "level": 73,
+  "difficulty": "hard",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-red",
+   "candy-yellow",
+   "candy-purple",
+   "candy-green",
+   "candy-blue",
+   "candy-orange"
+  ],
+  "goals": [
+   {
+    "type": "ice"
+   },
+   {
+    "type": "collect",
+    "kind": 0,
+    "count": 34
+   }
+  ],
+  "holes": [
+   {
+    "r": 0,
+    "c": 0
+   },
+   {
+    "r": 0,
+    "c": 1
+   },
+   {
+    "r": 1,
+    "c": 0
+   },
+   {
+    "r": 0,
+    "c": 6
+   },
+   {
+    "r": 0,
+    "c": 7
+   },
+   {
+    "r": 1,
+    "c": 7
+   }
+  ],
+  "ice": [
+   {
+    "r": 7,
+    "c": 0
+   },
+   {
+    "r": 6,
+    "c": 1
+   },
+   {
+    "r": 7,
+    "c": 6
+   },
+   {
+    "r": 6,
+    "c": 2
+   },
+   {
+    "r": 6,
+    "c": 0
+   },
+   {
+    "r": 7,
+    "c": 3
+   },
+   {
+    "r": 5,
+    "c": 3
+   },
+   {
+    "r": 7,
+    "c": 1
+   },
+   {
+    "r": 5,
+    "c": 4
+   },
+   {
+    "r": 7,
+    "c": 4
+   },
+   {
+    "r": 6,
+    "c": 6
+   },
+   {
+    "r": 6,
+    "c": 3
+   },
+   {
+    "r": 6,
+    "c": 5
+   },
+   {
+    "r": 5,
+    "c": 0
+   },
+   {
+    "r": 5,
+    "c": 6
+   },
+   {
+    "r": 7,
+    "c": 7
+   },
+   {
+    "r": 5,
+    "c": 1
+   },
+   {
+    "r": 6,
+    "c": 4
+   },
+   {
+    "r": 5,
+    "c": 5
+   }
+  ],
+  "moves": 38
+ },
+ {
+  "level": 74,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-red",
+   "candy-purple",
+   "candy-blue",
+   "candy-green",
+   "face-3",
+   "candy-yellow"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 4,
+    "count": 32
+   },
+   {
+    "type": "collect",
+    "kind": 0,
+    "count": 27
+   }
+  ],
+  "moves": 28
+ },
+ {
+  "level": 75,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-blue",
+   "candy-green",
+   "candy-orange",
+   "candy-red",
+   "candy-purple",
+   "candy-yellow"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 5,
+    "count": 27
+   },
+   {
+    "type": "collect",
+    "kind": 1,
+    "count": 34
+   },
+   {
+    "type": "collect",
+    "kind": 2,
+    "count": 27
+   }
+  ],
+  "moves": 28
+ },
+ {
+  "level": 76,
+  "difficulty": "easy",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 5,
+  "pieces": [
+   "candy-green",
+   "candy-purple",
+   "candy-red",
+   "candy-yellow",
+   "candy-orange"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 0,
+    "count": 26
+   },
+   {
+    "type": "collect",
+    "kind": 1,
+    "count": 26
+   }
+  ],
+  "moves": 16
+ },
+ {
+  "level": 77,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-blue",
+   "candy-orange",
+   "candy-purple",
+   "candy-yellow",
+   "candy-red",
+   "candy-green"
+  ],
+  "goals": [
+   {
+    "type": "ice"
+   },
+   {
+    "type": "collect",
+    "kind": 1,
+    "count": 33
+   }
+  ],
+  "holes": [
+   {
+    "r": 0,
+    "c": 3
+   },
+   {
+    "r": 0,
+    "c": 4
+   },
+   {
+    "r": 7,
+    "c": 3
+   },
+   {
+    "r": 7,
+    "c": 4
+   }
+  ],
+  "ice": [
+   {
+    "r": 5,
+    "c": 5
+   },
+   {
+    "r": 5,
+    "c": 3
+   },
+   {
+    "r": 4,
+    "c": 5
+   },
+   {
+    "r": 4,
+    "c": 4
+   },
+   {
+    "r": 2,
+    "c": 5
+   },
+   {
+    "r": 4,
+    "c": 3
+   },
+   {
+    "r": 3,
+    "c": 3
+   },
+   {
+    "r": 3,
+    "c": 5
+   },
+   {
+    "r": 4,
+    "c": 2
+   },
+   {
+    "r": 3,
+    "c": 2
+   },
+   {
+    "r": 2,
+    "c": 3
+   }
+  ],
+  "moves": 29
+ },
+ {
+  "level": 78,
+  "difficulty": "hard",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-yellow",
+   "candy-blue",
+   "candy-red",
+   "candy-purple",
+   "candy-orange",
+   "candy-green"
+  ],
+  "goals": [
+   {
+    "type": "ice"
+   },
+   {
+    "type": "collect",
+    "kind": 2,
+    "count": 30
+   }
+  ],
+  "holes": [
+   {
+    "r": 0,
+    "c": 0
+   },
+   {
+    "r": 0,
+    "c": 7
+   },
+   {
+    "r": 7,
+    "c": 0
+   },
+   {
+    "r": 7,
+    "c": 7
+   }
+  ],
+  "ice": [
+   {
+    "r": 6,
+    "c": 4
+   },
+   {
+    "r": 6,
+    "c": 1
+   },
+   {
+    "r": 6,
+    "c": 5
+   },
+   {
+    "r": 7,
+    "c": 5
+   },
+   {
+    "r": 7,
+    "c": 3
+   },
+   {
+    "r": 6,
+    "c": 6
+   },
+   {
+    "r": 5,
+    "c": 6
+   },
+   {
+    "r": 5,
+    "c": 0
+   },
+   {
+    "r": 5,
+    "c": 7
+   },
+   {
+    "r": 6,
+    "c": 3
+   },
+   {
+    "r": 5,
+    "c": 1
+   },
+   {
+    "r": 5,
+    "c": 5
+   },
+   {
+    "r": 7,
+    "c": 2
+   },
+   {
+    "r": 7,
+    "c": 6
+   },
+   {
+    "r": 5,
+    "c": 2
+   },
+   {
+    "r": 5,
+    "c": 4
+   },
+   {
+    "r": 6,
+    "c": 0
+   },
+   {
+    "r": 5,
+    "c": 3
+   },
+   {
+    "r": 7,
+    "c": 1
+   },
+   {
+    "r": 7,
+    "c": 4
+   },
+   {
+    "r": 6,
+    "c": 2
+   },
+   {
+    "r": 6,
+    "c": 7
+   }
+  ],
+  "moves": 34
+ },
+ {
+  "level": 79,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-orange",
+   "face-1",
+   "candy-red",
+   "candy-purple",
+   "candy-green",
+   "candy-blue"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 1,
+    "count": 33
+   },
+   {
+    "type": "collect",
+    "kind": 3,
+    "count": 34
+   }
+  ],
+  "moves": 34
+ },
+ {
+  "level": 80,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-orange",
+   "candy-yellow",
+   "candy-green",
+   "candy-red",
+   "candy-purple",
+   "candy-blue"
+  ],
+  "goals": [
+   {
+    "type": "score",
+    "target": 4600
+   }
+  ],
+  "moves": 33
+ },
+ {
+  "level": 81,
+  "difficulty": "easy",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-red",
+   "candy-green",
+   "candy-blue",
+   "candy-purple",
+   "candy-yellow",
+   "candy-orange"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 3,
+    "count": 27
+   },
+   {
+    "type": "collect",
+    "kind": 4,
+    "count": 26
+   }
+  ],
+  "moves": 30
+ },
+ {
+  "level": 82,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-red",
+   "candy-green",
+   "candy-orange",
+   "candy-blue",
+   "candy-yellow",
+   "candy-purple"
+  ],
+  "goals": [
+   {
+    "type": "ice"
+   },
+   {
+    "type": "collect",
+    "kind": 5,
+    "count": 31
+   }
+  ],
+  "ice": [
+   {
+    "r": 5,
+    "c": 7
+   },
+   {
+    "r": 6,
+    "c": 1
+   },
+   {
+    "r": 6,
+    "c": 0
+   },
+   {
+    "r": 5,
+    "c": 2
+   },
+   {
+    "r": 7,
+    "c": 6
+   },
+   {
+    "r": 5,
+    "c": 0
+   },
+   {
+    "r": 6,
+    "c": 7
+   },
+   {
+    "r": 7,
+    "c": 2
+   },
+   {
+    "r": 5,
+    "c": 1
+   },
+   {
+    "r": 7,
+    "c": 0
+   },
+   {
+    "r": 7,
+    "c": 1
+   },
+   {
+    "r": 6,
+    "c": 5
+   },
+   {
+    "r": 7,
+    "c": 3
+   },
+   {
+    "r": 6,
+    "c": 3
+   }
+  ],
+  "moves": 33
+ },
+ {
+  "level": 83,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-orange",
+   "candy-red",
+   "candy-yellow",
+   "candy-blue",
+   "candy-green",
+   "candy-purple"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 5,
+    "count": 32
+   },
+   {
+    "type": "collect",
+    "kind": 2,
+    "count": 33
+   },
+   {
+    "type": "collect",
+    "kind": 3,
+    "count": 27
+   }
+  ],
+  "moves": 28
+ },
+ {
+  "level": 84,
+  "difficulty": "hard",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-orange",
+   "candy-green",
+   "candy-yellow",
+   "candy-blue",
+   "candy-purple",
+   "face-2"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 5,
+    "count": 38
+   },
+   {
+    "type": "collect",
+    "kind": 1,
+    "count": 37
+   }
+  ],
+  "holes": [
+   {
+    "r": 3,
+    "c": 0
+   },
+   {
+    "r": 4,
+    "c": 0
+   },
+   {
+    "r": 3,
+    "c": 7
+   },
+   {
+    "r": 4,
+    "c": 7
+   }
+  ],
+  "moves": 31
+ },
+ {
+  "level": 85,
+  "difficulty": "easy",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 5,
+  "pieces": [
+   "candy-blue",
+   "candy-red",
+   "candy-purple",
+   "candy-green",
+   "candy-orange"
+  ],
+  "goals": [
+   {
+    "type": "ice"
+   }
+  ],
+  "ice": [
+   {
+    "r": 1,
+    "c": 4
+   },
+   {
+    "r": 6,
+    "c": 2
+   },
+   {
+    "r": 1,
+    "c": 3
+   },
+   {
+    "r": 6,
+    "c": 6
+   },
+   {
+    "r": 6,
+    "c": 1
+   },
+   {
+    "r": 6,
+    "c": 0
+   },
+   {
+    "r": 6,
+    "c": 3
+   },
+   {
+    "r": 1,
+    "c": 6
+   }
+  ],
+  "moves": 15
+ },
+ {
+  "level": 86,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-green",
+   "candy-orange",
+   "candy-yellow",
+   "candy-red",
+   "candy-purple",
+   "candy-blue"
+  ],
+  "goals": [
+   {
+    "type": "ice"
+   },
+   {
+    "type": "collect",
+    "kind": 5,
+    "count": 29
+   }
+  ],
+  "holes": [
+   {
+    "r": 3,
+    "c": 3
+   },
+   {
+    "r": 3,
+    "c": 4
+   },
+   {
+    "r": 4,
+    "c": 3
+   },
+   {
+    "r": 4,
+    "c": 4
+   }
+  ],
+  "ice": [
+   {
+    "r": 2,
+    "c": 3
+   },
+   {
+    "r": 2,
+    "c": 4
+   },
+   {
+    "r": 3,
+    "c": 2
+   },
+   {
+    "r": 5,
+    "c": 5
+   },
+   {
+    "r": 5,
+    "c": 3
+   },
+   {
+    "r": 2,
+    "c": 5
+   },
+   {
+    "r": 4,
+    "c": 2
+   },
+   {
+    "r": 3,
+    "c": 5
+   },
+   {
+    "r": 5,
+    "c": 4
+   },
+   {
+    "r": 2,
+    "c": 2
+   },
+   {
+    "r": 5,
+    "c": 2
+   }
+  ],
+  "moves": 37
+ },
+ {
+  "level": 87,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-purple",
+   "candy-green",
+   "candy-red",
+   "candy-yellow",
+   "candy-blue",
+   "candy-orange"
+  ],
+  "goals": [
+   {
+    "type": "score",
+    "target": 4750
+   }
+  ],
+  "holes": [
+   {
+    "r": 0,
+    "c": 0
+   },
+   {
+    "r": 0,
+    "c": 1
+   },
+   {
+    "r": 1,
+    "c": 0
+   },
+   {
+    "r": 0,
+    "c": 6
+   },
+   {
+    "r": 0,
+    "c": 7
+   },
+   {
+    "r": 1,
+    "c": 7
+   }
+  ],
+  "moves": 38
+ },
+ {
+  "level": 88,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-yellow",
+   "candy-blue",
+   "candy-purple",
+   "candy-green",
+   "candy-red",
+   "candy-orange"
+  ],
+  "goals": [
+   {
+    "type": "score",
+    "target": 4700
+   }
+  ],
+  "moves": 38
+ },
+ {
+  "level": 89,
+  "difficulty": "hard",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-green",
+   "candy-blue",
+   "candy-orange",
+   "face-3",
+   "candy-purple",
+   "candy-yellow"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 3,
+    "count": 30
+   },
+   {
+    "type": "collect",
+    "kind": 2,
+    "count": 35
+   }
+  ],
+  "holes": [
+   {
+    "r": 3,
+    "c": 0
+   },
+   {
+    "r": 4,
+    "c": 0
+   },
+   {
+    "r": 3,
+    "c": 7
+   },
+   {
+    "r": 4,
+    "c": 7
+   }
+  ],
+  "moves": 30
+ },
+ {
+  "level": 90,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-red",
+   "candy-purple",
+   "candy-blue",
+   "candy-orange",
+   "candy-green",
+   "candy-yellow"
+  ],
+  "goals": [
+   {
+    "type": "ice"
+   },
+   {
+    "type": "collect",
+    "kind": 3,
+    "count": 32
+   }
+  ],
+  "ice": [
+   {
+    "r": 6,
+    "c": 4
+   },
+   {
+    "r": 3,
+    "c": 1
+   },
+   {
+    "r": 3,
+    "c": 5
+   },
+   {
+    "r": 5,
+    "c": 5
+   },
+   {
+    "r": 2,
+    "c": 4
+   },
+   {
+    "r": 6,
+    "c": 6
+   },
+   {
+    "r": 1,
+    "c": 1
+   },
+   {
+    "r": 1,
+    "c": 3
+   },
+   {
+    "r": 6,
+    "c": 2
+   },
+   {
+    "r": 3,
+    "c": 3
+   },
+   {
+    "r": 5,
+    "c": 3
+   }
+  ],
+  "moves": 28
+ },
+ {
+  "level": 91,
+  "difficulty": "easy",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-green",
+   "candy-orange",
+   "candy-purple",
+   "candy-blue",
+   "candy-yellow",
+   "candy-red"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 1,
+    "count": 23
+   }
+  ],
+  "moves": 22
+ },
+ {
+  "level": 92,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-blue",
+   "candy-red",
+   "candy-purple",
+   "candy-yellow",
+   "candy-orange",
+   "candy-green"
+  ],
+  "goals": [
+   {
+    "type": "ice"
+   }
+  ],
+  "ice": [
+   {
+    "r": 6,
+    "c": 6
+   },
+   {
+    "r": 1,
+    "c": 3
+   },
+   {
+    "r": 2,
+    "c": 6
+   },
+   {
+    "r": 3,
+    "c": 1
+   },
+   {
+    "r": 1,
+    "c": 1
+   },
+   {
+    "r": 3,
+    "c": 5
+   },
+   {
+    "r": 4,
+    "c": 6
+   },
+   {
+    "r": 3,
+    "c": 3
+   },
+   {
+    "r": 1,
+    "c": 5
+   },
+   {
+    "r": 6,
+    "c": 2
+   },
+   {
+    "r": 5,
+    "c": 5
+   },
+   {
+    "r": 2,
+    "c": 2
+   },
+   {
+    "r": 6,
+    "c": 4
+   },
+   {
+    "r": 4,
+    "c": 2
+   }
+  ],
+  "moves": 17
+ },
+ {
+  "level": 93,
+  "difficulty": "hard",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-purple",
+   "candy-red",
+   "candy-green",
+   "candy-yellow",
+   "candy-blue",
+   "candy-orange"
+  ],
+  "goals": [
+   {
+    "type": "ice"
+   }
+  ],
+  "holes": [
+   {
+    "r": 0,
+    "c": 0
+   },
+   {
+    "r": 0,
+    "c": 7
+   },
+   {
+    "r": 7,
+    "c": 0
+   },
+   {
+    "r": 7,
+    "c": 7
+   }
+  ],
+  "ice": [
+   {
+    "r": 6,
+    "c": 3
+   },
+   {
+    "r": 6,
+    "c": 5
+   },
+   {
+    "r": 6,
+    "c": 2
+   },
+   {
+    "r": 6,
+    "c": 4
+   },
+   {
+    "r": 5,
+    "c": 4
+   },
+   {
+    "r": 6,
+    "c": 7
+   },
+   {
+    "r": 7,
+    "c": 2
+   },
+   {
+    "r": 5,
+    "c": 3
+   },
+   {
+    "r": 6,
+    "c": 0
+   },
+   {
+    "r": 7,
+    "c": 1
+   },
+   {
+    "r": 7,
+    "c": 5
+   },
+   {
+    "r": 5,
+    "c": 2
+   },
+   {
+    "r": 6,
+    "c": 1
+   },
+   {
+    "r": 5,
+    "c": 5
+   },
+   {
+    "r": 7,
+    "c": 6
+   },
+   {
+    "r": 5,
+    "c": 7
+   },
+   {
+    "r": 5,
+    "c": 1
+   },
+   {
+    "r": 5,
+    "c": 6
+   },
+   {
+    "r": 7,
+    "c": 3
+   },
+   {
+    "r": 7,
+    "c": 4
+   },
+   {
+    "r": 5,
+    "c": 0
+   },
+   {
+    "r": 6,
+    "c": 6
+   }
+  ],
+  "moves": 26
+ },
+ {
+  "level": 94,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "face-1",
+   "candy-orange",
+   "candy-green",
+   "candy-red",
+   "candy-purple",
+   "candy-blue"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 0,
+    "count": 34
+   },
+   {
+    "type": "collect",
+    "kind": 2,
+    "count": 31
+   }
+  ],
+  "holes": [
+   {
+    "r": 0,
+    "c": 0
+   },
+   {
+    "r": 0,
+    "c": 7
+   },
+   {
+    "r": 7,
+    "c": 0
+   },
+   {
+    "r": 7,
+    "c": 7
+   }
+  ],
+  "moves": 28
+ },
+ {
+  "level": 95,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-green",
+   "candy-yellow",
+   "candy-purple",
+   "candy-orange",
+   "candy-red",
+   "candy-blue"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 3,
+    "count": 28
+   },
+   {
+    "type": "collect",
+    "kind": 5,
+    "count": 28
+   }
+  ],
+  "holes": [
+   {
+    "r": 0,
+    "c": 0
+   },
+   {
+    "r": 0,
+    "c": 1
+   },
+   {
+    "r": 1,
+    "c": 0
+   },
+   {
+    "r": 0,
+    "c": 6
+   },
+   {
+    "r": 0,
+    "c": 7
+   },
+   {
+    "r": 1,
+    "c": 7
+   }
+  ],
+  "moves": 34
+ },
+ {
+  "level": 96,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-blue",
+   "candy-red",
+   "candy-green",
+   "candy-orange",
+   "candy-yellow",
+   "candy-purple"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 0,
+    "count": 30
+   },
+   {
+    "type": "collect",
+    "kind": 2,
+    "count": 29
+   }
+  ],
+  "moves": 30
+ },
+ {
+  "level": 97,
+  "difficulty": "easy",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-orange",
+   "candy-red",
+   "candy-purple",
+   "candy-yellow",
+   "candy-green",
+   "candy-blue"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 0,
+    "count": 28
+   }
+  ],
+  "moves": 27
+ },
+ {
+  "level": 98,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-blue",
+   "candy-yellow",
+   "candy-orange",
+   "candy-green",
+   "candy-purple",
+   "candy-red"
+  ],
+  "goals": [
+   {
+    "type": "ice"
+   },
+   {
+    "type": "collect",
+    "kind": 4,
+    "count": 30
+   }
+  ],
+  "ice": [
+   {
+    "r": 1,
+    "c": 3
+   },
+   {
+    "r": 5,
+    "c": 3
+   },
+   {
+    "r": 2,
+    "c": 4
+   },
+   {
+    "r": 6,
+    "c": 4
+   },
+   {
+    "r": 5,
+    "c": 1
+   },
+   {
+    "r": 5,
+    "c": 5
+   },
+   {
+    "r": 4,
+    "c": 4
+   },
+   {
+    "r": 4,
+    "c": 6
+   },
+   {
+    "r": 1,
+    "c": 5
+   },
+   {
+    "r": 3,
+    "c": 1
+   },
+   {
+    "r": 4,
+    "c": 2
+   },
+   {
+    "r": 6,
+    "c": 6
+   },
+   {
+    "r": 3,
+    "c": 5
+   },
+   {
+    "r": 2,
+    "c": 6
+   }
+  ],
+  "moves": 27
+ },
+ {
+  "level": 99,
+  "difficulty": "hard",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-blue",
+   "candy-green",
+   "candy-yellow",
+   "candy-purple",
+   "face-2",
+   "candy-red"
+  ],
+  "goals": [
+   {
+    "type": "collect",
+    "kind": 4,
+    "count": 31
+   },
+   {
+    "type": "collect",
+    "kind": 1,
+    "count": 32
+   }
+  ],
+  "holes": [
+   {
+    "r": 3,
+    "c": 3
+   },
+   {
+    "r": 3,
+    "c": 4
+   },
+   {
+    "r": 4,
+    "c": 3
+   },
+   {
+    "r": 4,
+    "c": 4
+   }
+  ],
+  "moves": 34
+ },
+ {
+  "level": 100,
+  "difficulty": "medium",
+  "rows": 8,
+  "cols": 8,
+  "kinds": 6,
+  "pieces": [
+   "candy-orange",
+   "candy-red",
+   "candy-green",
+   "candy-blue",
+   "candy-yellow",
+   "candy-purple"
+  ],
+  "goals": [
+   {
+    "type": "ice"
+   },
+   {
+    "type": "collect",
+    "kind": 2,
+    "count": 43
+   }
+  ],
+  "ice": [
+   {
+    "r": 1,
+    "c": 5
+   },
+   {
+    "r": 0,
+    "c": 2
+   },
+   {
+    "r": 0,
+    "c": 6
+   },
+   {
+    "r": 0,
+    "c": 0
+   },
+   {
+    "r": 0,
+    "c": 4
+   },
+   {
+    "r": 0,
+    "c": 7
+   },
+   {
+    "r": 1,
+    "c": 7
+   },
+   {
+    "r": 1,
+    "c": 2
+   },
+   {
+    "r": 0,
+    "c": 5
+   },
+   {
+    "r": 0,
+    "c": 3
+   },
+   {
+    "r": 1,
+    "c": 6
+   },
+   {
+    "r": 1,
+    "c": 3
+   },
+   {
+    "r": 0,
+    "c": 1
+   },
+   {
+    "r": 1,
+    "c": 0
+   },
+   {
+    "r": 1,
+    "c": 4
+   }
+  ],
+  "moves": 40
+ }
+]
