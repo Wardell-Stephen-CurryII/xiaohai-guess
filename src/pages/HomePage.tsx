@@ -3,6 +3,7 @@ import { DecorationLayer } from '../components/profile/DecorationLayer'
 import { ProfileStrip } from '../components/profile/ProfileBits'
 import { toast } from '../components/toastBus'
 import { ThemeArt } from '../components/ThemeArt'
+import { MoreGames } from '../components/MoreGames'
 import { TipCard } from '../components/Tip'
 import { THEMES } from '../data/themes'
 import { themeStyle } from '../data/themeStyle'
@@ -55,6 +56,7 @@ export function HomePage({
   checkForUpdate,
   cache,
   onRetryCache,
+  onOpenGame,
 }: {
   settings: Settings
   onChange: (patch: Partial<Settings>) => void
@@ -66,6 +68,7 @@ export function HomePage({
   checkForUpdate: () => Promise<UpdateCheck>
   cache: CacheProgress
   onRetryCache: () => void
+  onOpenGame: (hash: string) => void
 }) {
   const [checking, setChecking] = useState(false)
   const doCheck = async () => {
@@ -139,6 +142,8 @@ export function HomePage({
             : '音效关闭后，猜的人只能靠朋友告诉自己有没有翻成功。'}
         </p>
       </section>
+
+      <MoreGames onOpen={onOpenGame} />
 
       <TipCard />
 

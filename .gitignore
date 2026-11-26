@@ -28,3 +28,6 @@ dev-dist
 
 # 会员激活码台账（含激活码明文，不能公开）
 private/
+
+# 小红书配图（只在本机使用，不发布）
+public/images/xiaohongshu-poster.png

@@ -9,8 +9,9 @@ import { ResultPage } from './pages/ResultPage'
 import { usePwa } from './platform/usePwa'
 import { applyPalette } from './profile/applyPalette'
 
-// 调试页按需加载，不影响游戏本身
+// 调试页、小游戏按需加载，不影响猜词游戏本身
 const DebugPage = lazy(() => import('./pages/DebugPage'))
+const TruthOrDarePage = lazy(() => import('./pages/TruthOrDarePage'))
 
 function useHash(): string {
   const [hash, setHash] = useState(() => window.location.hash)
@@ -55,6 +56,15 @@ function Game({ hash }: { hash: string }) {
 
   useEffect(() => applyPalette(view.look.palette), [view.look.palette])
 
+  // 小游戏：真心话 / 大冒险（连连看、消消乐上线后在这里加路由，见 src/minigames/registry.ts）
+  if (state.phase === 'home' && (hash === '#truth' || hash === '#dare')) {
+    return (
+      <Suspense fallback={null}>
+        <TruthOrDarePage initialKind={hash === '#truth' ? 'truth' : 'dare'} tod={g.tod} updateTod={g.updateTod} onBack={() => go('')} />
+      </Suspense>
+    )
+  }
+
   if (state.phase === 'home' && hash === '#me') {
     return (
       <ProfilePage
@@ -86,6 +96,7 @@ function Game({ hash }: { hash: string }) {
           checkForUpdate={pwa.checkForUpdate}
           cache={pwa.cache}
           onRetryCache={pwa.retryCache}
+          onOpenGame={go}
         />
       </>
     )

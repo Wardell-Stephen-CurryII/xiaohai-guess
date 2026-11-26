@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useLayoutEffect, useReducer, useRef, useState } from 'react'
 import { THEMES } from '../data/themes'
 import { setAudioSessionType, SoundPlayer } from '../platform/audio'
-import { loadData, requestPersistentStorage, saveData, type StoredData } from '../platform/storage'
+import { loadData, requestPersistentStorage, saveData, type StoredData, type TodData } from '../platform/storage'
 import { decodeBackup, encodeBackup } from '../profile/backup'
 import { validateName } from '../profile/names'
 import { applyRound, type RoundReward } from '../profile/progress'
@@ -99,6 +99,9 @@ export function useGameController() {
   )
 
   const exportBackup = useCallback(() => encodeBackup(storedRef.current.profile), [])
+
+  // 真心话 / 大冒险：劲爆开关和已抽记录
+  const updateTod = useCallback((fn: (t: TodData) => TodData) => update((d) => ({ ...d, tod: fn(d.tod) })), [update])
 
   const restoreBackup = useCallback(
     (input: string): ActionResult => {
@@ -291,6 +294,8 @@ export function useGameController() {
     actions: { start, chooseButtons, answer, startButtonsRound, pause, resume, goHome, playAgain, endRound },
     profile: stored.profile,
     vip: stored.vip,
+    tod: stored.tod,
+    updateTod,
     view,
     nowMs,
     reward,

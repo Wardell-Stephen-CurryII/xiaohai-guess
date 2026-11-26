@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { DEFAULT_SETTINGS } from '../game/types'
 import { newProfile } from '../profile/profileData'
-import { defaultData, loadData, saveData, STORAGE_KEY, type KeyValueStore } from './storage'
+import { defaultData, defaultTod, loadData, saveData, STORAGE_KEY, type KeyValueStore } from './storage'
 
 function memoryStore(initial?: string): KeyValueStore & { value: string | null } {
   return {
@@ -33,6 +33,7 @@ describe('storage', () => {
       seen: { songs: ['青花瓷'] },
       profile: { ...newProfile(rng), name: '小嗨', xp: 320 },
       vip: { code: 'ABCD1234EFGH', tier: 'svip' as const, activatedAt: 1, lastVerifiedAt: 2 },
+      tod: { spicy: true, seen: { truth: { normal: ['你最近一次撒的谎是什么？'], spicy: [] }, dare: { normal: [], spicy: ['x'] } } },
     }
     expect(saveData(store, data)).toBe(true)
     expect(loadData(store, rng)).toEqual(data)
@@ -51,6 +52,21 @@ describe('storage', () => {
     expect(d.vip).toBeNull()
   })
 
+  it('从版本 2 迁移：保留资料和会员，新增真心话大冒险默认数据', () => {
+    const v2 = JSON.stringify({
+      version: 2,
+      settings: { themeId: 'songs', durationSec: 60, soundOn: true, sensitivity: 'medium' },
+      seen: {},
+      profile: { ...newProfile(rng), name: '小嗨', xp: 500 },
+      vip: { code: 'ABCD1234EFGH', tier: 'vip', activatedAt: 1, lastVerifiedAt: 2 },
+    })
+    const d = loadData(memoryStore(v2), rng)
+    expect(d.profile.name).toBe('小嗨')
+    expect(d.profile.xp).toBe(500)
+    expect(d.vip?.tier).toBe('vip')
+    expect(d.tod).toEqual(defaultTod())
+  })
+
   it('JSON 损坏时回退默认值', () => {
     expect(loadData(memoryStore('{not json'), rng)).toEqual(defaults)
   })
@@ -66,6 +82,7 @@ describe('storage', () => {
       seen: { history: ['秦始皇', 3], bad: 'x' },
       profile: { name: '小嗨', xp: 'lots' },
       vip: { tier: 'gold' },
+      tod: { spicy: 'yes', seen: { truth: { normal: ['a', 1] } } },
     })
     const d = loadData(memoryStore(raw), rng)
     expect(d.settings).toEqual({ ...DEFAULT_SETTINGS, themeId: 'history', sensitivity: 'high' })
@@ -73,6 +90,8 @@ describe('storage', () => {
     expect(d.profile.name).toBe('小嗨')
     expect(d.profile.xp).toBe(0)
     expect(d.vip).toBeNull()
+    expect(d.tod.spicy).toBe(false)
+    expect(d.tod.seen.truth.normal).toEqual(['a'])
   })
 
   it('读写抛出异常时不崩溃', () => {

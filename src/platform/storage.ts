@@ -5,15 +5,23 @@
 import { DEFAULT_SETTINGS, DURATIONS_SEC, type SeenMap, type Settings } from '../game/types'
 import { newProfile, parseProfile, parseVip } from '../profile/profileData'
 import type { Profile, VipState } from '../profile/types'
+import type { SeenPrompts } from '../minigames/promptDeck'
 
 export const STORAGE_KEY = 'xiaohai-guess'
-const VERSION = 2
+const VERSION = 3
+
+/** 真心话 / 大冒险：公开的劲爆开关，以及抽过的题（跨次不重复） */
+export interface TodData {
+  spicy: boolean
+  seen: { truth: SeenPrompts; dare: SeenPrompts }
+}
 
 export interface StoredData {
   settings: Settings
   seen: SeenMap
   profile: Profile
   vip: VipState | null
+  tod: TodData
 }
 
 /** localStorage 的最小接口，便于测试 */
@@ -45,8 +53,24 @@ function parseSeen(v: unknown): SeenMap {
   return out
 }
 
+const strList = (v: unknown) => (Array.isArray(v) ? v.filter((x): x is string => typeof x === 'string') : [])
+
+export function defaultTod(): TodData {
+  return { spicy: false, seen: { truth: { normal: [], spicy: [] }, dare: { normal: [], spicy: [] } } }
+}
+
+function parseTod(v: unknown): TodData {
+  if (!isRecord(v)) return defaultTod()
+  const seen = isRecord(v.seen) ? v.seen : {}
+  const pair = (x: unknown): SeenPrompts => {
+    const r = isRecord(x) ? x : {}
+    return { normal: strList(r.normal), spicy: strList(r.spicy) }
+  }
+  return { spicy: v.spicy === true, seen: { truth: pair(seen.truth), dare: pair(seen.dare) } }
+}
+
 export function defaultData(rng: () => number = Math.random): StoredData {
-  return { settings: { ...DEFAULT_SETTINGS }, seen: {}, profile: newProfile(rng), vip: null }
+  return { settings: { ...DEFAULT_SETTINGS }, seen: {}, profile: newProfile(rng), vip: null, tod: defaultTod() }
 }
 
 export function loadData(store: KeyValueStore, rng: () => number = Math.random): StoredData {
@@ -57,14 +81,16 @@ export function loadData(store: KeyValueStore, rng: () => number = Math.random):
     if (!isRecord(data)) return defaultData(rng)
     // 版本 1：只有设置和已出词，迁移时保留并新建资料
     if (data.version === 1) {
-      return { settings: parseSettings(data.settings), seen: parseSeen(data.seen), profile: newProfile(rng), vip: null }
+      return { settings: parseSettings(data.settings), seen: parseSeen(data.seen), profile: newProfile(rng), vip: null, tod: defaultTod() }
     }
-    if (data.version !== VERSION) return defaultData(rng)
+    // 版本 2 → 3：新增真心话大冒险数据，其余原样保留
+    if (data.version !== 2 && data.version !== VERSION) return defaultData(rng)
     return {
       settings: parseSettings(data.settings),
       seen: parseSeen(data.seen),
       profile: parseProfile(data.profile, rng),
       vip: parseVip(data.vip),
+      tod: parseTod(data.tod),
     }
   } catch {
     return defaultData(rng)
