@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import {
   COUNTDOWN_MS,
+  TAP_FEEDBACK_MS,
   countdownNumber,
   gameReducer,
   initialGameState,
@@ -71,6 +72,36 @@ describe('答题', () => {
     s = gameReducer(s, { type: 'neutral' })
     expect(s.turn).toBe('showing')
     expect(s.index).toBe(1)
+  })
+
+  it('传感器模式下点屏幕按钮：显示反馈，0.6 秒后自动下一题（不用等回正）', () => {
+    let s = playing()
+    s = gameReducer(s, { type: 'answer', outcome: 'correct', now: 5000, via: 'tap' })
+    expect(s.turn).toBe('feedback')
+    expect(s.lastOutcome).toBe('correct')
+    s = gameReducer(s, { type: 'tick', now: 5000 + TAP_FEEDBACK_MS - 1 })
+    expect(s.turn).toBe('feedback')
+    s = gameReducer(s, { type: 'tick', now: 5000 + TAP_FEEDBACK_MS })
+    expect(s.turn).toBe('showing')
+    expect(s.index).toBe(1)
+    expect(s.feedbackUntil).toBeNull()
+    expect(s.records).toEqual([{ card: deck[0], outcome: 'correct' }])
+  })
+
+  it('翻转手机答题：不会自动下一题，要等回正', () => {
+    let s = playing()
+    s = gameReducer(s, { type: 'answer', outcome: 'skip', now: 5000 })
+    s = gameReducer(s, { type: 'tick', now: 9000 })
+    expect(s.turn).toBe('feedback')
+    s = gameReducer(s, { type: 'neutral' })
+    expect(s.turn).toBe('showing')
+  })
+
+  it('点按钮后手机也回正了：只前进一题', () => {
+    let s = playing()
+    s = apply(s, { type: 'answer', outcome: 'skip', now: 5000, via: 'tap' }, { type: 'neutral' }, { type: 'tick', now: 6000 })
+    expect(s.index).toBe(1)
+    expect(s.turn).toBe('showing')
   })
 
   it('反馈期间的动作不重复记录', () => {

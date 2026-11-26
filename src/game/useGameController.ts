@@ -192,7 +192,8 @@ export function useGameController() {
   }, [])
 
   const answer = useCallback((outcome: Outcome) => {
-    dispatch({ type: 'answer', outcome, now: performance.now() })
+    // 屏幕按钮：传感器模式下显示反馈后自动下一题，不等回正
+    dispatch({ type: 'answer', outcome, now: performance.now(), via: 'tap' })
   }, [])
 
   const startButtonsRound = useCallback(() => dispatch({ type: 'poseReady', now: performance.now() }), [])

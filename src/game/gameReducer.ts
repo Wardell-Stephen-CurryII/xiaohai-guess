@@ -10,6 +10,8 @@ export type InputMode = 'sensor' | 'buttons'
 export type Turn = 'showing' | 'feedback'
 
 export const COUNTDOWN_MS = 3000
+/** 点屏幕按钮答题时，反馈画面显示多久后自动下一题（手机没有翻动，等不到回正） */
+export const TAP_FEEDBACK_MS = 600
 
 export interface GameState {
   phase: Phase
@@ -18,6 +20,8 @@ export interface GameState {
   index: number
   turn: Turn
   lastOutcome: Outcome | null
+  /** 点按钮答题时，反馈画面到这个时刻自动下一题；翻转答题为 null（等手机回正） */
+  feedbackUntil: number | null
   records: RoundRecord[]
   /** 是否在暂停菜单中提前结束（结算页据此显示「时间到」或「这局结束」） */
   endedEarly: boolean
@@ -39,7 +43,8 @@ export type GameAction =
   | { type: 'setInputMode'; mode: InputMode }
   | { type: 'poseReady'; now: number }
   | { type: 'tick'; now: number }
-  | { type: 'answer'; outcome: Outcome; now: number }
+  /** via：翻转手机（sensor，默认）还是点屏幕按钮（tap） */
+  | { type: 'answer'; outcome: Outcome; now: number; via?: 'sensor' | 'tap' }
   | { type: 'neutral' }
   | { type: 'pause'; now: number }
   | { type: 'resume' }
@@ -55,6 +60,7 @@ export const initialGameState: GameState = {
   index: 0,
   turn: 'showing',
   lastOutcome: null,
+  feedbackUntil: null,
   records: [],
   unfinished: null,
   endedEarly: false,
@@ -72,6 +78,7 @@ function newRound(state: GameState, deck: Card[], durationMs: number): GameState
     index: 0,
     turn: 'showing',
     lastOutcome: null,
+    feedbackUntil: null,
     records: [],
     unfinished: null,
     endedEarly: false,
@@ -95,7 +102,7 @@ function finish(state: GameState, playedMs: number): GameState {
 }
 
 function advance(state: GameState): GameState {
-  return { ...state, index: nextIndex(state.deck, state.index), turn: 'showing', lastOutcome: null }
+  return { ...state, index: nextIndex(state.deck, state.index), turn: 'showing', lastOutcome: null, feedbackUntil: null }
 }
 
 export function gameReducer(state: GameState, action: GameAction): GameState {
@@ -124,6 +131,10 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
       if (state.phase === 'playing' && state.deadline !== null && action.now >= state.deadline) {
         return finish(state, state.durationMs)
       }
+      // 点按钮答题的反馈画面到时间后自动下一题
+      if (state.phase === 'playing' && state.turn === 'feedback' && state.feedbackUntil !== null && action.now >= state.feedbackUntil) {
+        return advance(state)
+      }
       return state
 
     case 'answer': {
@@ -133,7 +144,9 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
       const next = { ...state, records: [...state.records, { card, outcome: action.outcome }] }
       // 按钮模式不需要等待回正，直接下一题（设计文档 4.9）
       if (state.inputMode === 'buttons') return advance(next)
-      return { ...next, turn: 'feedback', lastOutcome: action.outcome }
+      // 传感器模式下点屏幕按钮：手机没有翻动，不会有「回正」，显示一下反馈后自动下一题
+      const feedbackUntil = action.via === 'tap' ? action.now + TAP_FEEDBACK_MS : null
+      return { ...next, turn: 'feedback', lastOutcome: action.outcome, feedbackUntil }
     }
 
     case 'neutral':
