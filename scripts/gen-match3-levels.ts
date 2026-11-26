@@ -11,6 +11,7 @@ import { MATCH3_PATTERN, type Difficulty } from '../src/minigames/difficulty'
 import { playGreedy } from '../src/minigames/match3/bot'
 import type { Goal, Pos } from '../src/minigames/match3/engine'
 import type { Match3Level } from '../src/minigames/match3/levels'
+import { piecesForLevel } from '../src/minigames/match3/pieces'
 
 const ROWS = 8
 const COLS = 8
@@ -160,7 +161,8 @@ for (let i = 0; i < MATCH3_PATTERN.length; i++) {
   }
   if (!chosen) throw new Error(`第 ${level} 关多次尝试都没有调出合适的难度`)
   const { draft, moves, rate } = chosen
-  levels.push({ ...draft, moves })
+  // 图块图片不影响难度，最后统一分配：每关都有作者的 3 张头像
+  levels.push({ ...draft, moves, pieces: piecesForLevel(level, draft.kinds) })
   const goalText = draft.goals.map((g) => (g.type === 'collect' ? `收集${g.count}` : g.type === 'score' ? `分数${g.target}` : `冰${draft.ice?.length}`)).join('+')
   console.log(`L${String(level).padStart(3)} ${difficulty.padEnd(6)} ${goalText.padEnd(18)} 步数 ${String(moves).padStart(2)}  机器人通关率 ${(rate * 100).toFixed(0)}%`)
 }

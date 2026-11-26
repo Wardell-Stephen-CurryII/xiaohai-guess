@@ -41,6 +41,10 @@ describe('消消乐关卡结构', () => {
     }
   })
 
+  it('每关都有作者的 3 张头像', () => {
+    for (const l of MATCH3_LEVELS) for (const f of FACE_TILES) expect(l.pieces).toContain(f.id)
+  })
+
   it('图块、目标、冰块、空洞都合法', () => {
     for (const l of MATCH3_LEVELS) {
       expect(l.pieces).toHaveLength(l.kinds)

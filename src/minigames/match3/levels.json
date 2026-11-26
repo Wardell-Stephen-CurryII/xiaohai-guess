@@ -6,11 +6,11 @@
   "cols": 8,
   "kinds": 5,
   "pieces": [
-   "candy-yellow",
-   "candy-orange",
-   "candy-blue",
    "candy-purple",
-   "candy-red"
+   "candy-yellow",
+   "face-3",
+   "face-1",
+   "face-2"
   ],
   "goals": [
    {
@@ -27,12 +27,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-green",
-   "candy-orange",
    "candy-purple",
+   "candy-yellow",
    "candy-red",
-   "candy-blue",
-   "candy-yellow"
+   "face-3",
+   "face-1",
+   "face-2"
   ],
   "goals": [
    {
@@ -60,12 +60,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-green",
-   "candy-orange",
-   "candy-blue",
-   "candy-purple",
+   "face-1",
+   "candy-red",
    "candy-yellow",
-   "candy-red"
+   "face-3",
+   "candy-purple",
+   "face-2"
   ],
   "goals": [
    {
@@ -173,12 +173,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "face-1",
-   "candy-blue",
    "candy-yellow",
-   "candy-orange",
-   "candy-green",
-   "candy-red"
+   "candy-red",
+   "face-1",
+   "face-3",
+   "candy-purple",
+   "face-2"
   ],
   "goals": [
    {
@@ -219,12 +219,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-red",
-   "candy-green",
+   "face-1",
+   "face-2",
    "candy-yellow",
+   "candy-red",
    "candy-purple",
-   "candy-orange",
-   "candy-blue"
+   "face-3"
   ],
   "goals": [
    {
@@ -270,12 +270,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-green",
-   "candy-blue",
-   "candy-yellow",
-   "candy-orange",
+   "face-2",
+   "candy-purple",
+   "face-1",
    "candy-red",
-   "candy-purple"
+   "candy-yellow",
+   "face-3"
   ],
   "goals": [
    {
@@ -293,11 +293,11 @@
   "kinds": 6,
   "pieces": [
    "candy-red",
-   "candy-yellow",
-   "candy-green",
+   "face-1",
    "candy-purple",
-   "candy-orange",
-   "candy-blue"
+   "face-2",
+   "candy-yellow",
+   "face-3"
   ],
   "goals": [
    {
@@ -325,12 +325,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-green",
-   "candy-red",
-   "candy-purple",
-   "candy-orange",
    "candy-yellow",
-   "candy-blue"
+   "face-1",
+   "candy-purple",
+   "face-2",
+   "candy-red",
+   "face-3"
   ],
   "goals": [
    {
@@ -400,12 +400,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-orange",
-   "candy-red",
-   "candy-green",
+   "candy-purple",
+   "face-1",
    "candy-yellow",
    "face-2",
-   "candy-purple"
+   "candy-red",
+   "face-3"
   ],
   "goals": [
    {
@@ -446,12 +446,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-blue",
-   "candy-orange",
+   "face-1",
    "candy-yellow",
-   "candy-green",
    "candy-red",
-   "candy-purple"
+   "candy-purple",
+   "face-2",
+   "face-3"
   ],
   "goals": [
    {
@@ -479,12 +479,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-green",
-   "candy-purple",
-   "candy-orange",
-   "candy-blue",
    "candy-red",
-   "candy-yellow"
+   "candy-yellow",
+   "face-1",
+   "candy-purple",
+   "face-2",
+   "face-3"
   ],
   "goals": [
    {
@@ -507,12 +507,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-purple",
-   "candy-orange",
    "candy-yellow",
    "candy-red",
-   "candy-blue",
-   "candy-green"
+   "face-2",
+   "candy-purple",
+   "face-1",
+   "face-3"
   ],
   "goals": [
    {
@@ -588,12 +588,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-yellow",
+   "face-3",
+   "face-2",
    "candy-red",
-   "candy-orange",
-   "candy-green",
-   "candy-blue",
-   "candy-purple"
+   "candy-purple",
+   "face-1",
+   "candy-yellow"
   ],
   "goals": [
    {
@@ -647,12 +647,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-red",
-   "candy-green",
    "face-3",
-   "candy-yellow",
+   "candy-red",
+   "face-2",
+   "face-1",
    "candy-purple",
-   "candy-orange"
+   "candy-yellow"
   ],
   "goals": [
    {
@@ -675,12 +675,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
+   "face-2",
    "candy-red",
-   "candy-blue",
+   "face-3",
+   "face-1",
    "candy-purple",
-   "candy-green",
-   "candy-yellow",
-   "candy-orange"
+   "candy-yellow"
   ],
   "goals": [
    {
@@ -793,11 +793,11 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-orange",
-   "candy-green",
+   "face-2",
+   "face-3",
    "candy-purple",
+   "face-1",
    "candy-red",
-   "candy-blue",
    "candy-yellow"
   ],
   "goals": [
@@ -880,11 +880,11 @@
   "cols": 8,
   "kinds": 5,
   "pieces": [
-   "candy-yellow",
-   "candy-orange",
+   "face-1",
+   "face-2",
    "candy-purple",
-   "candy-blue",
-   "candy-green"
+   "face-3",
+   "candy-yellow"
   ],
   "goals": [
    {
@@ -902,11 +902,11 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-green",
-   "candy-blue",
-   "candy-red",
    "candy-purple",
-   "candy-orange",
+   "face-2",
+   "face-1",
+   "candy-red",
+   "face-3",
    "candy-yellow"
   ],
   "goals": [
@@ -935,12 +935,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-blue",
-   "candy-orange",
-   "candy-red",
-   "candy-yellow",
+   "face-1",
    "candy-purple",
-   "face-1"
+   "face-2",
+   "candy-red",
+   "face-3",
+   "candy-yellow"
   ],
   "goals": [
    {
@@ -963,12 +963,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-green",
-   "candy-blue",
+   "face-1",
+   "face-2",
    "candy-red",
    "candy-yellow",
-   "candy-purple",
-   "candy-orange"
+   "face-3",
+   "candy-purple"
   ],
   "goals": [
    {
@@ -1097,12 +1097,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-green",
-   "candy-yellow",
-   "candy-blue",
-   "candy-purple",
+   "face-1",
+   "face-3",
    "candy-red",
-   "candy-orange"
+   "candy-yellow",
+   "face-2",
+   "candy-purple"
   ],
   "goals": [
    {
@@ -1125,12 +1125,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
+   "face-1",
    "candy-red",
-   "candy-purple",
-   "candy-green",
-   "candy-orange",
    "candy-yellow",
-   "candy-blue"
+   "face-3",
+   "face-2",
+   "candy-purple"
   ],
   "goals": [
    {
@@ -1165,12 +1165,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-red",
-   "candy-orange",
-   "candy-purple",
+   "face-2",
    "candy-yellow",
-   "candy-green",
-   "candy-blue"
+   "candy-red",
+   "face-3",
+   "face-1",
+   "candy-purple"
   ],
   "goals": [
    {
@@ -1283,11 +1283,11 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-orange",
-   "candy-blue",
-   "candy-green",
-   "face-2",
+   "candy-yellow",
    "candy-red",
+   "face-2",
+   "face-3",
+   "face-1",
    "candy-purple"
   ],
   "goals": [
@@ -1311,11 +1311,11 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-blue",
-   "candy-red",
+   "face-2",
    "candy-yellow",
-   "candy-green",
-   "candy-orange",
+   "face-1",
+   "face-3",
+   "candy-red",
    "candy-purple"
   ],
   "goals": [
@@ -1333,11 +1333,11 @@
   "cols": 8,
   "kinds": 5,
   "pieces": [
-   "candy-purple",
-   "candy-orange",
+   "face-3",
+   "face-1",
+   "face-2",
    "candy-yellow",
-   "candy-blue",
-   "candy-red"
+   "candy-purple"
   ],
   "goals": [
    {
@@ -1355,12 +1355,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
+   "face-1",
+   "face-2",
+   "candy-red",
+   "face-3",
    "candy-yellow",
-   "candy-green",
-   "candy-purple",
-   "candy-orange",
-   "candy-blue",
-   "candy-red"
+   "candy-purple"
   ],
   "goals": [
    {
@@ -1423,12 +1423,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-green",
-   "candy-red",
-   "candy-blue",
-   "candy-yellow",
+   "face-3",
    "candy-purple",
-   "candy-orange"
+   "face-1",
+   "face-2",
+   "candy-yellow",
+   "candy-red"
   ],
   "goals": [
    {
@@ -1517,12 +1517,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-blue",
-   "face-3",
+   "face-1",
    "candy-purple",
-   "candy-green",
    "candy-yellow",
-   "candy-orange"
+   "face-2",
+   "face-3",
+   "candy-red"
   ],
   "goals": [
    {
@@ -1545,12 +1545,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-red",
-   "candy-yellow",
    "candy-purple",
-   "candy-blue",
-   "candy-green",
-   "candy-orange"
+   "candy-yellow",
+   "face-1",
+   "face-2",
+   "face-3",
+   "candy-red"
   ],
   "goals": [
    {
@@ -1596,12 +1596,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-green",
-   "candy-red",
+   "face-3",
+   "face-1",
+   "candy-yellow",
    "candy-purple",
-   "candy-orange",
-   "candy-blue",
-   "candy-yellow"
+   "face-2",
+   "candy-red"
   ],
   "goals": [
    {
@@ -1624,12 +1624,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-green",
-   "candy-red",
+   "candy-yellow",
+   "face-1",
+   "face-3",
    "candy-purple",
-   "candy-blue",
-   "candy-orange",
-   "candy-yellow"
+   "face-2",
+   "candy-red"
   ],
   "goals": [
    {
@@ -1699,12 +1699,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-orange",
-   "candy-blue",
-   "candy-red",
+   "face-2",
+   "face-3",
    "candy-yellow",
    "candy-purple",
-   "candy-green"
+   "face-1",
+   "candy-red"
   ],
   "goals": [
    {
@@ -1721,12 +1721,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
+   "face-2",
    "candy-yellow",
-   "candy-orange",
-   "candy-red",
+   "face-3",
    "candy-purple",
    "face-1",
-   "candy-green"
+   "candy-red"
   ],
   "goals": [
    {
@@ -1767,12 +1767,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-red",
+   "face-3",
+   "face-2",
    "candy-yellow",
-   "candy-green",
    "candy-purple",
-   "candy-blue",
-   "candy-orange"
+   "candy-red",
+   "face-1"
   ],
   "goals": [
    {
@@ -1789,12 +1789,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-purple",
-   "candy-green",
-   "candy-orange",
-   "candy-red",
    "candy-yellow",
-   "candy-blue"
+   "face-3",
+   "face-2",
+   "candy-red",
+   "candy-purple",
+   "face-1"
   ],
   "goals": [
    {
@@ -1835,12 +1835,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-red",
    "candy-yellow",
+   "face-2",
+   "face-3",
+   "candy-red",
    "candy-purple",
-   "candy-orange",
-   "candy-green",
-   "candy-blue"
+   "face-1"
   ],
   "goals": [
    {
@@ -1886,12 +1886,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-blue",
-   "candy-orange",
-   "candy-green",
-   "candy-yellow",
    "candy-red",
-   "candy-purple"
+   "face-3",
+   "face-2",
+   "candy-purple",
+   "candy-yellow",
+   "face-1"
   ],
   "goals": [
    {
@@ -1932,12 +1932,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-blue",
-   "candy-red",
    "face-2",
-   "candy-green",
-   "candy-orange",
-   "candy-purple"
+   "candy-red",
+   "face-3",
+   "candy-purple",
+   "candy-yellow",
+   "face-1"
   ],
   "goals": [
    {
@@ -1978,12 +1978,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-orange",
-   "candy-blue",
-   "candy-yellow",
+   "face-2",
+   "candy-purple",
    "candy-red",
-   "candy-green",
-   "candy-purple"
+   "candy-yellow",
+   "face-3",
+   "face-1"
   ],
   "goals": [
    {
@@ -2049,11 +2049,11 @@
   "cols": 8,
   "kinds": 5,
   "pieces": [
-   "candy-green",
-   "candy-blue",
+   "candy-purple",
    "candy-yellow",
-   "candy-red",
-   "candy-orange"
+   "face-3",
+   "face-2",
+   "face-1"
   ],
   "goals": [
    {
@@ -2071,12 +2071,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-orange",
-   "candy-green",
    "candy-purple",
+   "face-3",
    "candy-red",
    "candy-yellow",
-   "candy-blue"
+   "face-2",
+   "face-1"
   ],
   "goals": [
    {
@@ -2158,12 +2158,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-green",
-   "candy-red",
-   "candy-purple",
-   "candy-blue",
    "candy-yellow",
-   "candy-orange"
+   "face-1",
+   "candy-purple",
+   "face-3",
+   "candy-red",
+   "face-2"
   ],
   "goals": [
    {
@@ -2263,12 +2263,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "face-3",
-   "candy-red",
    "candy-purple",
-   "candy-blue",
-   "candy-green",
-   "candy-orange"
+   "candy-red",
+   "candy-yellow",
+   "face-3",
+   "face-1",
+   "face-2"
   ],
   "goals": [
    {
@@ -2309,12 +2309,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-green",
-   "candy-purple",
-   "candy-orange",
-   "candy-blue",
+   "candy-yellow",
    "candy-red",
-   "candy-yellow"
+   "candy-purple",
+   "face-3",
+   "face-1",
+   "face-2"
   ],
   "goals": [
    {
@@ -2368,12 +2368,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-yellow",
-   "candy-blue",
-   "candy-orange",
+   "face-1",
    "candy-red",
-   "candy-green",
-   "candy-purple"
+   "candy-yellow",
+   "face-3",
+   "candy-purple",
+   "face-2"
   ],
   "goals": [
    {
@@ -2414,11 +2414,11 @@
   "cols": 8,
   "kinds": 5,
   "pieces": [
-   "candy-blue",
-   "candy-red",
-   "candy-green",
+   "face-3",
+   "face-1",
+   "candy-purple",
    "candy-yellow",
-   "candy-orange"
+   "face-2"
   ],
   "goals": [
    {
@@ -2436,12 +2436,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-orange",
+   "face-3",
+   "face-1",
    "candy-purple",
    "candy-red",
    "candy-yellow",
-   "candy-blue",
-   "candy-green"
+   "face-2"
   ],
   "goals": [
    {
@@ -2512,12 +2512,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-yellow",
-   "candy-orange",
-   "candy-blue",
+   "candy-purple",
    "face-1",
+   "face-3",
    "candy-red",
-   "candy-green"
+   "candy-yellow",
+   "face-2"
   ],
   "goals": [
    {
@@ -2558,12 +2558,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-red",
+   "face-3",
+   "face-1",
    "candy-purple",
-   "candy-green",
-   "candy-blue",
-   "candy-orange",
-   "candy-yellow"
+   "candy-red",
+   "candy-yellow",
+   "face-2"
   ],
   "goals": [
    {
@@ -2654,12 +2654,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
+   "candy-yellow",
+   "face-1",
    "candy-purple",
-   "candy-orange",
+   "face-2",
    "candy-red",
-   "candy-green",
-   "candy-blue",
-   "candy-yellow"
+   "face-3"
   ],
   "goals": [
    {
@@ -2725,12 +2725,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-yellow",
    "candy-purple",
-   "candy-green",
-   "candy-orange",
+   "candy-yellow",
+   "face-1",
+   "face-2",
    "candy-red",
-   "candy-blue"
+   "face-3"
   ],
   "goals": [
    {
@@ -2754,11 +2754,11 @@
   "kinds": 6,
   "pieces": [
    "candy-yellow",
-   "candy-green",
+   "candy-red",
    "candy-purple",
-   "candy-orange",
-   "candy-blue",
-   "candy-red"
+   "face-1",
+   "face-2",
+   "face-3"
   ],
   "goals": [
    {
@@ -2799,12 +2799,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
+   "candy-red",
    "candy-purple",
-   "face-2",
-   "candy-orange",
    "candy-yellow",
-   "candy-blue",
-   "candy-green"
+   "face-1",
+   "face-2",
+   "face-3"
   ],
   "goals": [
    {
@@ -2845,12 +2845,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-orange",
-   "candy-green",
    "candy-yellow",
+   "candy-red",
+   "face-2",
    "candy-purple",
-   "candy-blue",
-   "candy-red"
+   "face-1",
+   "face-3"
   ],
   "goals": [
    {
@@ -2920,11 +2920,11 @@
   "cols": 8,
   "kinds": 5,
   "pieces": [
-   "candy-blue",
-   "candy-yellow",
-   "candy-green",
    "candy-purple",
-   "candy-orange"
+   "face-2",
+   "candy-yellow",
+   "face-1",
+   "face-3"
   ],
   "goals": [
    {
@@ -2986,12 +2986,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-blue",
-   "candy-green",
+   "face-2",
    "candy-red",
-   "candy-purple",
    "candy-yellow",
-   "candy-orange"
+   "face-1",
+   "candy-purple",
+   "face-3"
   ],
   "goals": [
    {
@@ -3019,12 +3019,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
+   "face-3",
+   "face-1",
+   "face-2",
    "candy-red",
-   "candy-blue",
    "candy-purple",
-   "candy-yellow",
-   "candy-green",
-   "candy-orange"
+   "candy-yellow"
   ],
   "goals": [
    {
@@ -3090,12 +3090,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-yellow",
-   "candy-red",
+   "face-2",
+   "face-3",
+   "face-1",
    "candy-purple",
-   "candy-green",
-   "candy-blue",
-   "face-3"
+   "candy-red",
+   "candy-yellow"
   ],
   "goals": [
    {
@@ -3136,11 +3136,11 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
+   "face-3",
+   "face-1",
+   "face-2",
    "candy-purple",
-   "candy-green",
-   "candy-blue",
    "candy-red",
-   "candy-orange",
    "candy-yellow"
   ],
   "goals": [
@@ -3169,11 +3169,11 @@
   "cols": 8,
   "kinds": 5,
   "pieces": [
-   "candy-blue",
-   "candy-red",
+   "face-1",
+   "face-2",
    "candy-yellow",
    "candy-purple",
-   "candy-orange"
+   "face-3"
   ],
   "goals": [
    {
@@ -3190,12 +3190,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-red",
-   "candy-orange",
    "candy-purple",
-   "candy-yellow",
-   "candy-blue",
-   "candy-green"
+   "face-2",
+   "face-1",
+   "candy-red",
+   "face-3",
+   "candy-yellow"
   ],
   "goals": [
    {
@@ -3291,12 +3291,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-red",
+   "face-1",
    "candy-purple",
-   "candy-green",
-   "candy-blue",
-   "candy-yellow",
-   "candy-orange"
+   "candy-red",
+   "face-3",
+   "face-2",
+   "candy-yellow"
   ],
   "goals": [
    {
@@ -3404,12 +3404,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-blue",
-   "candy-yellow",
-   "face-1",
+   "candy-red",
    "candy-purple",
-   "candy-orange",
-   "candy-green"
+   "face-1",
+   "face-3",
+   "face-2",
+   "candy-yellow"
   ],
   "goals": [
    {
@@ -3432,12 +3432,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-yellow",
-   "candy-orange",
-   "candy-purple",
    "candy-red",
-   "candy-green",
-   "candy-blue"
+   "face-1",
+   "candy-purple",
+   "face-3",
+   "face-2",
+   "candy-yellow"
   ],
   "goals": [
    {
@@ -3526,11 +3526,11 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-orange",
+   "face-2",
    "candy-red",
-   "candy-blue",
-   "candy-green",
    "candy-yellow",
+   "face-3",
+   "face-1",
    "candy-purple"
   ],
   "goals": [
@@ -3610,12 +3610,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-red",
-   "candy-green",
-   "candy-purple",
-   "candy-blue",
    "candy-yellow",
-   "candy-orange"
+   "candy-red",
+   "face-2",
+   "face-3",
+   "face-1",
+   "candy-purple"
   ],
   "goals": [
    {
@@ -3677,11 +3677,11 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-orange",
-   "candy-red",
-   "candy-green",
-   "candy-blue",
+   "face-2",
+   "face-1",
    "candy-yellow",
+   "face-3",
+   "candy-red",
    "candy-purple"
   ],
   "goals": [
@@ -3710,11 +3710,11 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "face-2",
-   "candy-orange",
+   "face-3",
    "candy-yellow",
-   "candy-green",
-   "candy-blue",
+   "face-1",
+   "face-2",
+   "candy-red",
    "candy-purple"
   ],
   "goals": [
@@ -3738,12 +3738,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-green",
-   "candy-orange",
+   "face-1",
+   "face-3",
+   "candy-red",
+   "face-2",
    "candy-yellow",
-   "candy-blue",
-   "candy-purple",
-   "candy-red"
+   "candy-purple"
   ],
   "goals": [
    {
@@ -3849,10 +3849,10 @@
   "kinds": 5,
   "pieces": [
    "candy-purple",
-   "candy-green",
-   "candy-blue",
-   "candy-red",
-   "candy-orange"
+   "face-1",
+   "face-2",
+   "face-3",
+   "candy-yellow"
   ],
   "goals": [
    {
@@ -3875,12 +3875,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-purple",
-   "candy-blue",
+   "face-1",
    "candy-red",
    "candy-yellow",
-   "candy-green",
-   "candy-orange"
+   "face-2",
+   "face-3",
+   "candy-purple"
   ],
   "goals": [
    {
@@ -3897,12 +3897,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-red",
    "candy-yellow",
-   "candy-purple",
-   "candy-green",
-   "candy-blue",
-   "candy-orange"
+   "face-1",
+   "candy-red",
+   "face-2",
+   "face-3",
+   "candy-purple"
   ],
   "goals": [
    {
@@ -4027,12 +4027,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-red",
    "candy-purple",
-   "candy-blue",
-   "candy-green",
    "face-3",
-   "candy-yellow"
+   "candy-yellow",
+   "face-1",
+   "face-2",
+   "candy-red"
   ],
   "goals": [
    {
@@ -4055,12 +4055,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-blue",
-   "candy-green",
-   "candy-orange",
-   "candy-red",
    "candy-purple",
-   "candy-yellow"
+   "candy-yellow",
+   "face-3",
+   "face-1",
+   "face-2",
+   "candy-red"
   ],
   "goals": [
    {
@@ -4088,11 +4088,11 @@
   "cols": 8,
   "kinds": 5,
   "pieces": [
-   "candy-green",
-   "candy-purple",
-   "candy-red",
+   "face-2",
+   "face-3",
    "candy-yellow",
-   "candy-orange"
+   "face-1",
+   "candy-purple"
   ],
   "goals": [
    {
@@ -4115,12 +4115,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-blue",
-   "candy-orange",
-   "candy-purple",
    "candy-yellow",
-   "candy-red",
-   "candy-green"
+   "face-3",
+   "face-2",
+   "candy-purple",
+   "face-1",
+   "candy-red"
   ],
   "goals": [
    {
@@ -4206,11 +4206,11 @@
   "kinds": 6,
   "pieces": [
    "candy-yellow",
-   "candy-blue",
-   "candy-red",
+   "face-2",
+   "face-3",
+   "face-1",
    "candy-purple",
-   "candy-orange",
-   "candy-green"
+   "candy-red"
   ],
   "goals": [
    {
@@ -4339,12 +4339,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-orange",
    "face-1",
-   "candy-red",
+   "face-3",
+   "face-2",
+   "candy-yellow",
    "candy-purple",
-   "candy-green",
-   "candy-blue"
+   "candy-red"
   ],
   "goals": [
    {
@@ -4367,12 +4367,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-orange",
+   "face-1",
+   "face-2",
+   "face-3",
    "candy-yellow",
-   "candy-green",
-   "candy-red",
    "candy-purple",
-   "candy-blue"
+   "candy-red"
   ],
   "goals": [
    {
@@ -4389,12 +4389,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
+   "face-3",
+   "face-2",
    "candy-red",
-   "candy-green",
-   "candy-blue",
    "candy-purple",
    "candy-yellow",
-   "candy-orange"
+   "face-1"
   ],
   "goals": [
    {
@@ -4417,12 +4417,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
+   "face-3",
    "candy-red",
-   "candy-green",
-   "candy-orange",
-   "candy-blue",
+   "face-2",
+   "candy-purple",
    "candy-yellow",
-   "candy-purple"
+   "face-1"
   ],
   "goals": [
    {
@@ -4501,12 +4501,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-orange",
+   "face-2",
    "candy-red",
+   "candy-purple",
    "candy-yellow",
-   "candy-blue",
-   "candy-green",
-   "candy-purple"
+   "face-3",
+   "face-1"
   ],
   "goals": [
    {
@@ -4534,12 +4534,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-orange",
-   "candy-green",
    "candy-yellow",
-   "candy-blue",
+   "candy-red",
+   "face-2",
    "candy-purple",
-   "face-2"
+   "face-3",
+   "face-1"
   ],
   "goals": [
    {
@@ -4580,11 +4580,11 @@
   "cols": 8,
   "kinds": 5,
   "pieces": [
-   "candy-blue",
-   "candy-red",
    "candy-purple",
-   "candy-green",
-   "candy-orange"
+   "candy-yellow",
+   "face-3",
+   "face-2",
+   "face-1"
   ],
   "goals": [
    {
@@ -4634,12 +4634,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-green",
-   "candy-orange",
    "candy-yellow",
-   "candy-red",
    "candy-purple",
-   "candy-blue"
+   "candy-red",
+   "face-3",
+   "face-2",
+   "face-1"
   ],
   "goals": [
    {
@@ -4725,11 +4725,11 @@
   "kinds": 6,
   "pieces": [
    "candy-purple",
-   "candy-green",
-   "candy-red",
    "candy-yellow",
-   "candy-blue",
-   "candy-orange"
+   "face-2",
+   "face-3",
+   "candy-red",
+   "face-1"
   ],
   "goals": [
    {
@@ -4773,11 +4773,11 @@
   "kinds": 6,
   "pieces": [
    "candy-yellow",
-   "candy-blue",
+   "face-2",
    "candy-purple",
-   "candy-green",
+   "face-3",
    "candy-red",
-   "candy-orange"
+   "face-1"
   ],
   "goals": [
    {
@@ -4794,12 +4794,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-green",
-   "candy-blue",
-   "candy-orange",
+   "face-1",
    "face-3",
+   "candy-yellow",
+   "candy-red",
    "candy-purple",
-   "candy-yellow"
+   "face-2"
   ],
   "goals": [
    {
@@ -4840,12 +4840,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
+   "candy-yellow",
+   "face-1",
+   "face-3",
    "candy-red",
    "candy-purple",
-   "candy-blue",
-   "candy-orange",
-   "candy-green",
-   "candy-yellow"
+   "face-2"
   ],
   "goals": [
    {
@@ -4912,12 +4912,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-green",
-   "candy-orange",
    "candy-purple",
-   "candy-blue",
+   "face-3",
+   "face-1",
+   "candy-red",
    "candy-yellow",
-   "candy-red"
+   "face-2"
   ],
   "goals": [
    {
@@ -4935,12 +4935,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-blue",
-   "candy-red",
    "candy-purple",
+   "face-1",
+   "face-3",
+   "candy-red",
    "candy-yellow",
-   "candy-orange",
-   "candy-green"
+   "face-2"
   ],
   "goals": [
    {
@@ -5014,12 +5014,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-purple",
-   "candy-red",
-   "candy-green",
    "candy-yellow",
-   "candy-blue",
-   "candy-orange"
+   "candy-purple",
+   "face-1",
+   "candy-red",
+   "face-3",
+   "face-2"
   ],
   "goals": [
    {
@@ -5143,12 +5143,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "face-1",
-   "candy-orange",
-   "candy-green",
-   "candy-red",
+   "candy-yellow",
    "candy-purple",
-   "candy-blue"
+   "candy-red",
+   "face-1",
+   "face-3",
+   "face-2"
   ],
   "goals": [
    {
@@ -5189,12 +5189,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-green",
    "candy-yellow",
    "candy-purple",
-   "candy-orange",
+   "face-3",
+   "face-1",
    "candy-red",
-   "candy-blue"
+   "face-2"
   ],
   "goals": [
    {
@@ -5243,12 +5243,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-blue",
-   "candy-red",
-   "candy-green",
-   "candy-orange",
    "candy-yellow",
-   "candy-purple"
+   "face-3",
+   "candy-purple",
+   "face-1",
+   "candy-red",
+   "face-2"
   ],
   "goals": [
    {
@@ -5271,12 +5271,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-orange",
-   "candy-red",
-   "candy-purple",
    "candy-yellow",
-   "candy-green",
-   "candy-blue"
+   "candy-purple",
+   "candy-red",
+   "face-1",
+   "face-2",
+   "face-3"
   ],
   "goals": [
    {
@@ -5294,12 +5294,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-blue",
+   "face-2",
+   "candy-red",
    "candy-yellow",
-   "candy-orange",
-   "candy-green",
    "candy-purple",
-   "candy-red"
+   "face-1",
+   "face-3"
   ],
   "goals": [
    {
@@ -5378,12 +5378,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-blue",
-   "candy-green",
-   "candy-yellow",
+   "candy-red",
    "candy-purple",
    "face-2",
-   "candy-red"
+   "candy-yellow",
+   "face-1",
+   "face-3"
   ],
   "goals": [
    {
@@ -5424,12 +5424,12 @@
   "cols": 8,
   "kinds": 6,
   "pieces": [
-   "candy-orange",
+   "face-2",
    "candy-red",
-   "candy-green",
-   "candy-blue",
+   "face-1",
    "candy-yellow",
-   "candy-purple"
+   "candy-purple",
+   "face-3"
   ],
   "goals": [
    {
