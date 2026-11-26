@@ -8,7 +8,7 @@ import { THEMES } from '../data/themes'
 import { themeStyle } from '../data/themeStyle'
 import { DURATIONS_SEC, MIXED_THEME_ID, type Sensitivity, type Settings } from '../game/types'
 import { wordCount } from '../game/wordDeck'
-import type { UpdateCheck } from '../platform/usePwa'
+import type { CacheProgress, UpdateCheck } from '../platform/usePwa'
 import type { ProfileView } from '../profile/view'
 import './home.css'
 
@@ -53,6 +53,8 @@ export function HomePage({
   onOpenProfile,
   version,
   checkForUpdate,
+  cache,
+  onRetryCache,
 }: {
   settings: Settings
   onChange: (patch: Partial<Settings>) => void
@@ -62,6 +64,8 @@ export function HomePage({
   onOpenProfile: () => void
   version: string
   checkForUpdate: () => Promise<UpdateCheck>
+  cache: CacheProgress
+  onRetryCache: () => void
 }) {
   const [checking, setChecking] = useState(false)
   const doCheck = async () => {
@@ -72,7 +76,11 @@ export function HomePage({
   }
   const themeOptions = [{ id: MIXED_THEME_ID, name: '混合' }, ...THEMES]
   const themeId = themeOptions.some((t) => t.id === settings.themeId) ? settings.themeId : MIXED_THEME_ID
-  const canStart = wordCount(THEMES, themeId) >= 2
+  const enoughWords = wordCount(THEMES, themeId) >= 2
+  // 首次打开时离线数据还在下载，不允许开始游戏
+  const loading = cache.status === 'loading'
+  const canStart = enoughWords && !loading
+  const percent = cache.total ? Math.min(100, Math.round((cache.done / cache.total) * 100)) : null
 
   return (
     <main className="home">
@@ -135,9 +143,28 @@ export function HomePage({
       <TipCard />
 
       <footer className="home-footer">
-        {!canStart && <p className="home-warn">这个主题的词太少，换一个主题吧。</p>}
+        {!enoughWords && <p className="home-warn">这个主题的词太少，换一个主题吧。</p>}
+        {loading && (
+          <div className="home-loading" role="progressbar" aria-label="数据正在加载中" aria-valuemin={0} aria-valuemax={100} aria-valuenow={percent ?? undefined}>
+            <div className="home-loading-text">
+              <span>数据正在加载中…</span>
+              <span>{cache.total ? `${Math.min(cache.done, cache.total)}/${cache.total}` : ''}</span>
+            </div>
+            <div className={`home-loading-bar${percent === null ? ' indeterminate' : ''}`}>
+              <span style={{ width: percent === null ? undefined : `${Math.max(4, percent)}%` }} />
+            </div>
+          </div>
+        )}
+        {cache.status === 'failed' && (
+          <p className="home-warn home-cache-failed">
+            离线数据没有下载完，现在可以玩，但断网时可能打不开。
+            <button className="text-link" onClick={onRetryCache}>
+              重试
+            </button>
+          </p>
+        )}
         <button className="btn btn-primary home-start" onClick={onStart} disabled={!canStart}>
-          开始
+          {loading ? '数据加载中…' : '开始'}
         </button>
         <div className="home-meta">
           {offlineReady && <span className="home-offline">已可离线使用</span>}

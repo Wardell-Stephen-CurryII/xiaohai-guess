@@ -6,10 +6,14 @@
     calc(env(safe-area-inset-left) + 1.25rem);
 }
 
-/* 装饰层在最底下，页面内容浮在上面 */
-.home > :not(.deco-layer) {
+/* 装饰层在最底下，页面内容浮在上面（底部按钮区保持 sticky，单独设置层级） */
+.home > :not(.deco-layer):not(.home-footer) {
   position: relative;
   z-index: 1;
+}
+
+.home > .home-footer {
+  z-index: 2;
 }
 
 .home > .profile-strip {
@@ -266,4 +270,61 @@
   font-size: 0.75rem;
   color: var(--ink-soft);
   opacity: 0.8;
+}
+
+/* ---- 首次打开：离线数据下载进度 ---- */
+.home-loading {
+  width: 100%;
+  margin-bottom: 0.75rem;
+}
+
+.home-loading-text {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.4rem;
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.home-loading-bar {
+  position: relative;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.home-loading-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--primary-bg);
+  transition: width 0.3s ease-out;
+}
+
+/* 还不知道总数时：来回移动的进度条 */
+.home-loading-bar.indeterminate span {
+  position: absolute;
+  width: 35%;
+  animation: loading-slide 1.2s ease-in-out infinite;
+}
+
+@keyframes loading-slide {
+  from {
+    left: -35%;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+.home-cache-failed {
+  text-align: center;
+  line-height: 1.6;
+}
+
+.home-cache-failed .text-link {
+  color: inherit;
+  font-weight: 600;
 }

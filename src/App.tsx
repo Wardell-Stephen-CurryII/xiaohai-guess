@@ -84,6 +84,8 @@ function Game({ hash }: { hash: string }) {
           onOpenProfile={() => go('#me')}
           version={pwa.version}
           checkForUpdate={pwa.checkForUpdate}
+          cache={pwa.cache}
+          onRetryCache={pwa.retryCache}
         />
       </>
     )

@@ -2,7 +2,8 @@
 @font-face {
   font-family: 'HuangYou';
   src: url('/fonts/huangyou-subset.woff') format('woff');
-  font-display: block;
+  /* 字体没下载完时先用系统字体显示，避免标题空白 */
+  font-display: swap;
 }
 
 :root {
