@@ -102,7 +102,11 @@ export default function TruthOrDarePage({
           aria-checked={tod.spicy}
           onClick={() => updateTod((t) => ({ ...t, spicy: !t.spicy }))}
         >
-          {tod.spicy ? '🔥 劲爆开' : '🧯 劲爆关'}
+          {/* 关闭时同一个火焰图标变成灰色 */}
+          <span className="tod-spicy-icon" aria-hidden>
+            🔥
+          </span>
+          {tod.spicy ? '劲爆开' : '劲爆关'}
         </button>
       </header>
 
