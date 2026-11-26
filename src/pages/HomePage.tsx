@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react'
 import { ThemeArt } from '../components/ThemeArt'
+import { TipCard } from '../components/Tip'
 import { THEMES } from '../data/themes'
 import { themeStyle } from '../data/themeStyle'
 import { DURATIONS_SEC, MIXED_THEME_ID, type Sensitivity, type Settings } from '../game/types'
@@ -109,6 +110,8 @@ export function HomePage({
         </p>
       </section>
 
+      <TipCard />
+
       <footer className="home-footer">
         {!canStart && <p className="home-warn">这个主题的词太少，换一个主题吧。</p>}
         <button className="btn btn-primary home-start" onClick={onStart} disabled={!canStart}>
@@ -116,9 +119,12 @@ export function HomePage({
         </button>
         <div className="home-meta">
           {offlineReady && <span className="home-offline">已可离线使用</span>}
-          <a className="text-link" href="#debug">
-            传感器调试
-          </a>
+          {/* 正式版不显示调试入口；需要排查问题时可以直接访问 #debug */}
+          {import.meta.env.DEV && (
+            <a className="text-link" href="#debug">
+              传感器调试
+            </a>
+          )}
         </div>
       </footer>
     </main>

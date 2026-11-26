@@ -1,0 +1,168 @@
+/* ---- 首页打赏卡片 ---- */
+.tip-card {
+  position: relative;
+  overflow: hidden;
+  margin-top: 2.25rem;
+  padding: 1.4rem 1.25rem 1.25rem;
+  border-radius: var(--radius-lg);
+  background: #fff1e0;
+}
+
+.tip-card-art {
+  position: absolute;
+  right: -0.4rem;
+  top: -0.3rem;
+  font-family: var(--font-emoji);
+  font-size: 4.75rem;
+  line-height: 1;
+  transform: rotate(12deg);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+/* 标题和第一段给右上角的奶茶图留出位置 */
+.tip-card > h2,
+.tip-card > h2 + p {
+  padding-right: 4.5rem;
+}
+
+.tip-card > h2 {
+  position: relative;
+  margin: 0 0 0.6rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.tip-card > p {
+  position: relative;
+  margin: 0 0 0.75rem;
+  max-width: 19em;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: rgb(31 28 44 / 0.75);
+}
+
+.tip-perks {
+  position: relative;
+  list-style: none;
+  margin: 0 0 0.9rem;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tip-perks li {
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.75);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.tip-perks li::before {
+  content: '✓ ';
+  color: var(--ok);
+}
+
+.tip-card-btn {
+  position: relative;
+  width: 100%;
+  margin-top: 0.25rem;
+}
+
+/* ---- 结算页入口 ---- */
+.tip-link {
+  display: block;
+  width: 100%;
+  margin-top: 2rem;
+  padding: 0.95rem 1rem;
+  border: none;
+  border-radius: var(--radius-md);
+  background: #fff1e0;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ---- 赞赏码弹窗 ---- */
+.tip-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: calc(env(safe-area-inset-top) + 1rem) 1rem calc(env(safe-area-inset-bottom) + 1rem);
+  background: rgb(31 28 44 / 0.5);
+  animation: tip-fade 0.18s ease-out;
+}
+
+.tip-dialog {
+  width: min(100%, 24rem);
+  max-height: 100%;
+  overflow: auto;
+  padding: 1.4rem 1.25rem 1.25rem;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  text-align: center;
+  animation: tip-rise 0.22s ease-out;
+}
+
+.tip-dialog h2 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.tip-dialog-lede {
+  margin: 0.4rem 0 1rem;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+
+.tip-qr {
+  display: block;
+  width: min(100%, 18.5rem);
+  margin: 0 auto;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow);
+  /* 允许 iOS 长按图片保存 */
+  -webkit-touch-callout: default;
+}
+
+.tip-howto {
+  list-style: none;
+  margin: 1.1rem 0 0;
+  padding: 0;
+  text-align: left;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.tip-howto li + li {
+  margin-top: 0.4rem;
+}
+
+.tip-howto strong {
+  color: var(--ink);
+}
+
+.tip-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+  margin-top: 1.2rem;
+}
+
+@keyframes tip-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes tip-rise {
+  from {
+    transform: translateY(1rem);
+    opacity: 0;
+  }
+}

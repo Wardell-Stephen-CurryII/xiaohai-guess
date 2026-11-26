@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react'
 import { ThemeArt } from '../components/ThemeArt'
+import { TipLink } from '../components/Tip'
 import { themeStyle } from '../data/themeStyle'
 import { summarize, type GameState } from '../game/gameReducer'
 import type { Card } from '../game/types'
@@ -61,6 +62,8 @@ export function ResultPage({
       <WordList title="答对的词" cards={s.correct} tone="ok" />
       <WordList title="跳过的词" cards={s.skipped} tone="skip" />
       <WordList title="没来得及猜" cards={s.unfinished ? [s.unfinished] : []} tone="left" />
+
+      <TipLink />
 
       <footer className="result-actions">
         <button className="btn btn-primary" onClick={onPlayAgain}>

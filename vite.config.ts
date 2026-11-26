@@ -32,7 +32,7 @@ export default defineConfig(({ command, isPreview }) => ({
       },
       workbox: {
         // 预缓存全部静态资源，首次加载后断网可玩
-        globPatterns: ['**/*.{js,css,html,png,svg,woff,woff2,json,txt}'],
+        globPatterns: ['**/*.{js,css,html,png,jpg,svg,woff,woff2,json,txt}'],
         cleanupOutdatedCaches: true,
       },
     }),
