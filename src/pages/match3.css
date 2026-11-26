@@ -1,0 +1,268 @@
+.m3-stars {
+  letter-spacing: 0.05em;
+  color: var(--line);
+  line-height: 1;
+}
+
+.m3-stars .on {
+  color: #fab005;
+}
+
+/* ---- 顶部：步数 + 目标 ---- */
+.m3-hud {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0.75rem 0 0.5rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.m3-moves {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 3.5rem;
+  padding-right: 0.75rem;
+  border-right: 1.5px solid var(--line);
+}
+
+.m3-moves-num {
+  font-size: 1.9rem;
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.m3-moves-label {
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+}
+
+.m3-goals {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+}
+
+.m3-goals li {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.m3-goals li.done .m3-goal-left {
+  color: var(--ok);
+}
+
+.m3-goal-icon {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  font-family: var(--font-emoji);
+  font-size: 1.3rem;
+}
+
+.m3-goal-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.m3-goal-icon.photo img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* ---- 棋盘 ---- */
+.m3-board-wrap {
+  flex: 1;
+  display: grid;
+  place-items: center;
+}
+
+.m3-board {
+  position: relative;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.m3-cell {
+  position: absolute;
+  background: color-mix(in srgb, var(--surface) 85%, var(--line));
+}
+
+.m3-cell.alt {
+  background: color-mix(in srgb, var(--surface) 70%, var(--line));
+}
+
+.m3-cell.ice::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, rgb(208 235 255 / 0.95), rgb(165 216 255 / 0.85));
+  box-shadow: inset 0 0 0 2px rgb(255 255 255 / 0.8);
+}
+
+.m3-piece {
+  position: absolute;
+  padding: 3px;
+  border: none;
+  background: none;
+  transition: left 0.2s ease-in, top 0.26s ease-in;
+  animation: m3-drop 0.28s ease-in;
+  -webkit-touch-callout: none;
+  touch-action: none;
+}
+
+@keyframes m3-drop {
+  from {
+    transform: translateY(-60%);
+    opacity: 0;
+  }
+}
+
+.m3-piece-face {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 30%;
+  transition: transform 0.15s, opacity 0.2s;
+}
+
+.m3-piece-face svg {
+  width: 92%;
+  height: 92%;
+  filter: drop-shadow(0 2px 1px rgb(0 0 0 / 0.18));
+}
+
+.m3-piece.photo .m3-piece-face {
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 0 2.5px #fff, 0 2px 4px rgb(0 0 0 / 0.2);
+}
+
+.m3-piece.photo .m3-piece-face img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* 特殊块：直线块加条纹，炸弹加光圈 */
+.m3-piece.sp-row .m3-piece-face,
+.m3-piece.sp-col .m3-piece-face,
+.m3-piece.sp-bomb .m3-piece-face {
+  position: relative;
+}
+
+.m3-piece.sp-row .m3-piece-face::after,
+.m3-piece.sp-col .m3-piece-face::after {
+  content: '';
+  position: absolute;
+  inset: 18%;
+  border-radius: 20%;
+  pointer-events: none;
+  background: repeating-linear-gradient(var(--stripe-dir, 0deg), rgb(255 255 255 / 0.85) 0 3px, transparent 3px 7px);
+}
+
+.m3-piece.sp-col .m3-piece-face::after {
+  --stripe-dir: 90deg;
+}
+
+.m3-piece.sp-bomb .m3-piece-face {
+  box-shadow: 0 0 0 3px #fff, 0 0 10px 3px rgb(255 212 59 / 0.9);
+  border-radius: 50%;
+  animation: m3-glow 1.2s ease-in-out infinite;
+}
+
+@keyframes m3-glow {
+  50% {
+    box-shadow: 0 0 0 3px #fff, 0 0 16px 6px rgb(255 212 59 / 0.9);
+  }
+}
+
+.m3-piece.sp-rainbow .m3-piece-face {
+  animation: m3-spin 4s linear infinite;
+}
+
+@keyframes m3-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.m3-piece.selected .m3-piece-face {
+  transform: scale(1.12);
+  background: rgb(255 255 255 / 0.6);
+  box-shadow: 0 0 0 2.5px var(--primary-bg);
+}
+
+.m3-piece.hint .m3-piece-face {
+  animation: m3-hint 0.8s ease-in-out infinite;
+}
+
+@keyframes m3-hint {
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+.m3-piece.pop .m3-piece-face {
+  transform: scale(0.2);
+  opacity: 0;
+}
+
+.m3-piece.shake .m3-piece-face {
+  animation: m3-shake 0.3s;
+}
+
+@keyframes m3-shake {
+  25% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(4px);
+  }
+}
+
+.m3-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-top: 0.5rem;
+}
+
+.m3-tip {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+}
+
+.m3-footer .btn {
+  min-height: 2.75rem;
+  padding: 0 1rem;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .m3-piece,
+  .m3-piece-face {
+    transition: none !important;
+    animation: none !important;
+  }
+}

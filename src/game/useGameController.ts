@@ -101,20 +101,23 @@ export function useGameController() {
 
   const exportBackup = useCallback(() => encodeBackup(storedRef.current.profile), [])
 
-  // 小游戏通关：记录进度；首次通关奖励经验，返回是否首次和是否升级
+  // 小游戏通关：记录进度（消消乐保留最高星数）；首次通关奖励经验，返回是否首次和是否升级
   const clearMiniGameLevel = useCallback(
-    (game: 'link', level: number, xp: number): { first: boolean; xpGained: number; levelUp: { to: number; title: string } | null } => {
+    (game: 'link' | 'match3', level: number, xp: number, stars = 0): { first: boolean; xpGained: number; levelUp: { to: number; title: string } | null } => {
       const d = storedRef.current
-      const first = !d.minigames.link.cleared.includes(level)
-      if (!first) return { first, xpGained: 0, levelUp: null }
+      const first = game === 'link' ? !d.minigames.link.cleared.includes(level) : !(String(level) in d.minigames.match3.stars)
+      const gain = first ? xp : 0
       const before = levelFor(d.profile.xp)
-      const after = levelFor(d.profile.xp + xp)
-      update((s) => ({
-        ...s,
-        profile: { ...s.profile, xp: s.profile.xp + xp },
-        minigames: { ...s.minigames, [game]: { cleared: [...s.minigames[game].cleared, level].sort((a, b) => a - b) } },
-      }))
-      return { first, xpGained: xp, levelUp: after.level > before.level ? { to: after.level, title: after.title } : null }
+      const after = levelFor(d.profile.xp + gain)
+      update((s) => {
+        const mg = s.minigames
+        const next =
+          game === 'link'
+            ? { ...mg, link: { cleared: first ? [...mg.link.cleared, level].sort((a, b) => a - b) : mg.link.cleared } }
+            : { ...mg, match3: { stars: { ...mg.match3.stars, [level]: Math.max(stars, mg.match3.stars[String(level)] ?? 0) } } }
+        return { ...s, profile: { ...s.profile, xp: s.profile.xp + gain }, minigames: next }
+      })
+      return { first, xpGained: gain, levelUp: after.level > before.level ? { to: after.level, title: after.title } : null }
     },
     [update],
   )

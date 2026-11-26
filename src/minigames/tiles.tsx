@@ -241,6 +241,79 @@ export const ICON_TILES: TileDef[] = [
   },
 ]
 
+/** 消消乐的 6 种糖果：颜色和形状都不同（色弱也能分清），带一点高光 */
+export const CANDY_TILES: TileDef[] = [
+  {
+    id: 'candy-red',
+    name: '红心糖',
+    bg: 'transparent',
+    icon: svg(
+      <>
+        <path d="M32 55C17 44 8 36 8 24c0-8 6-13 13-13 5 0 9 3 11 7 2-4 6-7 11-7 7 0 13 5 13 13 0 12-9 20-24 31z" fill="#F03E3E" />
+        <ellipse cx="20" cy="22" rx="4" ry="6" fill="#FFA8A8" transform="rotate(-25 20 22)" />
+      </>,
+    ),
+  },
+  {
+    id: 'candy-orange',
+    name: '橙色方糖',
+    bg: 'transparent',
+    icon: svg(
+      <>
+        <rect x="10" y="10" width="44" height="44" rx="12" fill="#FF922B" />
+        <rect x="16" y="16" width="32" height="32" rx="8" fill="#FFA94D" />
+        <rect x="18" y="18" width="10" height="6" rx="3" fill="#FFE8CC" />
+      </>,
+    ),
+  },
+  {
+    id: 'candy-yellow',
+    name: '星星糖',
+    bg: 'transparent',
+    icon: svg(
+      <>
+        <path d="M32 6l7.6 16.2 17.8 2.3-13 12.3 3.4 17.6L32 45.8 16.2 54.4l3.4-17.6-13-12.3 17.8-2.3z" fill="#FCC419" stroke="#F59F00" strokeWidth="2.5" strokeLinejoin="round" />
+        <ellipse cx="26" cy="24" rx="3" ry="4.5" fill="#FFF3BF" transform="rotate(-30 26 24)" />
+      </>,
+    ),
+  },
+  {
+    id: 'candy-green',
+    name: '水滴糖',
+    bg: 'transparent',
+    icon: svg(
+      <>
+        <path d="M32 6C24 18 13 28 13 40a19 19 0 0 0 38 0C51 28 40 18 32 6z" fill="#40C057" />
+        <ellipse cx="25" cy="38" rx="3.5" ry="6" fill="#B2F2BB" transform="rotate(15 25 38)" />
+      </>,
+    ),
+  },
+  {
+    id: 'candy-blue',
+    name: '蓝宝石糖',
+    bg: 'transparent',
+    icon: svg(
+      <>
+        <circle cx="32" cy="32" r="23" fill="#228BE6" />
+        <circle cx="32" cy="32" r="14" fill="#4DABF7" />
+        <ellipse cx="24" cy="22" rx="5" ry="3.5" fill="#D0EBFF" transform="rotate(-35 24 22)" />
+      </>,
+    ),
+  },
+  {
+    id: 'candy-purple',
+    name: '紫钻糖',
+    bg: 'transparent',
+    icon: svg(
+      <>
+        <path d="M32 6l24 26-24 26L8 32z" fill="#7950F2" />
+        <path d="M32 6l10 26-10 26-10-26z" fill="#9775FA" />
+        <path d="M20 26l6-7" stroke="#E5DBFF" strokeWidth="3" strokeLinecap="round" />
+      </>,
+    ),
+  },
+]
+
 /** 连连看可用的全部图块：头像在前，保证每关都会出现 */
 export const LINK_TILES: TileDef[] = [...FACE_TILES, ...ICON_TILES]
 

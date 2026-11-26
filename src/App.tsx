@@ -13,6 +13,7 @@ import { applyPalette } from './profile/applyPalette'
 const DebugPage = lazy(() => import('./pages/DebugPage'))
 const TruthOrDarePage = lazy(() => import('./pages/TruthOrDarePage'))
 const LinkPage = lazy(() => import('./pages/LinkPage'))
+const Match3Page = lazy(() => import('./pages/Match3Page'))
 
 function useHash(): string {
   const [hash, setHash] = useState(() => window.location.hash)
@@ -72,6 +73,18 @@ function Game({ hash }: { hash: string }) {
         <LinkPage
           cleared={g.minigames.link.cleared}
           onClear={(level, xp) => g.clearMiniGameLevel('link', level, xp)}
+          onBack={() => go('')}
+        />
+      </Suspense>
+    )
+  }
+
+  if (state.phase === 'home' && hash === '#match3') {
+    return (
+      <Suspense fallback={null}>
+        <Match3Page
+          stars={g.minigames.match3.stars}
+          onClear={(level, xp, stars) => g.clearMiniGameLevel('match3', level, xp, stars)}
           onBack={() => go('')}
         />
       </Suspense>
