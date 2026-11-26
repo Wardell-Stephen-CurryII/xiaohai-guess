@@ -41,6 +41,64 @@
   color: var(--ink-soft);
 }
 
+.m3-goals-wrap {
+  flex: 1;
+  min-width: 0;
+}
+
+.m3-goals-title {
+  display: block;
+  margin-bottom: 0.2rem;
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+}
+
+.m3-goal-text {
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.m3-goal-text b {
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.m3-goals li.m3-goal-score {
+  flex: 1 1 100%;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.3rem;
+}
+
+.m3-goal-score .m3-goal-text {
+  font-size: 1rem;
+}
+
+.m3-goal-score .m3-goal-text b {
+  font-size: 1.3rem;
+}
+
+.m3-goal-bar {
+  display: block;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.m3-goal-bar > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #fab005;
+  transition: width 0.3s;
+}
+
+.m3-goal-score.done .m3-goal-bar > span {
+  background: var(--ok);
+}
+
 .m3-goals {
   list-style: none;
   display: flex;

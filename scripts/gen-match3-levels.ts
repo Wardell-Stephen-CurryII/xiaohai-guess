@@ -18,8 +18,11 @@ const COLS = 8
 const CANDIES = ['candy-red', 'candy-orange', 'candy-yellow', 'candy-green', 'candy-blue', 'candy-purple']
 const FACES = ['face-1', 'face-2', 'face-3']
 
-/** 机器人通关率目标（找满足该通关率的最少步数）。真人一般玩得比贪心机器人好 */
-const TARGET_WIN: Record<Difficulty, number> = { easy: 0.88, medium: 0.7, hard: 0.45 }
+/** 机器人通关率目标（找满足该通关率的最少步数）。
+ * 2026-11-27 降难：实际试玩发现真人（尤其第一次玩）比贪心机器人弱，简单关都过不去，
+ * 所以提高通关率目标，并在此基础上再多给几步（EXTRA_MOVES）作为余量。 */
+const TARGET_WIN: Record<Difficulty, number> = { easy: 0.96, medium: 0.88, hard: 0.7 }
+const EXTRA_MOVES: Record<Difficulty, number> = { easy: 6, medium: 5, hard: 4 }
 const GAMES = 24
 
 function seeded(seed: number) {
@@ -76,7 +79,7 @@ function draftLevel(level: number, difficulty: Difficulty, rng: Rng, scale = 1):
     return shuffle(region, rng).slice(0, Math.min(region.length, Math.round(between(rng, lo, hi) * scale)))
   }
   const collectKinds = (n: number) => shuffle(Array.from({ length: kinds }, (_, i) => i).filter((i) => i !== faceKind), rng).slice(0, n)
-  const base = { easy: [22, 28], medium: [26, 34], hard: [30, 38] }[difficulty] as [number, number]
+  const base = { easy: [16, 22], medium: [22, 30], hard: [26, 34] }[difficulty] as [number, number]
   const per = [Math.round(base[0] * scale), Math.round(base[1] * scale)] as [number, number]
 
   let goals: Goal[]
@@ -142,7 +145,7 @@ function tuneMoves(draft: Omit<Match3Level, 'moves'>): { moves: number; rate: nu
 
 /** 合适的步数范围：太少显得仓促，太多显得拖沓 */
 const MIN_MOVES = 14
-const MAX_MOVES = 40
+const MAX_MOVES = 45
 
 const t0 = Date.now()
 const levels: Match3Level[] = []
@@ -154,7 +157,7 @@ for (let i = 0; i < MATCH3_PATTERN.length; i++) {
   for (let attempt = 0; attempt < 12 && !chosen; attempt++) {
     const draft = draftLevel(level, difficulty, seeded(level * 7919 + attempt * 104729), scale)
     const { moves, rate } = tuneMoves(draft)
-    const ok = rate >= TARGET_WIN[difficulty] && moves >= MIN_MOVES && moves <= MAX_MOVES
+    const ok = rate >= TARGET_WIN[difficulty] && moves >= MIN_MOVES && moves + EXTRA_MOVES[difficulty] <= MAX_MOVES
     if (ok) chosen = { draft, moves, rate }
     else if (rate >= TARGET_WIN[difficulty] && moves < MIN_MOVES) scale *= 1.35 // 太快：加大目标
     else scale = Math.max(0.5, scale * 0.85) // 太难或步数太多：减小目标、换一种布局
@@ -162,9 +165,9 @@ for (let i = 0; i < MATCH3_PATTERN.length; i++) {
   if (!chosen) throw new Error(`第 ${level} 关多次尝试都没有调出合适的难度`)
   const { draft, moves, rate } = chosen
   // 图块图片不影响难度，最后统一分配：每关都有作者的 3 张头像
-  levels.push({ ...draft, moves, pieces: piecesForLevel(level, draft.kinds) })
+  levels.push({ ...draft, moves: moves + EXTRA_MOVES[difficulty], pieces: piecesForLevel(level, draft.kinds) })
   const goalText = draft.goals.map((g) => (g.type === 'collect' ? `收集${g.count}` : g.type === 'score' ? `分数${g.target}` : `冰${draft.ice?.length}`)).join('+')
-  console.log(`L${String(level).padStart(3)} ${difficulty.padEnd(6)} ${goalText.padEnd(18)} 步数 ${String(moves).padStart(2)}  机器人通关率 ${(rate * 100).toFixed(0)}%`)
+  console.log(`L${String(level).padStart(3)} ${difficulty.padEnd(6)} ${goalText.padEnd(18)} 步数 ${String(moves + EXTRA_MOVES[difficulty]).padStart(2)}  机器人通关率 ${(rate * 100).toFixed(0)}%`)
 }
 writeFileSync(resolve(import.meta.dirname, '../src/minigames/match3/levels.json'), JSON.stringify(levels, null, 1) + '\n')
 console.log(`完成：${levels.length} 关，用时 ${((Date.now() - t0) / 1000).toFixed(0)} 秒`)

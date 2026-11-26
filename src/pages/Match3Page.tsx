@@ -225,7 +225,7 @@ function Match3Game({
         <h1>
           第 {level.level} 关 <span className={`mg-chip diff-${level.difficulty}`}>{DIFFICULTY_LABEL[level.difficulty]}</span>
         </h1>
-        <span className="mg-progress">{state.score} 分</span>
+        <span className="mg-progress">得分 {state.score}</span>
       </header>
 
       <section className="m3-hud">
@@ -233,17 +233,37 @@ function Match3Game({
           <span className="m3-moves-num">{state.movesLeft}</span>
           <span className="m3-moves-label">步</span>
         </div>
+        <div className="m3-goals-wrap">
+        <span className="m3-goals-title">目标</span>
         <ul className="m3-goals" aria-label="目标">
           {level.goals.map((g, i) => {
             const { done, left } = goalProgress(state, g)
+            if (g.type === 'score') {
+              // 分数目标：直接用文字写出当前分数和目标分数，再加一条进度条
+              return (
+                <li key={i} className={`m3-goal-score${done ? ' done' : ''}`}>
+                  <span className="m3-goal-text">
+                    分数 <b className="m3-goal-left">{state.score}</b> / {g.target}
+                    {done && ' ✓'}
+                  </span>
+                  <span className="m3-goal-bar" aria-hidden>
+                    <span style={{ width: `${Math.min(100, (state.score / g.target) * 100)}%` }} />
+                  </span>
+                </li>
+              )
+            }
             return (
               <li key={i} className={done ? 'done' : ''}>
                 {goalIcon(g)}
-                <span className="m3-goal-left">{done ? '✓' : left}</span>
+                <span className="m3-goal-text">
+                  {g.type === 'ice' ? '冰块还剩 ' : '还差 '}
+                  <b className="m3-goal-left">{done ? '✓' : left}</b>
+                </span>
               </li>
             )
           })}
         </ul>
+        </div>
       </section>
 
       <div className="m3-board-wrap">

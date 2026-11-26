@@ -34,10 +34,10 @@ describe('消消乐关卡结构', () => {
     }
   })
 
-  it('步数在 14~40 之间', () => {
+  it('步数在 14~45 之间', () => {
     for (const l of MATCH3_LEVELS) {
       expect(l.moves).toBeGreaterThanOrEqual(14)
-      expect(l.moves).toBeLessThanOrEqual(40)
+      expect(l.moves).toBeLessThanOrEqual(45)
     }
   })
 
@@ -76,12 +76,12 @@ describe('消消乐难度（自动试玩复核）', () => {
     const easy = rate('easy')
     const medium = rate('medium')
     const hard = rate('hard')
-    expect(easy).toBeGreaterThan(0.8)
-    expect(medium).toBeGreaterThan(0.55)
-    expect(medium).toBeLessThan(0.9)
-    expect(hard).toBeGreaterThan(0.3)
-    expect(hard).toBeLessThan(0.7)
-    expect(easy).toBeGreaterThan(medium)
+    // 2026-11-27 降难后：机器人在简单关几乎必胜，中等绝大多数能过，困难仍有一定挑战
+    expect(easy).toBeGreaterThan(0.95)
+    expect(medium).toBeGreaterThan(0.85)
+    expect(hard).toBeGreaterThan(0.6)
+    expect(hard).toBeLessThan(0.95)
+    expect(easy).toBeGreaterThanOrEqual(medium)
     expect(medium).toBeGreaterThan(hard)
     // 共 800 局，比较耗时
   }, 120_000)
