@@ -192,6 +192,40 @@
   touch-action: manipulation;
 }
 
+/* 一排小动物（装饰；最右边那只是开发者的隐藏开关） */
+.tod-animals {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0.25rem 0.6rem;
+}
+
+.tod-animal {
+  border: none;
+  background: none;
+  padding: 0.15rem;
+  font-family: var(--font-emoji);
+  font-size: 1.35rem;
+  line-height: 1;
+  -webkit-touch-callout: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.tod-animal span {
+  display: inline-block;
+}
+
+.tod-animal.hop span {
+  animation: tod-hop 0.35s ease-out;
+}
+
+@keyframes tod-hop {
+  40% {
+    transform: translateY(-0.45rem) rotate(-8deg);
+  }
+}
+
 .tod-draw-icon {
   font-size: 1.1rem;
   opacity: 0.85;
