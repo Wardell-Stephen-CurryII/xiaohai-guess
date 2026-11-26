@@ -117,13 +117,45 @@ export function removePair(b: Board, a: Pos, z: Pos): Board {
   return next
 }
 
-/** 贪心消除到底：能消完说明一定有解（用于生成棋盘时验证） */
-export function solvableGreedy(b: Board): boolean {
+/** 图块滑动方向（困难关）：每次消除后，剩下的图块朝这个方向移动补空位；障碍格不动，会挡住图块 */
+export type Gravity = 'down' | 'up' | 'left' | 'right'
+
+export function applyGravity(b: Board, dir: Gravity): Board {
+  const rows = b.length
+  const cols = b[0].length
+  const next = b.map((row) => [...row])
+  const vertical = dir === 'down' || dir === 'up'
+  const lines = vertical ? cols : rows
+  const len = vertical ? rows : cols
+  const toward = dir === 'down' || dir === 'right'
+  for (let line = 0; line < lines; line++) {
+    const get = (i: number) => (vertical ? next[i][line] : next[line][i])
+    const set = (i: number, v: number) => (vertical ? (next[i][line] = v) : (next[line][i] = v))
+    // 按障碍格把这一行 / 列切成几段，每段内把图块推到靠近方向的一端
+    let start = 0
+    while (start < len) {
+      while (start < len && get(start) === BLOCK) start++
+      let end = start
+      while (end < len && get(end) !== BLOCK) end++
+      const tiles: number[] = []
+      for (let i = start; i < end; i++) if (get(i) >= 0) tiles.push(get(i))
+      for (let i = start; i < end; i++) set(i, EMPTY)
+      if (toward) tiles.forEach((v, k) => set(end - tiles.length + k, v))
+      else tiles.forEach((v, k) => set(start + k, v))
+      start = end
+    }
+  }
+  return next
+}
+
+/** 贪心消除到底：能消完说明一定有解（用于生成棋盘时验证）；有滑动规则时按规则模拟 */
+export function solvableGreedy(b: Board, gravity?: Gravity): boolean {
   let cur = b
   while (remaining(cur) > 0) {
     const pair = findAnyPair(cur)
     if (!pair) return false
     cur = removePair(cur, pair[0], pair[1])
+    if (gravity) cur = applyGravity(cur, gravity)
   }
   return true
 }
@@ -135,6 +167,8 @@ export interface LinkLayout {
   types: number
   /** 障碍格 */
   blocks?: Pos[]
+  /** 消除后图块滑动的方向（困难关） */
+  gravity?: Gravity
 }
 
 /** 每种图块成对出现，按种类轮流分配，尽量均匀；轮流的顺序随机，多出来的对数不会总落在同几种上 */
@@ -162,7 +196,7 @@ export function generateBoard(layout: LinkLayout, rng: Rng, maxTries = 200): Boa
     for (const p of layout.blocks ?? []) board[p.r][p.c] = BLOCK
     const tiles = shuffle(tilesFor(cells.length, layout.types, rng), rng)
     cells.forEach((p, k) => (board[p.r][p.c] = tiles[k]))
-    if (solvableGreedy(board)) return board
+    if (solvableGreedy(board, layout.gravity)) return board
     last = board
   }
   // 极少见：多次都没生成出可解的棋盘，返回最后一个（游戏中卡住时会自动重排）
@@ -170,7 +204,7 @@ export function generateBoard(layout: LinkLayout, rng: Rng, maxTries = 200): Boa
 }
 
 /** 打乱剩余图块的位置，保证打乱后至少有一对能连，并尽量整体可解 */
-export function reshuffle(b: Board, rng: Rng, maxTries = 100): Board {
+export function reshuffle(b: Board, rng: Rng, maxTries = 100, gravity?: Gravity): Board {
   const cells: Pos[] = []
   const tiles: number[] = []
   b.forEach((row, r) =>
@@ -186,7 +220,7 @@ export function reshuffle(b: Board, rng: Rng, maxTries = 100): Board {
     const next = b.map((row) => [...row])
     const mixed = shuffle(tiles, rng)
     cells.forEach((p, k) => (next[p.r][p.c] = mixed[k]))
-    if (solvableGreedy(next)) return next
+    if (solvableGreedy(next, gravity)) return next
     if (findAnyPair(next)) fallback = next
   }
   return fallback

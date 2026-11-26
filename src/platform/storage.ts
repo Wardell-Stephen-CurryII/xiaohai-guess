@@ -7,13 +7,15 @@ import { newProfile, parseProfile, parseVip } from '../profile/profileData'
 import type { Profile, VipState } from '../profile/types'
 import type { SeenPrompts } from '../minigames/promptDeck'
 import { MATCH3_LEVEL_SET } from '../minigames/match3/levels'
+import { LINK_LEVEL_SET } from '../minigames/link/levels'
 
 export const STORAGE_KEY = 'xiaohai-guess'
 const VERSION = 4
 
 /** 小游戏进度：连连看记录已通过的关卡；消消乐记录每关最高星数 */
 export interface MiniGameProgress {
-  link: { cleared: number[] }
+  /** set：关卡集版本，与 LINK_LEVEL_SET 不一致时通关记录清零 */
+  link: { set: number; cleared: number[] }
   /** set：关卡集版本，与 MATCH3_LEVEL_SET 不一致时星数清零 */
   match3: { set: number; stars: Record<string, number> }
 }
@@ -79,14 +81,15 @@ function parseTod(v: unknown): TodData {
 }
 
 export function defaultMiniGames(): MiniGameProgress {
-  return { link: { cleared: [] }, match3: { set: MATCH3_LEVEL_SET, stars: {} } }
+  return { link: { set: LINK_LEVEL_SET, cleared: [] }, match3: { set: MATCH3_LEVEL_SET, stars: {} } }
 }
 
 function parseMiniGames(v: unknown): MiniGameProgress {
   const d = isRecord(v) ? v : {}
   const link = isRecord(d.link) ? d.link : {}
   const match3 = isRecord(d.match3) ? d.match3 : {}
-  const cleared = Array.isArray(link.cleared)
+  // 关卡整体更换后，旧的通关记录对应的是不同的关卡，清零
+  const cleared = link.set === LINK_LEVEL_SET && Array.isArray(link.cleared)
     ? [...new Set(link.cleared.filter((n): n is number => Number.isInteger(n) && n > 0))].sort((a, b) => a - b)
     : []
   const stars: Record<string, number> = {}
@@ -94,7 +97,7 @@ function parseMiniGames(v: unknown): MiniGameProgress {
   if (match3.set === MATCH3_LEVEL_SET && isRecord(match3.stars)) {
     for (const [k, n] of Object.entries(match3.stars)) if (Number.isInteger(n) && (n as number) >= 1 && (n as number) <= 3) stars[k] = n as number
   }
-  return { link: { cleared }, match3: { set: MATCH3_LEVEL_SET, stars } }
+  return { link: { set: LINK_LEVEL_SET, cleared }, match3: { set: MATCH3_LEVEL_SET, stars } }
 }
 
 export function defaultData(rng: () => number = Math.random): StoredData {

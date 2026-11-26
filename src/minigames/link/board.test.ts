@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { BLOCK, EMPTY, findAnyPair, findPath, generateBoard, remaining, removePair, reshuffle, solvableGreedy, type Board } from './board'
+import { applyGravity, BLOCK, EMPTY, findAnyPair, findPath, generateBoard, remaining, removePair, reshuffle, solvableGreedy, type Board } from './board'
 
 const _ = EMPTY
 const X = BLOCK
@@ -96,6 +96,37 @@ describe('generateBoard', () => {
 
   it('格子数为奇数时报错', () => {
     expect(() => generateBoard({ rows: 3, cols: 3, types: 2 }, seeded(1))).toThrow()
+  })
+})
+
+describe('applyGravity（困难关的滑动规则）', () => {
+  it('向下：每列图块落到底部，障碍格不动并挡住上方的图块', () => {
+    const b: Board = [
+      [0, 1, _],
+      [_, X, 2],
+      [_, _, _],
+      [3, _, _],
+    ]
+    expect(applyGravity(b, 'down')).toEqual([
+      [_, 1, _],
+      [_, X, _],
+      [0, _, _],
+      [3, _, 2],
+    ])
+  })
+
+  it('向左、向右、向上', () => {
+    const b: Board = [[_, 0, _, 1]]
+    expect(applyGravity(b, 'left')).toEqual([[0, 1, _, _]])
+    expect(applyGravity(b, 'right')).toEqual([[_, _, 0, 1]])
+    expect(applyGravity([[_], [2], [_]], 'up')).toEqual([[2], [_], [_]])
+  })
+
+  it('有滑动规则的关卡也能生成可消完的棋盘', () => {
+    for (const g of ['down', 'up', 'left', 'right'] as const) {
+      const b = generateBoard({ rows: 9, cols: 7, types: 14, blocks: [{ r: 4, c: 3 }], gravity: g }, seeded(7))
+      expect(solvableGreedy(b, g)).toBe(true)
+    }
   })
 })
 

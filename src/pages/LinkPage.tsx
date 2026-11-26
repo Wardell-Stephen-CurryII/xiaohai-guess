@@ -2,11 +2,12 @@
 // 提示、重排都免费、不限次数；没有可连的会自动重排。
 
 import { useEffect, useRef, useState, type CSSProperties } from 'react'
+import { LevelSelect } from '../components/minigames/LevelSelect'
 import { toast } from '../components/toastBus'
 import { SoundPlayer } from '../platform/audio'
 import { CLEAR_XP, DIFFICULTY_LABEL } from '../minigames/difficulty'
-import { findAnyPair, findPath, generateBoard, remaining, removePair, reshuffle, type Board, type Pos } from '../minigames/link/board'
-import { LINK_LEVELS, type LinkLevel } from '../minigames/link/levels'
+import { applyGravity, findAnyPair, findPath, generateBoard, remaining, removePair, reshuffle, type Board, type Pos } from '../minigames/link/board'
+import { GRAVITY_LABEL, LINK_LEVELS, type LinkLevel } from '../minigames/link/levels'
 import { TileFace } from '../minigames/TileFace'
 import { tilesForLevel } from '../minigames/tiles'
 import './link.css'
@@ -27,6 +28,8 @@ function fmtTime(ms: number) {
 }
 
 /** 根据屏幕大小计算图块边长（棋盘外圈留半格给连线） */
+const GRAVITY_ARROW = { down: '↓', up: '↑', left: '←', right: '→' } as const
+
 function tileSizeFor(rows: number, cols: number) {
   const w = Math.min(window.innerWidth, 544) - 32
   const h = window.innerHeight - 220
@@ -67,44 +70,15 @@ export default function LinkPage({
       />
     )
   }
-  return <LevelSelect cleared={cleared} onPick={setPlaying} onBack={onBack} />
-}
-
-function LevelSelect({ cleared, onPick, onBack }: { cleared: number[]; onPick: (l: LinkLevel) => void; onBack: () => void }) {
-  // 一关一关解锁：通过第 N 关后解锁第 N+1 关
-  const unlockedUpTo = Math.max(0, ...cleared) + 1
   return (
-    <main className="mg-page">
-      <header className="mg-top">
-        <button className="text-link mg-back" onClick={onBack}>
-          ‹ 返回
-        </button>
-        <h1>连连看</h1>
-        <span className="mg-progress">
-          {cleared.length}/{LINK_LEVELS.length}
-        </span>
-      </header>
-      <p className="mg-intro">点两个相同的图块，能用最多拐两个弯的线连起来就消除。不限时间，消完就过关。</p>
-      <div className="mg-levels">
-        {LINK_LEVELS.map((l) => {
-          const done = cleared.includes(l.level)
-          const locked = l.level > unlockedUpTo
-          return (
-            <button
-              key={l.level}
-              className={`mg-level diff-${l.difficulty}${done ? ' done' : ''}${locked ? ' locked' : ''}`}
-              onClick={() => (locked ? toast(`先通过第 ${l.level - 1} 关`) : onPick(l))}
-              aria-label={`第 ${l.level} 关，${DIFFICULTY_LABEL[l.difficulty]}${done ? '，已通过' : locked ? '，未解锁' : ''}`}
-            >
-              <span className="mg-level-num">{locked ? '🔒' : l.level}</span>
-              <span className="mg-level-diff">{DIFFICULTY_LABEL[l.difficulty]}</span>
-              {done && <span className="mg-level-check">✓</span>}
-            </button>
-          )
-        })}
-      </div>
-      <p className="mg-more">更多关卡持续更新中～</p>
-    </main>
+    <LevelSelect
+      title="连连看"
+      intro="点两个相同的图块，能用最多拐两个弯的线连起来就消除。不限时间，消完就过关。困难关消除后图块会滑动。"
+      levels={LINK_LEVELS}
+      isPassed={(n) => cleared.includes(n)}
+      onPick={setPlaying}
+      onBack={onBack}
+    />
   )
 }
 
@@ -149,7 +123,7 @@ function LinkGame({
     }
     if (!findAnyPair(next)) {
       toast('没有可以连的了，已自动重排')
-      return reshuffle(next, Math.random)
+      return reshuffle(next, Math.random, 100, level.gravity)
     }
     return next
   }
@@ -185,7 +159,9 @@ function LinkGame({
     setSteps((n) => n + 1)
     const a = selected
     // 动画期间 busy 挡住其他点击，棋盘不会变化，可以直接用当前的 board
-    const next = afterRemove(removePair(board, a, p))
+    // 困难关：消除后剩下的图块朝规定方向滑动
+    const removed = removePair(board, a, p)
+    const next = afterRemove(level.gravity ? applyGravity(removed, level.gravity) : removed)
     setTimeout(() => {
       setBoard(next)
       setLine(null)
@@ -202,7 +178,7 @@ function LinkGame({
   const doShuffle = () => {
     setSelected(null)
     setHint(null)
-    setBoard((b) => reshuffle(b, Math.random))
+    setBoard((b) => reshuffle(b, Math.random, 100, level.gravity))
   }
 
   const restart = () => {
@@ -232,6 +208,7 @@ function LinkGame({
       <div className="link-stats">
         <span>剩余 {left}/{total}</span>
         <span>步数 {steps}</span>
+        {level.gravity && <span className="link-gravity">{GRAVITY_ARROW[level.gravity]} {GRAVITY_LABEL[level.gravity]}</span>}
       </div>
 
       <div className="link-board-wrap">

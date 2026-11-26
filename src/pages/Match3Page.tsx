@@ -2,6 +2,7 @@
 // 支持滑动交换，也支持先点一块、再点相邻的一块。
 
 import { useEffect, useRef, useState, type CSSProperties, type PointerEvent as ReactPointerEvent } from 'react'
+import { LevelSelect } from '../components/minigames/LevelSelect'
 import { toast } from '../components/toastBus'
 import { SoundPlayer } from '../platform/audio'
 import { CLEAR_XP, DIFFICULTY_LABEL } from '../minigames/difficulty'
@@ -53,7 +54,17 @@ export default function Match3Page({
       />
     )
   }
-  return <LevelSelect stars={stars} onPick={setPlaying} onBack={onBack} />
+  return (
+    <LevelSelect
+      title="消消乐"
+      intro="交换相邻的两块，横或竖连成 3 个就消除。在步数用完之前完成目标，剩的步数越多星越多。"
+      levels={MATCH3_LEVELS}
+      isPassed={(n) => String(n) in stars}
+      badge={(n) => <Stars n={stars[String(n)] ?? 0} size="0.72rem" />}
+      onPick={setPlaying}
+      onBack={onBack}
+    />
+  )
 }
 
 function Stars({ n, size = '0.8rem' }: { n: number; size?: string }) {
@@ -65,68 +76,6 @@ function Stars({ n, size = '0.8rem' }: { n: number; size?: string }) {
         </span>
       ))}
     </span>
-  )
-}
-
-const PER_CHAPTER = 20
-
-function LevelSelect({ stars, onPick, onBack }: { stars: Record<string, number>; onPick: (l: Match3Level) => void; onBack: () => void }) {
-  const passed = (n: number) => String(n) in stars
-  const total = MATCH3_LEVELS.filter((l) => passed(l.level)).length
-  const chapters = Math.ceil(MATCH3_LEVELS.length / PER_CHAPTER)
-  // 默认打开下一关所在的章节
-  const nextLevel = MATCH3_LEVELS.find((l) => !passed(l.level))?.level ?? MATCH3_LEVELS.length
-  const [chapter, setChapter] = useState(() => Math.floor((nextLevel - 1) / PER_CHAPTER))
-  const shown = MATCH3_LEVELS.slice(chapter * PER_CHAPTER, (chapter + 1) * PER_CHAPTER)
-  return (
-    <main className="mg-page">
-      <header className="mg-top">
-        <button className="text-link mg-back" onClick={onBack}>
-          ‹ 返回
-        </button>
-        <h1>消消乐</h1>
-        <span className="mg-progress">
-          {total}/{MATCH3_LEVELS.length}
-        </span>
-      </header>
-      <p className="mg-intro">交换相邻的两块，横或竖连成 3 个就消除。在步数用完之前完成目标，剩的步数越多星越多。</p>
-      <div className="m3-chapters" role="tablist" aria-label="章节">
-        {Array.from({ length: chapters }, (_, i) => {
-          const from = i * PER_CHAPTER + 1
-          const to = Math.min((i + 1) * PER_CHAPTER, MATCH3_LEVELS.length)
-          const done = MATCH3_LEVELS.slice(from - 1, to).filter((l) => passed(l.level)).length
-          return (
-            <button key={i} role="tab" aria-selected={chapter === i} className="m3-chapter" onClick={() => setChapter(i)}>
-              <span>
-                {from}–{to}
-              </span>
-              <small>
-                {done}/{to - from + 1}
-              </small>
-            </button>
-          )
-        })}
-      </div>
-      <div className="mg-levels">
-        {shown.map((l) => {
-          // 一关一关解锁：上一关通过后才能玩
-          const locked = l.level > 1 && !passed(l.level - 1)
-          const s = stars[String(l.level)] ?? 0
-          return (
-            <button
-              key={l.level}
-              className={`mg-level diff-${l.difficulty}${s ? ' done' : ''}${locked ? ' locked' : ''}`}
-              onClick={() => (locked ? toast(`先通过第 ${l.level - 1} 关`) : onPick(l))}
-              aria-label={`第 ${l.level} 关，${DIFFICULTY_LABEL[l.difficulty]}${s ? `，${s} 星` : locked ? '，未解锁' : ''}`}
-            >
-              <span className="mg-level-num">{locked ? '🔒' : l.level}</span>
-              {s ? <Stars n={s} size="0.72rem" /> : <span className="mg-level-diff">{DIFFICULTY_LABEL[l.difficulty]}</span>}
-            </button>
-          )
-        })}
-      </div>
-      <p className="mg-more">更多关卡持续更新中～</p>
-    </main>
   )
 }
 

@@ -113,7 +113,7 @@ export function useGameController() {
         const mg = s.minigames
         const next =
           game === 'link'
-            ? { ...mg, link: { cleared: first ? [...mg.link.cleared, level].sort((a, b) => a - b) : mg.link.cleared } }
+            ? { ...mg, link: { set: mg.link.set, cleared: first ? [...mg.link.cleared, level].sort((a, b) => a - b) : mg.link.cleared } }
             : { ...mg, match3: { set: mg.match3.set, stars: { ...mg.match3.stars, [level]: Math.max(stars, mg.match3.stars[String(level)] ?? 0) } } }
         return { ...s, profile: { ...s.profile, xp: s.profile.xp + gain }, minigames: next }
       })
