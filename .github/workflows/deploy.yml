@@ -21,6 +21,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          # 需要完整历史来计算版本号（跳过只改激活码列表的提交，见 vite.config.ts）
+          fetch-depth: 0
       - uses: actions/setup-node@v7
         with:
           node-version: 22

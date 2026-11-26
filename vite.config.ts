@@ -4,14 +4,17 @@ import { execSync } from 'node:child_process'
 import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
-// 版本号：构建日期 + git 短提交号，显示在首页和「我的」页面
+// 版本号：最后一次修改程序的提交（日期 · 短提交号）。
+// 只改激活码列表（public/vip/）的提交不算，这样发码后重新构建出的程序文件完全不变，
+// 用户不会收到「有新版本」的提示。不用构建当天的日期，原因相同。
 function appVersion(): string {
-  const d = new Date()
-  const date = `${d.getFullYear()}.${d.getMonth() + 1}.${d.getDate()}`
   try {
-    return `${date} · ${execSync('git rev-parse --short HEAD').toString().trim()}`
+    const out = execSync("git log -1 --format=%h%x20%cs -- . ':(exclude)public/vip'").toString().trim()
+    const [hash, day] = out.split(' ')
+    const [y, m, d] = day.split('-').map(Number)
+    return `${y}.${m}.${d} · ${hash}`
   } catch {
-    return date
+    return '开发版'
   }
 }
 
