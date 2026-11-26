@@ -18,9 +18,6 @@ export interface Drawn {
   spicy: boolean
 }
 
-/** 打开劲爆后，每次抽到劲爆题的概率 */
-export const SPICY_RATIO = 1 / 3
-
 function pickFrom(pool: string[], seen: string[], avoid: string | null, rng: Rng): { text: string; seen: string[] } {
   const poolSet = new Set(pool)
   let kept = seen.filter((x) => poolSet.has(x))
@@ -34,6 +31,7 @@ function pickFrom(pool: string[], seen: string[], avoid: string | null, rng: Rng
   return { text, seen: [...kept, text] }
 }
 
+/** 劲爆打开时只抽劲爆题，关闭时只抽普通题，两者不混合 */
 export function drawPrompt(
   bank: PromptBank,
   spicyOn: boolean,
@@ -41,8 +39,7 @@ export function drawPrompt(
   rng: Rng,
   current: string | null = null,
 ): { drawn: Drawn; seen: SeenPrompts } {
-  const useSpicy = spicyOn && bank.spicy.length > 0 && rng() < SPICY_RATIO
-  if (useSpicy) {
+  if (spicyOn && bank.spicy.length > 0) {
     const r = pickFrom(bank.spicy, seen.spicy, current, rng)
     return { drawn: { text: r.text, spicy: true }, seen: { ...seen, spicy: r.seen } }
   }

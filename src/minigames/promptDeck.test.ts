@@ -39,18 +39,20 @@ describe('drawPrompt', () => {
     expect(next.seen.normal).toEqual([next.drawn.text])
   })
 
-  it('劲爆打开时大约三分之一是劲爆题', () => {
-    const big = { normal: Array.from({ length: 500 }, (_, i) => `n${i}`), spicy: Array.from({ length: 500 }, (_, i) => `s${i}`) }
+  it('劲爆打开时只出劲爆题，不和普通题混合；抽完一轮再重新开始', () => {
     const rng = seeded(3)
     let seen = empty
-    let spicy = 0
-    for (let i = 0; i < 600; i++) {
-      const r = drawPrompt(big, true, seen, rng)
-      if (r.drawn.spicy) spicy++
+    const got: string[] = []
+    for (let i = 0; i < 6; i++) {
+      const r = drawPrompt(bank, true, seen, rng, got[got.length - 1] ?? null)
+      expect(r.drawn.spicy).toBe(true)
+      expect(bank.spicy).toContain(r.drawn.text)
+      got.push(r.drawn.text)
       seen = r.seen
     }
-    expect(spicy / 600).toBeGreaterThan(0.25)
-    expect(spicy / 600).toBeLessThan(0.42)
+    // 只有 2 条劲爆题：每两张一轮，且不会连续抽到同一张
+    for (let i = 1; i < got.length; i++) expect(got[i]).not.toBe(got[i - 1])
+    expect(seen.normal).toEqual([])
   })
 
   it('题库更新后，已删除的题从记录中去掉', () => {

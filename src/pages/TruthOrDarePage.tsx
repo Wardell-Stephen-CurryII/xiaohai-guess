@@ -102,7 +102,7 @@ export default function TruthOrDarePage({
           aria-checked={tod.spicy}
           onClick={() => updateTod((t) => ({ ...t, spicy: !t.spicy }))}
         >
-          🔥 劲爆{tod.spicy ? '开' : '关'}
+          {tod.spicy ? '🔥 劲爆开' : '🧯 劲爆关'}
         </button>
       </header>
 
