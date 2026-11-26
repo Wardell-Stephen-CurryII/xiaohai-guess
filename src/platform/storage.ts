@@ -8,7 +8,13 @@ import type { Profile, VipState } from '../profile/types'
 import type { SeenPrompts } from '../minigames/promptDeck'
 
 export const STORAGE_KEY = 'xiaohai-guess'
-const VERSION = 3
+const VERSION = 4
+
+/** 小游戏进度：连连看记录已通过的关卡；消消乐记录每关最高星数 */
+export interface MiniGameProgress {
+  link: { cleared: number[] }
+  match3: { stars: Record<string, number> }
+}
 
 /** 真心话 / 大冒险：公开的劲爆开关，以及抽过的题（跨次不重复） */
 export interface TodData {
@@ -22,6 +28,7 @@ export interface StoredData {
   profile: Profile
   vip: VipState | null
   tod: TodData
+  minigames: MiniGameProgress
 }
 
 /** localStorage 的最小接口，便于测试 */
@@ -69,8 +76,26 @@ function parseTod(v: unknown): TodData {
   return { spicy: v.spicy === true, seen: { truth: pair(seen.truth), dare: pair(seen.dare) } }
 }
 
+export function defaultMiniGames(): MiniGameProgress {
+  return { link: { cleared: [] }, match3: { stars: {} } }
+}
+
+function parseMiniGames(v: unknown): MiniGameProgress {
+  const d = isRecord(v) ? v : {}
+  const link = isRecord(d.link) ? d.link : {}
+  const match3 = isRecord(d.match3) ? d.match3 : {}
+  const cleared = Array.isArray(link.cleared)
+    ? [...new Set(link.cleared.filter((n): n is number => Number.isInteger(n) && n > 0))].sort((a, b) => a - b)
+    : []
+  const stars: Record<string, number> = {}
+  if (isRecord(match3.stars)) {
+    for (const [k, n] of Object.entries(match3.stars)) if (Number.isInteger(n) && (n as number) >= 1 && (n as number) <= 3) stars[k] = n as number
+  }
+  return { link: { cleared }, match3: { stars } }
+}
+
 export function defaultData(rng: () => number = Math.random): StoredData {
-  return { settings: { ...DEFAULT_SETTINGS }, seen: {}, profile: newProfile(rng), vip: null, tod: defaultTod() }
+  return { settings: { ...DEFAULT_SETTINGS }, seen: {}, profile: newProfile(rng), vip: null, tod: defaultTod(), minigames: defaultMiniGames() }
 }
 
 export function loadData(store: KeyValueStore, rng: () => number = Math.random): StoredData {
@@ -81,16 +106,17 @@ export function loadData(store: KeyValueStore, rng: () => number = Math.random):
     if (!isRecord(data)) return defaultData(rng)
     // 版本 1：只有设置和已出词，迁移时保留并新建资料
     if (data.version === 1) {
-      return { settings: parseSettings(data.settings), seen: parseSeen(data.seen), profile: newProfile(rng), vip: null, tod: defaultTod() }
+      return { settings: parseSettings(data.settings), seen: parseSeen(data.seen), profile: newProfile(rng), vip: null, tod: defaultTod(), minigames: defaultMiniGames() }
     }
-    // 版本 2 → 3：新增真心话大冒险数据，其余原样保留
-    if (data.version !== 2 && data.version !== VERSION) return defaultData(rng)
+    // 版本 2、3 → 4：缺少的部分（真心话大冒险、小游戏进度）用默认值补上，其余原样保留
+    if (data.version !== 2 && data.version !== 3 && data.version !== VERSION) return defaultData(rng)
     return {
       settings: parseSettings(data.settings),
       seen: parseSeen(data.seen),
       profile: parseProfile(data.profile, rng),
       vip: parseVip(data.vip),
       tod: parseTod(data.tod),
+      minigames: parseMiniGames(data.minigames),
     }
   } catch {
     return defaultData(rng)

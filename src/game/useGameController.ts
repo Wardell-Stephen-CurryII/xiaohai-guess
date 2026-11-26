@@ -4,6 +4,7 @@ import { useCallback, useEffect, useLayoutEffect, useReducer, useRef, useState }
 import { THEMES } from '../data/themes'
 import { setAudioSessionType, SoundPlayer } from '../platform/audio'
 import { loadData, requestPersistentStorage, saveData, type StoredData, type TodData } from '../platform/storage'
+import { levelFor } from '../profile/progress'
 import { decodeBackup, encodeBackup } from '../profile/backup'
 import { validateName } from '../profile/names'
 import { applyRound, type RoundReward } from '../profile/progress'
@@ -99,6 +100,24 @@ export function useGameController() {
   )
 
   const exportBackup = useCallback(() => encodeBackup(storedRef.current.profile), [])
+
+  // 小游戏通关：记录进度；首次通关奖励经验，返回是否首次和是否升级
+  const clearMiniGameLevel = useCallback(
+    (game: 'link', level: number, xp: number): { first: boolean; xpGained: number; levelUp: { to: number; title: string } | null } => {
+      const d = storedRef.current
+      const first = !d.minigames.link.cleared.includes(level)
+      if (!first) return { first, xpGained: 0, levelUp: null }
+      const before = levelFor(d.profile.xp)
+      const after = levelFor(d.profile.xp + xp)
+      update((s) => ({
+        ...s,
+        profile: { ...s.profile, xp: s.profile.xp + xp },
+        minigames: { ...s.minigames, [game]: { cleared: [...s.minigames[game].cleared, level].sort((a, b) => a - b) } },
+      }))
+      return { first, xpGained: xp, levelUp: after.level > before.level ? { to: after.level, title: after.title } : null }
+    },
+    [update],
+  )
 
   // 真心话 / 大冒险：劲爆开关和已抽记录
   const updateTod = useCallback((fn: (t: TodData) => TodData) => update((d) => ({ ...d, tod: fn(d.tod) })), [update])
@@ -296,6 +315,8 @@ export function useGameController() {
     vip: stored.vip,
     tod: stored.tod,
     updateTod,
+    minigames: stored.minigames,
+    clearMiniGameLevel,
     view,
     nowMs,
     reward,

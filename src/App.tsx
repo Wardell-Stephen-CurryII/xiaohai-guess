@@ -12,6 +12,7 @@ import { applyPalette } from './profile/applyPalette'
 // 调试页、小游戏按需加载，不影响猜词游戏本身
 const DebugPage = lazy(() => import('./pages/DebugPage'))
 const TruthOrDarePage = lazy(() => import('./pages/TruthOrDarePage'))
+const LinkPage = lazy(() => import('./pages/LinkPage'))
 
 function useHash(): string {
   const [hash, setHash] = useState(() => window.location.hash)
@@ -61,6 +62,18 @@ function Game({ hash }: { hash: string }) {
     return (
       <Suspense fallback={null}>
         <TruthOrDarePage initialKind={hash === '#truth' ? 'truth' : 'dare'} tod={g.tod} updateTod={g.updateTod} onBack={() => go('')} />
+      </Suspense>
+    )
+  }
+
+  if (state.phase === 'home' && hash === '#link') {
+    return (
+      <Suspense fallback={null}>
+        <LinkPage
+          cleared={g.minigames.link.cleared}
+          onClear={(level, xp) => g.clearMiniGameLevel('link', level, xp)}
+          onBack={() => go('')}
+        />
       </Suspense>
     )
   }

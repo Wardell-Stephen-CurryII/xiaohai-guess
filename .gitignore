@@ -31,3 +31,6 @@ private/
 
 # 小红书配图（只在本机使用，不发布）
 public/images/xiaohongshu-poster.png
+
+# 作者提供的原始图片（处理后放在 public/minigames/）
+/images/

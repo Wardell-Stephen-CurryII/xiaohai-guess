@@ -20,7 +20,7 @@ export interface MiniGameDef {
 export const MINI_GAMES: MiniGameDef[] = [
   { id: 'truth', name: '真心话', desc: '抽一题，说实话', art: ['🫣', '💬', '❓'], color: '#D8D5FF', status: 'ready', hash: '#truth' },
   { id: 'dare', name: '大冒险', desc: '抽一张，敢不敢', art: ['🎲', '🔥', '🎤'], color: '#FFD8C4', status: 'ready', hash: '#dare' },
-  { id: 'link', name: '连连看', desc: '敬请期待', art: ['🧩', '🔗', '⭐'], color: '#C3ECDD', status: 'soon', hash: '#link' },
+  { id: 'link', name: '连连看', desc: '20 关，不限时间', art: ['🧩', '🔗', '⭐'], color: '#C3ECDD', status: 'ready', hash: '#link' },
   { id: 'match3', name: '消消乐', desc: '敬请期待', art: ['🍬', '🍭', '✨'], color: '#FFD3E3', status: 'soon', hash: '#match3' },
 ]
 
